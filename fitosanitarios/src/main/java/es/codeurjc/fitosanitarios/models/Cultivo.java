@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 public class Cultivo {
 
@@ -18,7 +20,9 @@ public class Cultivo {
 	
 	private String especie;
 	private String variedad;
-	private LocalDate fecha_plantado;
+	
+	@DateTimeFormat(pattern="dd-MM-yyyy")
+	private LocalDate fechaPlantado;
 	private String zona;
 	
 	@OneToMany(mappedBy="cultivo")
@@ -31,7 +35,7 @@ public class Cultivo {
 	public Cultivo(String especie, String variedad, LocalDate fecha_plantado, String zona, List<Tratamiento> tratamientos) {
 		this.especie = especie;
 		this.variedad = variedad;
-		this.fecha_plantado = fecha_plantado;
+		this.fechaPlantado = fecha_plantado;
 		this.zona = zona;
 		this.tratamientos = tratamientos;
 	}
@@ -60,12 +64,12 @@ public class Cultivo {
 		this.variedad = variedad;
 	}
 
-	public LocalDate getFecha_plantado() {
-		return fecha_plantado;
+	public LocalDate getFechaPlantado() {
+		return fechaPlantado;
 	}
 
-	public void setFecha_plantado(LocalDate fecha_plantado) {
-		this.fecha_plantado = fecha_plantado;
+	public void setFechaPlantado(LocalDate fechaPlantado) {
+		this.fechaPlantado = fechaPlantado;
 	}
 
 	public String getZona() {

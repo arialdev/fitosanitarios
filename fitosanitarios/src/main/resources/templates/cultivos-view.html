@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cultivos</title>
+</head>
+
+<body>
+
+	<div th:each="cultivo : ${cultivos}">
+		<p th:text="'Especie: '+ ${cultivo.especie}"></p>
+		<p th:text="'Asunto: '+ ${cultivo.variedad}"></p>
+		<p th:text="'Fecha de plantación: ' + ${#temporals.format(cultivo.fechaPlantado, 'dd-MM-yyyy')}"></p>
+		<p th:text="'Zona: '+ ${cultivo.zona}"></p>
+	</div>
+
+</body>
+
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Tratamientos</title>
+</head>
+
+<body>
+	<div th:each="tratamiento : ${tratamientos}">
+		<div>
+			<p>Cultivo:</p>
+			<p th:text="'Especie: '+ ${tratamiento.cultivo.especie}"></p>
+			<p th:text="'Asunto: '+ ${tratamiento.cultivo.variedad}"></p>
+			<p th:text="${#temporals.format(tratamiento.cultivo.fechaPlantado, 'dd-MM-yyyy')}"></p>
+			<p th:text="'Zona: '+ ${tratamiento.cultivo.zona}"></p>
+		</div>
+
+
+		<div>
+			<p>Producto:</p>
+			<p th:text="'Nombre: '+ ${tratamiento.producto.nombre}"></p>
+			<p th:text="'Descripción: '+ ${tratamiento.producto.descripcion}"></p>
+			<p th:text="'Plazo de reentrada: '+ ${tratamiento.producto.plazoReentrada}"></p>
+			<p th:text="'Plazo de recolección: '+ ${tratamiento.producto.plazoRecoleccion}"></p>
+		</div>
+
+		<p th:text="'Lote: '+ ${tratamiento.lote}"></p>
+		<p th:text="'Fecha de aplicación: ' + ${#temporals.format(tratamiento.fechaAplicacion, 'dd-MM-yyyy')}"></p>
+		<p th:text="'Fecha de reentrada: ' + ${#temporals.format(tratamiento.fechaReentrada, 'dd-MM-yyyy')}"></p>
+		<p th:text="'Fecha de recolección: ' + ${#temporals.format(tratamiento.fechaRecoleccion, 'dd-MM-yyyy')}"></p>
+
+	</div>
+
+</body>
+
+</html>

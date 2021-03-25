@@ -3,11 +3,14 @@ package es.codeurjc.fitosanitarios.controllers;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.LinkedList;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import es.codeurjc.fitosanitarios.models.*;
 import es.codeurjc.fitosanitarios.repositories.CultivoRepository;
@@ -41,7 +44,7 @@ public class TratamientoController {
 		Cultivo cultivo1 = new Cultivo("Especie 1", "Variedad 1", LocalDate.now(), "", new LinkedList<>());
 		Cultivo cultivo2 = new Cultivo("Especie 1", "Variedad 1", LocalDate.now(), "", new LinkedList<>());
 		Cultivo cultivo3 = new Cultivo("Especie 1", "Variedad 1", LocalDate.now(), "", new LinkedList<>());
-		Cultivo cultivo4 = new Cultivo("Especie 2", "Variedad 2", LocalDate.now(), "", new LinkedList<>());
+		Cultivo cultivo4 = new Cultivo("Especie 2", "Variedad 2", LocalDate.now().plusDays(1), "Alicante", new LinkedList<>());
 		Cultivo cultivo5 = new Cultivo("Especie 2", "Variedad 2", LocalDate.now(), "", new LinkedList<>());
 		Cultivo cultivo6 = new Cultivo("Especie 2", "Variedad 2", LocalDate.now(), "", new LinkedList<>());
 		
@@ -67,5 +70,12 @@ public class TratamientoController {
 		cultivo6.getTratamientos().addAll(Arrays.asList(tratamiento6, tratamiento7, tratamiento8));
 		
 		cultivoRepository.saveAll(Arrays.asList(cultivo2, cultivo3, cultivo4, cultivo5, cultivo6));
+	}
+
+	@RequestMapping("/tratamientos")
+	public String board(Model model) {
+		List<Tratamiento> tratamientos = tratamientoRepository.findAll();
+		model.addAttribute("tratamientos", tratamientos);
+		return "tratamientos-view";
 	}
 }

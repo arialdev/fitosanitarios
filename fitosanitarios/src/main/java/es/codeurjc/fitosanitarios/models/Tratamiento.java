@@ -23,23 +23,23 @@ public class Tratamiento {
 	
 	private String lote;
 	
-	private LocalDate fecha_aplicacion;
+	private LocalDate fechaAplicacion;
 	
-	private LocalDate fecha_reentrada;
+	private LocalDate fechaReentrada;
 	
-	private LocalDate fecha_recoleccion;
+	private LocalDate fechaRecoleccion;
 	
 
 	public Tratamiento() {
 	}
 
-	public Tratamiento(Cultivo cultivo, Producto producto, String lote, LocalDate fecha_aplicacion, LocalDate fecha_reentrada, LocalDate fecha_recoleccion) {
+	public Tratamiento(Cultivo cultivo, Producto producto, String lote, LocalDate fechaAplicacion, LocalDate fechaReentrada, LocalDate fechaRecoleccion) {
 		this.cultivo = cultivo;
 		this.producto = producto;
 		this.lote = lote;
-		this.fecha_aplicacion = fecha_aplicacion;
-		this.fecha_reentrada = fecha_reentrada;
-		this.fecha_recoleccion = fecha_recoleccion;
+		this.fechaAplicacion = fechaAplicacion;
+		this.fechaReentrada = fechaReentrada;
+		this.fechaRecoleccion = fechaRecoleccion;
 	}
 
 	public long getId() {
@@ -74,27 +74,27 @@ public class Tratamiento {
 		this.lote = lote;
 	}
 
-	public LocalDate getFecha_aplicacion() {
-		return fecha_aplicacion;
+	public LocalDate getFechaAplicacion() {
+		return fechaAplicacion;
 	}
 
-	public void setFecha_aplicacion(LocalDate fecha_aplicacion) {
-		this.fecha_aplicacion = fecha_aplicacion;
+	public void setFechaAplicacion(LocalDate fechaAplicacion) {
+		this.fechaAplicacion = fechaAplicacion;
 	}
 
-	public LocalDate getFecha_reentrada() {
-		return fecha_reentrada;
+	public LocalDate getFechaReentrada() {
+		return fechaReentrada;
 	}
 
-	public void setFecha_reentrada(LocalDate fecha_reentrada) {
-		this.fecha_reentrada = fecha_reentrada;
+	public void setFechaReentrada(LocalDate fechaReentrada) {
+		this.fechaReentrada = fechaReentrada;
 	}
 
-	public LocalDate getFecha_recoleccion() {
-		return fecha_recoleccion;
+	public LocalDate getFechaRecoleccion() {
+		return fechaRecoleccion;
 	}
 
-	public void setFecha_recoleccion(LocalDate fecha_recoleccion) {
-		this.fecha_recoleccion = fecha_recoleccion;
+	public void setFechaRecoleccion(LocalDate fechaRecoleccion) {
+		this.fechaRecoleccion = fechaRecoleccion;
 	}	
 }
