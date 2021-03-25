@@ -1,4 +1,4 @@
-package es.codeurjc.fitosanitarios.model;
+package es.codeurjc.fitosanitarios.models;
 
 import java.time.LocalDate;
 
@@ -7,8 +7,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
 @Entity
 public class Tratamiento {
@@ -20,7 +18,7 @@ public class Tratamiento {
 	@ManyToOne
 	private Cultivo cultivo;
 	
-	@OneToOne
+	@ManyToOne
 	private Producto producto;
 	
 	private String lote;
@@ -35,9 +33,7 @@ public class Tratamiento {
 	public Tratamiento() {
 	}
 
-	public Tratamiento(Cultivo cultivo, Producto producto, String lote, LocalDate fecha_aplicacion,
-			LocalDate fecha_reentrada, LocalDate fecha_recoleccion) {
-		super();
+	public Tratamiento(Cultivo cultivo, Producto producto, String lote, LocalDate fecha_aplicacion, LocalDate fecha_reentrada, LocalDate fecha_recoleccion) {
 		this.cultivo = cultivo;
 		this.producto = producto;
 		this.lote = lote;
@@ -48,6 +44,10 @@ public class Tratamiento {
 
 	public long getId() {
 		return id;
+	}
+	
+	public void setId(long id) {
+		this.id = id;
 	}
 
 	public Cultivo getCultivo() {

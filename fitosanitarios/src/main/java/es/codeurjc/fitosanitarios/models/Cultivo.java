@@ -1,4 +1,4 @@
-package es.codeurjc.fitosanitarios.model;
+package es.codeurjc.fitosanitarios.models;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -22,15 +22,13 @@ public class Cultivo {
 	private String zona;
 	
 	@OneToMany(mappedBy="cultivo")
-	private List<Tratamiento> tratamientos;//Comprobar errores futuros
+	private List<Tratamiento> tratamientos;
 
 	protected Cultivo() {
 		
 	}
 	
-	public Cultivo(String especie, String variedad, LocalDate fecha_plantado, String zona,
-			List<Tratamiento> tratamientos) {
-		super();
+	public Cultivo(String especie, String variedad, LocalDate fecha_plantado, String zona, List<Tratamiento> tratamientos) {
 		this.especie = especie;
 		this.variedad = variedad;
 		this.fecha_plantado = fecha_plantado;
@@ -40,6 +38,10 @@ public class Cultivo {
 
 	public long getId() {
 		return id;
+	}
+	
+	public void setId(long id) {
+		this.id = id;
 	}
 
 	public String getEspecie() {

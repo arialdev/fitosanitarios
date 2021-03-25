@@ -1,10 +1,9 @@
-package es.codeurjc.fitosanitarios.model;
+package es.codeurjc.fitosanitarios.models;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 
 @Entity
 public class Producto {
@@ -20,25 +19,24 @@ public class Producto {
 	private int plazoReentrada;
 
 	private int plazoRecoleccion;
-
+	
 	public Producto() {
 
 	}
-
-	public Producto(String nombre, String descripcion, int plazoReentrada, int plazoRecoleccion,
-			Tratamiento tratamiento) {
+	
+	public Producto(String nombre, String descripcion, int plazoReentrada, int plazoRecoleccion) {
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.plazoReentrada = plazoReentrada;
 		this.plazoRecoleccion = plazoRecoleccion;
-		this.tratamiento = tratamiento;
 	}
-
-	@OneToOne
-	private Tratamiento tratamiento;
 
 	public long getId() {
 		return id;
+	}
+	
+	public void setId(long id) {
+		this.id = id;
 	}
 
 	public String getNombre() {
@@ -71,14 +69,6 @@ public class Producto {
 
 	public void setPlazoRecoleccion(int plazoRecoleccion) {
 		this.plazoRecoleccion = plazoRecoleccion;
-	}
-
-	public Tratamiento getTratamiento() {
-		return tratamiento;
-	}
-
-	public void setTratamiento(Tratamiento tratamiento) {
-		this.tratamiento = tratamiento;
 	}
 
 }
