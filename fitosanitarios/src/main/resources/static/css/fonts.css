@@ -1,0 +1,71 @@
+/*  
+    *Sirva este CSS para recoger las fuentes de la aplicación.
+    * This stylesheet is only fonts.
+    -Varo412-
+*/
+
+@font-face {
+    font-family: 'kg_happy';
+    src: url('../fonts/kg_happy/KGHAPPY.ttf');
+}
+
+@font-face {
+    font-family: 'hello';
+    src: url('../fonts/hello/Hello.ttf');
+}
+
+@font-face {
+    font-family: 'roboto-condensed';
+    src: url('../fonts/roboto/Roboto-Condensed.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'roboto-condensed';
+    src: url('../fonts/roboto/Roboto-Regular.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'roboto';
+    src: url('../fonts/roboto/Roboto-Bold.ttf');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'roboto';
+    src: url('../fonts/roboto/Roboto-Black.ttf');
+    font-weight: bolder;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'roboto';
+    src: url('../fonts/roboto/Roboto-Thin.ttf');
+    font-weight: lighter;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'roboto';
+    src: url('../fonts/roboto/Roboto-ThinItalic.ttf');
+    font-weight: lighter;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'caviar-dreams';
+    src: url('../fonts/caviar-dreams/CaviarDreams.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'caviar-dreams';
+    src: url('../fonts/caviar-dreams/CaviarDreams_Bold.ttf');
+    font-weight: bold;
+    font-style: normal;
+}

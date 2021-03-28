@@ -1,0 +1,26 @@
+/*  
+    *Sirva este CSS para los aspectos generales de la aplicación.
+    * This stylesheet is only for general purpose.
+    -Varo412-
+*/
+
+body {
+    background-color: #d0f1ce;
+}
+
+header {
+    background-color: #77a774;
+    position: sticky !important;
+    top: 0;
+    z-index: 1;
+}
+
+#logo {
+    cursor: pointer;
+    font-family: 'kg_happy', serif
+}
+
+.section-title {
+    font-family: caviar-dreams;
+    font-weight: bold;
+}

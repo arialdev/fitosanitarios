@@ -2,21 +2,55 @@
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cultivos</title>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Cultivos</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/lib/bootstrap-5.0.0-beta3-dist/css/bootstrap.min.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/lib/bootstrap-icons-1.4.0/bootstrap-icons.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/css/elements-grid.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/css/fonts.css}" />
 </head>
 
 <body>
 
-	<div th:each="cultivo : ${cultivos}">
-		<p th:text="'Especie: '+ ${cultivo.especie}"></p>
-		<p th:text="'Asunto: '+ ${cultivo.variedad}"></p>
-		<p th:text="'Fecha de plantación: ' + ${#temporals.format(cultivo.fechaPlantado, 'dd-MM-yyyy')}"></p>
-		<p th:text="'Zona: '+ ${cultivo.zona}"></p>
-	</div>
+	<header>
+		<nav class="navbar navbar-light mb-5">
+			<div class="container-fluid no-select">
+				<a id="logo" class="navbar-brand me-auto ms-lg-3 ms-sm-2 ms-0 " href="/">
+					AgroWorld
+				</a>
+			</div>
+		</nav>
+	</header>
 
+	<section class="container-fluid my-5">
+		<h2 class="mb-4 section-title">Cultivos:</h2>
+		<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-6 g-4">
+			<div class="col" th:each="cultivo : ${cultivos}">
+				<div class="card h-100 cultivo">
+					<div class="element-header" th:text="${cultivo.especie}"></div>
+					<div class="card-body">
+						<p class="card-subtitle mb-2" th:text="'Variedad: '+ ${cultivo.variedad}"></p>
+						<!-- <p class="card-subtitle mb-2 " th:if="${cultivo.zona != ''}"
+							th:text="'Zona: '+ ${cultivo.zona}">
+						</p> -->
+						<!-- <p class="card-subtitle mb-1 bottom-date"
+							th:text="'F. Plantación: ' + ${#temporals.format(cultivo.fechaPlantado, 'dd-MM-yyyy')}">
+						</p> -->
+					</div>
+					<div class="card-footer d-flex justify-content-around">
+						<a href="#" class="btn btn-info mx-1"><i class="bi bi-info-circle"></i></a>
+						<a href="#" class="btn btn-warning mx-1"><i class="bi bi-pencil"></i></a>
+						<a href="#" class="btn btn-danger mx-1"><i class="bi bi-trash"></i></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<script type="text/javascript" th:src="@{/lib/bootstrap-5.0.0-beta3-dist/js/bootstrap.min.js}"></script>
 </body>
 
 </html>
