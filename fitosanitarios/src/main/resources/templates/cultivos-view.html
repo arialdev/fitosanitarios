@@ -19,21 +19,59 @@
 	<header>
 		<nav class="navbar navbar-light mb-5">
 			<div class="container-fluid no-select">
-				<a id="logo" class="navbar-brand me-auto ms-lg-3 ms-sm-2 ms-0 " href="/">
+				<a id="logo" class="navbar-brand me-auto ms-lg-3 ms-sm-2 ms-0 no-select" href="/">
 					AgroWorld
 				</a>
 			</div>
 		</nav>
 	</header>
 
-	<section class="container-fluid my-5">
+	<section class="container my-5 mx-auto">
 		<h2 class="mb-4 section-title">Cultivos:</h2>
 		<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-6 g-4">
 			<div class="col" th:each="cultivo : ${cultivos}">
 				<div class="card h-100 cultivo">
 					<div class="element-header" th:text="${cultivo.especie}"></div>
 					<div class="card-body">
-						<p class="card-subtitle mb-2" th:text="'Variedad: '+ ${cultivo.variedad}"></p>
+						<p class="card-subtitle mb-2" th:text="${cultivo.variedad}"></p>
+						<!-- <p class="card-subtitle mb-2 " th:if="${cultivo.zona != ''}"
+							th:text="'Zona: '+ ${cultivo.zona}">
+						</p> -->
+						<!-- <p class="card-subtitle mb-1 bottom-date"
+							th:text="'F. Plantación: ' + ${#temporals.format(cultivo.fechaPlantado, 'dd-MM-yyyy')}">
+						</p> -->
+					</div>
+					<div class="card-footer d-flex justify-content-around">
+						<a href="#" class="btn btn-info mx-1"><i class="bi bi-info-circle"></i></a>
+						<a href="#" class="btn btn-warning mx-1"><i class="bi bi-pencil"></i></a>
+						<a href="#" class="btn btn-danger mx-1"><i class="bi bi-trash"></i></a>
+					</div>
+				</div>
+			</div>
+			<div class="col" th:each="cultivo : ${cultivos}">
+				<div class="card h-100 cultivo">
+					<div class="element-header" th:text="${cultivo.especie}"></div>
+					<div class="card-body">
+						<p class="card-subtitle mb-2" th:text="${cultivo.variedad}"></p>
+						<!-- <p class="card-subtitle mb-2 " th:if="${cultivo.zona != ''}"
+							th:text="'Zona: '+ ${cultivo.zona}">
+						</p> -->
+						<!-- <p class="card-subtitle mb-1 bottom-date"
+							th:text="'F. Plantación: ' + ${#temporals.format(cultivo.fechaPlantado, 'dd-MM-yyyy')}">
+						</p> -->
+					</div>
+					<div class="card-footer d-flex justify-content-around">
+						<a href="#" class="btn btn-info mx-1"><i class="bi bi-info-circle"></i></a>
+						<a href="#" class="btn btn-warning mx-1"><i class="bi bi-pencil"></i></a>
+						<a href="#" class="btn btn-danger mx-1"><i class="bi bi-trash"></i></a>
+					</div>
+				</div>
+			</div>
+			<div class="col" th:each="cultivo : ${cultivos}">
+				<div class="card h-100 cultivo">
+					<div class="element-header" th:text="${cultivo.especie}"></div>
+					<div class="card-body">
+						<p class="card-subtitle mb-2" th:text="${cultivo.variedad}"></p>
 						<!-- <p class="card-subtitle mb-2 " th:if="${cultivo.zona != ''}"
 							th:text="'Zona: '+ ${cultivo.zona}">
 						</p> -->
