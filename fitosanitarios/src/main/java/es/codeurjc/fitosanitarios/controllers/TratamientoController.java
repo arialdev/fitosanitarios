@@ -76,6 +76,6 @@ public class TratamientoController {
 	public String board(Model model) {
 		List<Tratamiento> tratamientos = tratamientoRepository.findAll();
 		model.addAttribute("tratamientos", tratamientos);
-		return "tratamientos-view";
+		return "tratamientos";
 	}
 }

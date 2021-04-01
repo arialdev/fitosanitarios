@@ -20,6 +20,6 @@ public class ProductoController {
 	public String board(Model model) {
 		List<Producto> productos = productoRepository.findAll();
 		model.addAttribute("productos", productos);
-		return "productos-view";
+		return "productos";
 	}
 }

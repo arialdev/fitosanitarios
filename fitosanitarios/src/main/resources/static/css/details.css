@@ -1,0 +1,29 @@
+/*  
+    *Sirva este CSS para recoger los estilos de la vista de detalle.
+    * This stylesheet is for the details view.
+*/
+
+.form-control:disabled {
+    background-color: white !important;
+}
+
+legend {
+    font-size: 27px;
+    font-family: caviar-dreams;
+    font-weight: bold;
+    width: fit-content;
+}
+
+.details {
+    width: fit-content;
+}
+
+.details-navigation {
+    display: flex;
+    justify-content: space-around;
+}
+
+.details-container label {
+    font-family: 'caviar-dreams';
+    font-weight: bold;
+}
