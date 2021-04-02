@@ -27,3 +27,7 @@ legend {
     font-family: 'caviar-dreams';
     font-weight: bold;
 }
+
+.modified {
+    background-color: #b4f3f1;
+}

@@ -34,21 +34,14 @@
 					<div class="element-header" th:text="${cultivo.especie}"></div>
 					<div class="card-body">
 						<p class="card-subtitle mb-2" th:text="${cultivo.variedad}"></p>
-						<!-- <p class="card-subtitle mb-2 " th:if="${cultivo.zona != ''}"
-							th:text="'Zona: '+ ${cultivo.zona}">
-						</p> -->
-						<!-- <p class="card-subtitle mb-1 bottom-date"
-							th:text="'F. Plantación: ' + ${#temporals.format(cultivo.fechaPlantado, 'dd-MM-yyyy')}">
-						</p> -->
 					</div>
 					<div class="card-footer d-flex justify-content-around">
-						<a href="#" class="btn btn-info mx-1"
-							th:attr="onclick=|location.pathname='/cultivos/view/'+('${cultivo.id}')|"
-							data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ver detalles">
+						<a th:href="@{/cultivos/view/{id}(id=${cultivo.id})}" class="btn btn-info mx-1" data-bs-toggle="tooltip"
+							data-bs-placement="bottom" title="Ver detalles">
 							<i class="bi bi-info-circle"></i>
 						</a>
-						<a href="#" class="btn btn-warning mx-1" data-bs-toggle="tooltip" data-bs-placement="bottom"
-							title="Modificar">
+						<a th:href="@{/cultivos/update/{id}(id=${cultivo.id})}" class="btn btn-warning mx-1"
+							data-bs-toggle="tooltip" data-bs-placement="bottom" title="Modificar">
 							<i class="bi bi-pencil"></i>
 						</a>
 						<a href="#" class="btn btn-danger mx-1" data-bs-toggle="tooltip" data-bs-placement="bottom"

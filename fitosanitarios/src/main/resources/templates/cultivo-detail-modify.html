@@ -19,7 +19,7 @@
     <header>
         <nav class="navbar navbar-light mb-5">
             <div class="container-fluid no-select">
-                <a id="logo" class="navbar-brand me-auto ms-lg-3 ms-sm-2 ms-0 no-select" href="/">
+                <a id="logo" class="navbar-brand me-auto ms-lg-3 ms-sm-2 ms-0 no-select" th:href="@{/}">
                     AgroWorld
                 </a>
             </div>
@@ -30,52 +30,50 @@
         <div class="details m-auto">
             <form>
                 <fieldset>
-                    <legend class="mb-3">Detalles de cultivo</legend>
+                    <legend class="mb-3">Modificar cultivo</legend>
                     <div class="form-data">
                         <div class="mb-3">
                             <label for="especie-input" class="form-label">Especie</label>
-                            <input type="text" disabled id="especie-input" class="form-control" placeholder="Especie"
+                            <input type="text" id="especie-input" class="form-control" placeholder="Especie"
                                 th:value="${cultivo.especie}">
                         </div>
+
                         <div class="mb-3">
                             <label for="variedad-input" class="form-label">Variedad</label>
-                            <input type="text" disabled id="variedad-input" class="form-control" placeholder="Variedad"
+                            <input type="text" id="variedad-input" class="form-control" placeholder="Variedad"
                                 th:value="${cultivo.variedad}">
                         </div>
 
                         <div class="mb-3">
                             <label for="zona-input" class="form-label">Zona</label>
-                            <input type="text" disabled id="zona-input" class="form-control" placeholder="Zona"
-                                th:value="${(cultivo.zona.length == 0)? '-' : cultivo.zona }">
+                            <input type="text" id="zona-input" class="form-control" placeholder="Zona"
+                                th:value="${cultivo.zona}">
                         </div>
 
                         <div class="mb-3">
                             <label for="fPlant-input" class="form-label">Fecha de plantación</label>
                             <input type="date" id="fPlant-input" class="form-control"
-                                th:value="${cultivo.fechaPlantado}" placeholder="Fecha de plantación" disabled>
+                                th:value="${cultivo.fechaPlantado}" placeholder="Fecha de plantación">
                         </div>
                         <!-- TODO: FALTA EL LISTADO DE TRATAMIENTOS -->
                     </div>
                 </fieldset>
             </form>
             <div class="details-navigation p-3 m-auto">
-                <a href="/cultivos" class="btn btn-secondary mt-3 mx-1" data-bs-toggle="tooltip"
-                    data-bs-placement="bottom" title="Regresar">
+                <a th:href="@{/cultivos}" class="btn btn-secondary mt-3 mx-1" data-bs-toggle="tooltip"
+                    data-bs-placement="bottom" title="Cancelar">
                     <i class="bi bi-arrow-return-left"></i>
                 </a>
-                <a href="#" class="btn btn-warning mt-3 mx-1" data-bs-toggle="tooltip" data-bs-placement="bottom"
-                    title="Modificar">
-                    <i class="bi bi-pencil"></i>
-                </a>
-                <a href="#" class="btn btn-danger mt-3 mx-1" data-bs-toggle="tooltip" data-bs-placement="bottom"
-                    title="Eliminar">
-                    <i class="bi bi-trash"></i>
+                <a href="#" class="btn btn-success mt-3 mx-1" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                    title="Guardar">
+                    <i class="bi bi-check-circle"></i>
                 </a>
             </div>
         </div>
     </section>
 
     <script type="text/javascript" th:src="@{/lib/bootstrap-5.0.0-beta3-dist/js/bootstrap.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/details.js}"></script>
 </body>
 
 </html>

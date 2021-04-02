@@ -26,11 +26,21 @@ public class CultivoController {
 	}
 
 	@RequestMapping("/cultivos/view/{id}")
-	public String viewCultivo(@PathVariable Long id, Model model) {
+	public String viewCultivoView(@PathVariable Long id, Model model) {
 		Optional<Cultivo> cultivo = cultivoRepository.findById(id);
 		if (cultivo.isPresent()) {
 			model.addAttribute("cultivo", cultivo.get());
-			return "cultivo-detail";
+			return "cultivo-detail-view";
+		}
+		return "cultivos";
+	}
+
+	@RequestMapping("/cultivos/update/{id}")
+	public String modifyCultivoView(@PathVariable Long id, Model model) {
+		Optional<Cultivo> cultivo = cultivoRepository.findById(id);
+		if (cultivo.isPresent()) {
+			model.addAttribute("cultivo", cultivo.get());
+			return "cultivo-detail-modify";
 		}
 		return "cultivos";
 	}
