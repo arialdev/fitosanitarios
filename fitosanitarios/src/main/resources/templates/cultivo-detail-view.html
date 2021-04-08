@@ -67,7 +67,7 @@
                     data-bs-toggle="tooltip" data-bs-placement="bottom" title="Modificar">
                     <i class="bi bi-pencil"></i>
                 </a>
-                <a href="#" class="btn btn-danger mt-3 mx-1" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                <a th:href="@{/cultivos/delete/{id}(id=${cultivo.id})}" class="btn btn-danger mt-3 mx-1" data-bs-toggle="tooltip" data-bs-placement="bottom"
                     title="Eliminar">
                     <i class="bi bi-trash"></i>
                 </a>

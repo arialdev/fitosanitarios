@@ -3,13 +3,13 @@ package es.codeurjc.fitosanitarios.models;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 public class Cultivo {
@@ -21,11 +21,10 @@ public class Cultivo {
 	private String especie;
 	private String variedad;
 	
-	@DateTimeFormat(pattern="dd-MM-yyyy")
 	private LocalDate fechaPlantado;
 	private String zona;
 	
-	@OneToMany(mappedBy="cultivo")
+	@OneToMany(cascade = CascadeType.REMOVE, mappedBy="cultivo")
 	private List<Tratamiento> tratamientos;
 
 	protected Cultivo() {
@@ -38,6 +37,15 @@ public class Cultivo {
 		this.fechaPlantado = fecha_plantado;
 		this.zona = zona;
 		this.tratamientos = tratamientos;
+	}
+	
+	public Cultivo update (Cultivo updatedCultivo) {
+		this.especie = updatedCultivo.getEspecie();
+		this.variedad = updatedCultivo.getVariedad();
+		this.fechaPlantado = updatedCultivo.getFechaPlantado();
+		this.zona = updatedCultivo.getZona();
+		this.tratamientos = updatedCultivo.getTratamientos();
+		return this;
 	}
 
 	public long getId() {
@@ -87,6 +95,5 @@ public class Cultivo {
 	public void setTratamientos(List<Tratamiento> tratamientos) {
 		this.tratamientos = tratamientos;
 	}
-	
 	
 }
