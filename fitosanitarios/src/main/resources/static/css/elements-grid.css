@@ -12,6 +12,7 @@
 
 .add-element {
     height: fit-content;
+    height: -moz-fit-content;
 }
 
 .grid-header {
