@@ -9,3 +9,12 @@
     border-bottom: 1px solid rgba(0, 0, 0, .125);
     font-weight: bold;
 }
+
+.add-element {
+    height: fit-content;
+}
+
+.grid-header {
+    display: flex;
+    justify-content: space-between;
+}

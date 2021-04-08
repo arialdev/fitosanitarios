@@ -25,7 +25,7 @@ public class CultivoController {
 		return "cultivos";
 	}
 
-	@RequestMapping("/cultivos/view/{id}")
+	@RequestMapping("/cultivo/view/{id}")
 	public String viewCultivoView(@PathVariable Long id, Model model) {
 		Optional<Cultivo> cultivo = cultivoRepository.findById(id);
 		if (cultivo.isPresent()) {
@@ -35,7 +35,7 @@ public class CultivoController {
 		return "cultivos";
 	}
 
-	@RequestMapping("/cultivos/update/{id}")
+	@RequestMapping("/cultivo/update/{id}")
 	public String modifyCultivoView(@PathVariable Long id, Model model) {
 		Optional<Cultivo> cultivo = cultivoRepository.findById(id);
 		if (cultivo.isPresent()) {
@@ -45,7 +45,7 @@ public class CultivoController {
 		return "cultivos";
 	}
 	
-	@RequestMapping("/cultivos/update/save/{id}")
+	@RequestMapping("/cultivo/update/save/{id}")
 	public String updateCultivo(@PathVariable Long id, Model model, Cultivo updatedCultivo) {
 		Optional<Cultivo> cultivo = cultivoRepository.findById(id);
 		if (cultivo.isPresent()) {
@@ -55,7 +55,7 @@ public class CultivoController {
 		return "cultivos";
 	}
 	
-	@RequestMapping("/cultivos/delete/{id}")
+	@RequestMapping("/cultivo/delete/{id}")
 	public String deleteCultivo(@PathVariable Long id, Model model) {
 		Optional<Cultivo> cultivo = cultivoRepository.findById(id);
 		if (cultivo.isPresent()) {
@@ -65,12 +65,12 @@ public class CultivoController {
 		return "cultivos";
 	}
 	
-	@RequestMapping("/cultivos/new")
+	@RequestMapping("/cultivo/new")
 	public String newCultivoView(Model model) {
-		return "cultivos-new";
+		return "cultivo-new";
 	}
 	
-	@RequestMapping("/cultivos/new/save")
+	@RequestMapping("/cultivo/new/save")
 	public String newCultivo(Model model, Cultivo newCultivo) {
 		cultivoRepository.save(newCultivo);
 		return "redirect:/cultivos";

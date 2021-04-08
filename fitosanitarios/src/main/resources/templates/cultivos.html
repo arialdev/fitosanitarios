@@ -27,7 +27,13 @@
 	</header>
 
 	<section class="container my-5 mx-auto">
-		<h2 class="mb-4 section-title">Cultivos:</h2>
+		<div class="grid-header">
+			<h2 class="mb-4 section-title">Cultivos:</h2>
+			<a th:href="@{/cultivo/new}" class="btn btn-success mx-1 add-element" data-bs-toggle="tooltip"
+				data-bs-placement="bottom" title="Nuevo cultivo">
+				<i class="bi bi-plus"></i>
+			</a>
+		</div>
 		<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-6 g-4">
 			<div class="col" th:each="cultivo : ${cultivos}">
 				<div class="card h-100 cultivo">
@@ -36,15 +42,15 @@
 						<p class="card-subtitle mb-2" th:text="${cultivo.variedad}"></p>
 					</div>
 					<div class="card-footer d-flex justify-content-around">
-						<a th:href="@{/cultivos/view/{id}(id=${cultivo.id})}" class="btn btn-info mx-1" data-bs-toggle="tooltip"
-							data-bs-placement="bottom" title="Ver detalles">
+						<a th:href="@{/cultivo/view/{id}(id=${cultivo.id})}" class="btn btn-info mx-1"
+							data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ver detalles">
 							<i class="bi bi-info-circle"></i>
 						</a>
-						<a th:href="@{/cultivos/update/{id}(id=${cultivo.id})}" class="btn btn-warning mx-1"
+						<a th:href="@{/cultivo/update/{id}(id=${cultivo.id})}" class="btn btn-warning mx-1"
 							data-bs-toggle="tooltip" data-bs-placement="bottom" title="Modificar">
 							<i class="bi bi-pencil"></i>
 						</a>
-						<a th:href="@{/cultivos/delete/{id}(id=${cultivo.id})}" class="btn btn-danger mx-1" data-bs-toggle="tooltip" 
+						<a th:href="@{/cultivo/delete/{id}(id=${cultivo.id})}" class="btn btn-danger mx-1" data-bs-toggle="tooltip" 
 							data-bs-placement="bottom" title="Eliminar">
 							<i class="bi bi-trash"></i>
 						</a>
