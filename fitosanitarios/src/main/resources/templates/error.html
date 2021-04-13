@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cultivos</title>
+    <link rel="icon" type="image/png" th:href="@{/favicon.png}">
+    <link rel="stylesheet" type="text/css" th:href="@{/lib/bootstrap-5.0.0-beta3-dist/css/bootstrap.min.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/lib/bootstrap-icons-1.4.0/bootstrap-icons.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/home.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/fonts.css}" />
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-light mb-5">
+            <div class="container-fluid no-select">
+                <a id="logo" class="navbar-brand me-auto ms-lg-3 ms-sm-2 ms-0 no-select" href="/">
+                    AgroWorld
+                </a>
+            </div>
+        </nav>
+    </header>
+    <section class="container my-5 mx-auto text-center">
+        <img class="img img-fluid error-pic" th:src="@{/assets/images/404.png}">
+        <h1 class=error-text>Error 404. La página que solicita no existe.</h1>
+        <a href="/" class="btn mx-1 error-link" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Home">
+            <i class="bi bi-house me-2"></i>
+            <spam>Regresar al inicio</spam>
+        </a>
+    </section>
+
+    <script type="text/javascript" th:src="@{/lib/bootstrap-5.0.0-beta3-dist/js/bootstrap.min.js}"></script>
+</body>
+
+</html>
