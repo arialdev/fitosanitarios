@@ -1,0 +1,33 @@
+.home-menu {
+    justify-content: center;
+    margin-top: 10rem;
+}
+
+.home-category {
+    text-align: center;
+    padding: 1rem;
+    margin: 1rem;
+    border: 1px solid black;
+    border-radius: 0.5rem;
+    box-shadow: 2px 3px #84bb81;
+    background-color: #a9e0a580;
+    max-width: 320px;
+}
+
+.home-category:hover {
+    cursor: pointer;
+    background-color: #a9e0a5;
+    box-shadow: 4px 5px #84bb81;
+}
+
+.home-category img {
+    width: fit-content;
+    width: -moz-fit-content;
+    max-width: 220px;
+}
+
+.home-category-title {
+    font-family: 'caviar-dreams', serif;
+    font-weight: bold;
+    padding-top: 6px;
+}

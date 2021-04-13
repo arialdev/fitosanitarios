@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cultivos</title>
+    <link rel="icon" type="image/png" th:href="@{/favicon.png}">
+    <link rel="stylesheet" type="text/css" th:href="@{/lib/bootstrap-5.0.0-beta3-dist/css/bootstrap.min.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/lib/bootstrap-icons-1.4.0/bootstrap-icons.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/home.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/fonts.css}" />
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-light mb-5">
+            <div class="container-fluid no-select">
+                <a id="logo" class="navbar-brand me-auto ms-lg-3 ms-sm-2 ms-0 no-select" href="/">
+                    AgroWorld
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <section class="container my-5 mx-auto">
+        <div class="row home-menu">
+            <div class="col home-category d-flex flex-column" onclick="window.location.pathname+='cultivos'">
+                <img class="img img-fluid m-auto" th:src="@{/assets/images/cultivo.png}"
+                    alt="Imagen de la categoría cultivos">
+                <h3 class="home-category-title mt-3 mb-2 ">Cultivos</h3>
+            </div>
+
+            <div class="col home-category d-flex align-items-center flex-column"
+                onclick="window.location.pathname+='productos'">
+                <img class="img img-fluid m-auto" th:src="@{/assets/images/producto.png}"
+                    alt="Imagen de la categoría productos">
+                <h3 class="home-category-title mt-3 mb-2">Productos</h3>
+            </div>
+            <div class="col home-category d-flex align-items-center flex-column"
+                onclick="window.location.pathname+='tratamientos'">
+                <img class="img img-fluid m-auto" th:src="@{/assets/images/tratamiento.png}"
+                    alt="Imagen de la categoría tratamientos">
+                <h3 class="home-category-title mt-3 mb-2">Tratamientos</h3>
+            </div>
+        </div>
+    </section>
+
+    <script type="text/javascript" th:src="@{/lib/bootstrap-5.0.0-beta3-dist/js/bootstrap.min.js}"></script>
+</body>
+
+</html>
