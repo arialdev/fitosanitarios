@@ -44,17 +44,17 @@ public class CultivoController {
 		}
 		return "cultivos";
 	}
-	
+
 	@RequestMapping("/cultivo/update/save/{id}")
 	public String updateCultivo(@PathVariable Long id, Model model, Cultivo updatedCultivo) {
 		Optional<Cultivo> cultivo = cultivoRepository.findById(id);
 		if (cultivo.isPresent()) {
 			cultivoRepository.save(cultivo.get().update(updatedCultivo));
-			return "redirect:/cultivos";
+			return "redirect:/cultivo/view/" + id;
 		}
 		return "cultivos";
 	}
-	
+
 	@RequestMapping("/cultivo/delete/{id}")
 	public String deleteCultivo(@PathVariable Long id, Model model) {
 		Optional<Cultivo> cultivo = cultivoRepository.findById(id);
@@ -64,12 +64,12 @@ public class CultivoController {
 		}
 		return "cultivos";
 	}
-	
+
 	@RequestMapping("/cultivo/new")
 	public String newCultivoView(Model model) {
 		return "cultivo-new";
 	}
-	
+
 	@RequestMapping("/cultivo/new/save")
 	public String newCultivo(Model model, Cultivo newCultivo) {
 		cultivoRepository.save(newCultivo);

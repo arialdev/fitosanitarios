@@ -35,3 +35,16 @@ legend {
     width: -moz-fit-content;
     margin: 0 auto;
 }
+
+.add-list {
+    background-color: #bbf9b7;
+}
+
+.add-list i {
+    font-size: 40px;
+    color: #094409;
+}
+
+.add-list i:hover {
+    cursor: pointer;
+}
