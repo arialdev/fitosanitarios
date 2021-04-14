@@ -3,7 +3,7 @@
     * This stylesheet is only for the elements grid view.
 */
 
-.cultivo .element-header {
+.grid-element .element-header {
     padding: .5rem 1rem;
     margin-bottom: 0;
     border-bottom: 1px solid rgba(0, 0, 0, .125);

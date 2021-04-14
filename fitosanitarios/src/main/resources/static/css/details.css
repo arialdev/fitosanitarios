@@ -12,16 +12,13 @@ legend {
     font-family: caviar-dreams;
     font-weight: bold;
     width: fit-content;
-}
-
-.details {
-    width: fit-content;
-    width: -moz-fit-content;
+    float: unset;
+    text-align: center;
 }
 
 .details-navigation {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
 }
 
 .details-container label {
@@ -31,4 +28,10 @@ legend {
 
 .modified {
     background-color: #b4f3f1;
+}
+
+.form-data {
+    width: 18rem;
+    width: -moz-fit-content;
+    margin: 0 auto;
 }

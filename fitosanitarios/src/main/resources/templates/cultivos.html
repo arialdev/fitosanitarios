@@ -36,7 +36,7 @@
 		</div>
 		<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-6 g-4">
 			<div class="col" th:each="cultivo : ${cultivos}">
-				<div class="card h-100 cultivo">
+				<div class="card h-100 grid-element">
 					<div class="element-header" th:text="${cultivo.especie}"></div>
 					<div class="card-body">
 						<p class="card-subtitle mb-2" th:text="${cultivo.variedad}"></p>
