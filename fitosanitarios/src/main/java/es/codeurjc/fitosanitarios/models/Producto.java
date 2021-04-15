@@ -30,6 +30,14 @@ public class Producto {
 		this.plazoReentrada = plazoReentrada;
 		this.plazoRecoleccion = plazoRecoleccion;
 	}
+	
+	public Producto update (Producto updatedProducto) {
+		this.nombre = updatedProducto.getNombre();
+		this.descripcion = updatedProducto.getDescripcion();
+		this.plazoReentrada = updatedProducto.getPlazoReentrada();
+		this.plazoRecoleccion = updatedProducto.getPlazoRecoleccion();
+		return this;
+	}
 
 	public long getId() {
 		return id;
