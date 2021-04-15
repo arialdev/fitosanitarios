@@ -8,11 +8,6 @@ public class HomeController {
 
     @RequestMapping("/")
     public String homeRedirection() {
-        return "redirect:/home";
-    }
-
-    @RequestMapping("/home")
-    public String board() {
         return "home-view";
     }
 }
