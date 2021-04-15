@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class HomeController {
 
     @RequestMapping("/")
-    public String homeRedirection() {
+    public String loadHome() {
         return "home-view";
     }
 }

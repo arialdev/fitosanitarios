@@ -31,44 +31,78 @@
             <form th:action="@{/cultivo/new/save}" method="post" id="new-cultivo-form">
                 <fieldset>
                     <legend class="mb-3">Nuevo cultivo</legend>
+                    <div class="details-navigation mb-4 m-auto">
+                        <a th:href="@{/cultivos}" class="btn btn-secondary mx-2" data-bs-toggle="tooltip"
+                            data-bs-placement="bottom" title="Cancelar">
+                            <i class="bi bi-arrow-return-left"></i>
+                        </a>
+                        <input type='submit' class="btn btn-success mx-2" data-bs-toggle="tooltip"
+                            data-bs-placement="bottom" title="Guardar" value="Guardar" />
+                    </div>
                     <div class="form-data">
+                        <hr>
                         <div class="mb-3">
-                            <label for="especie-input" class="form-label">Especie</label>
+                            <label for="especie-input" class="form-label">Especie:</label>
                             <input type="text" id="especie-input" class="form-control" placeholder="Especie"
                                 name="especie">
                         </div>
 
                         <div class="mb-3">
-                            <label for="variedad-input" class="form-label">Variedad</label>
+                            <label for="variedad-input" class="form-label">Variedad:</label>
                             <input type="text" id="variedad-input" class="form-control" placeholder="Variedad"
                                 name="variedad">
                         </div>
 
                         <div class="mb-3">
-                            <label for="zona-input" class="form-label">Zona</label>
+                            <label for="zona-input" class="form-label">Zona:</label>
                             <input type="text" id="zona-input" class="form-control" placeholder="Zona" name="zona">
                         </div>
 
                         <div class="mb-3">
-                            <label for="fPlant-input" class="form-label">Fecha de plantación</label>
+                            <label for="fPlant-input" class="form-label">Fecha de plantación:</label>
                             <input type="date" id="fPlant-input" class="form-control" name="fechaPlantado"
                                 placeholder="Fecha de plantación">
                         </div>
-
-                        <!-- TODO: FALTA EL LISTADO DE TRATAMIENTOS -->
+                        <div id="lista-tratamientos" class="mb-1">
+                            <label class="form-label">Listado de tratamientos:</label>
+                        </div>
+                    </div>
+                    <div class="container-fluid listado">
+                        <div class="row g-4 justify-content-center">
+                            <div class="col">
+                                <a th:href="@{/tratamiento/new}" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                    title="Añadir tratamiento">
+                                    <div class="card h-100 add-list grid-element">
+                                        <i class="bi bi-plus-circle-dotted m-auto"></i>
+                                    </div>
+                                </a>
+                            </div>
+                            <!-- <div class="col" th:each="tratamiento : ${cultivo.tratamientos}">
+                                <div class="card h-100 grid-element">
+                                    <div class="element-header d-flex justify-content-end">
+                                        <p th:text="'Id: '+${tratamiento.id}" class="mb-0 me-auto "></p>
+                                        <a th:href="@{/tratamiento/view/{id}(id=${tratamiento.id})}"
+                                            class="btn btn-info mx-1 p-0" data-bs-toggle="tooltip"
+                                            data-bs-placement="bottom" title="Cancelar">
+                                            <i class="bi bi-info-circle"></i>
+                                        </a>
+                                        <a th:href="@{/tratamiento/delete/{id}(id=${tratamiento.id})}"
+                                            class="btn btn-danger mx-1 p-0" data-bs-toggle="tooltip"
+                                            data-bs-placement="bottom" title="Cancelar">
+                                            <i class="bi bi-x"></i>
+                                        </a>
+                                    </div>
+                                    <div class="card-body">
+                                        <p class="card-subtitle mb-2"
+                                            th:text="${#temporals.format(tratamiento.fechaAplicacion, 'dd-MM-yyyy')}">
+                                        </p>
+                                    </div>
+                                </div>
+                            </div> -->
+                        </div>
                     </div>
                 </fieldset>
-
-                <div class="details-navigation p-3 m-auto">
-                    <a th:href="@{/cultivos}" class="btn btn-secondary mt-3 mx-1" data-bs-toggle="tooltip"
-                        data-bs-placement="bottom" title="Cancelar">
-                        <i class="bi bi-arrow-return-left"></i>
-                    </a>
-                    <input type='submit' class="btn btn-success mt-3 mx-1" data-bs-toggle="tooltip"
-                        data-bs-placement="bottom" title="Guardar" value="Guardar" />
-                </div>
             </form>
-
         </div>
     </section>
 

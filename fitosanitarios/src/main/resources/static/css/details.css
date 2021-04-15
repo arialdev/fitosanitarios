@@ -40,11 +40,34 @@ legend {
     background-color: #bbf9b7;
 }
 
+.element-header a {
+    height: min-content;
+}
+
 .add-list i {
     font-size: 40px;
     color: #094409;
+    transition: 1s;
+    -webkit-transition: 1s;
+    -moz-transition: 1s;
+    -ms-transition: 1s;
+    -o-transition: 1s;
 }
 
-.add-list i:hover {
-    cursor: pointer;
+.add-list:hover i {
+    transition: 1s;
+    -webkit-transition: 1s;
+    -moz-transition: 1s;
+    -ms-transition: 1s;
+    -o-transition: 1s;
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+
+.listado .grid-element {
+    width: 200px;
+    margin: auto;
 }

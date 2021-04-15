@@ -69,21 +69,21 @@
                             <label class="form-label">Listado de tratamientos:</label>
                         </div>
                     </div>
-                    <div class="container-fluid">
-                        <div
-                            class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-6 g-4 justify-content-center">
+                    <div class="container-fluid listado">
+                        <div class="row g-4 justify-content-center">
                             <div class="col">
                                 <a th:href="@{/tratamiento/new}" data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                    title="Cancelar">
-                                    <div class="card h-100 add-list">
+                                    title="Añadir tratamiento">
+                                    <div class="card h-100 add-list grid-element">
                                         <i class="bi bi-plus-circle-dotted m-auto"></i>
                                     </div>
                                 </a>
                             </div>
                             <div class="col" th:each="tratamiento : ${cultivo.tratamientos}">
-                                <div class="card h-100 grid-element">
+                                <div class="card h-100 grid-element ">
                                     <div class="element-header d-flex justify-content-end">
-                                        <p th:text="'Id: '+${tratamiento.id}" class="mb-0 me-auto "></p>
+                                        <p th:text="'Idsdfsdfsdf sdfsdfsdfsfsdfsd: '+${tratamiento.id}"
+                                            class="mb-0 me-auto "></p>
                                         <a th:href="@{/tratamiento/view/{id}(id=${tratamiento.id})}"
                                             class="btn btn-info mx-1 p-0" data-bs-toggle="tooltip"
                                             data-bs-placement="bottom" title="Cancelar">
