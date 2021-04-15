@@ -4,12 +4,14 @@ import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import es.codeurjc.fitosanitarios.models.*;
@@ -76,6 +78,57 @@ public class TratamientoController {
 	public String board(Model model) {
 		List<Tratamiento> tratamientos = tratamientoRepository.findAll();
 		model.addAttribute("tratamientos", tratamientos);
+		return "tratamientos";
+	}
+	
+	@RequestMapping("/tratamiento/view/{id}")
+	public String viewTratamiento(@PathVariable Long id, Model model) {
+		Optional<Tratamiento> tratamiento = tratamientoRepository.findById(id);
+		if (tratamiento.isPresent()) {
+			model.addAttribute("tratamiento", tratamiento.get());
+			return "tratamiento-detail-view";
+		}
+		return "error";
+	}
+	
+	@RequestMapping("/tratamiento/update/{id}")
+	public String modifyTratamiento(@PathVariable Long id, Model model) {
+		Optional<Tratamiento> tratamiento = tratamientoRepository.findById(id);
+		if (tratamiento.isPresent()) {
+			model.addAttribute("tratamiento", tratamiento.get());
+			return "tratamiento-detail-modify";
+		}
+		return "error";
+	}
+
+	@RequestMapping("/tratamiento/update/save/{id}")
+	public String updateTratamiento(@PathVariable Long id, Model model, Tratamiento updatedTratamiento) {
+		Optional<Tratamiento> tratamiento = tratamientoRepository.findById(id);
+		if (tratamiento.isPresent()) {
+			tratamientoRepository.save(tratamiento.get().update(updatedTratamiento));
+			return "tratamiento/view/" + id;
+		}
+		return "error";
+	}
+	
+	@RequestMapping("/tratamiento/delete/{id}")
+	public String deleteTratamiento(@PathVariable Long id, Model model) {
+		Optional<Tratamiento> tratamiento = tratamientoRepository.findById(id);
+		if (tratamiento.isPresent()) {
+			tratamientoRepository.delete(tratamiento.get());
+			return "tratamientos";
+		}
+		return "error";
+	}
+
+	@RequestMapping("/tratamiento/new")
+	public String newTratamiento(Model model) {
+		return "tratamiento-new";
+	}
+
+	@RequestMapping("/tratamiento/new/save")
+	public String newTratamiento(Model model, Tratamiento newTratamiento) {
+		tratamientoRepository.save(newTratamiento);
 		return "tratamientos";
 	}
 }

@@ -6,33 +6,62 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Tratamientos</title>
+	<link rel="icon" type="image/png" th:href="@{/favicon.png}">
+	<link rel="stylesheet" type="text/css" th:href="@{/lib/bootstrap-5.0.0-beta3-dist/css/bootstrap.min.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/lib/bootstrap-icons-1.4.0/bootstrap-icons.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/css/elements-grid.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/css/fonts.css}" />
 </head>
 
 <body>
-	<div th:each="tratamiento : ${tratamientos}">
-		<div>
-			<p>Cultivo:</p>
-			<p th:text="'Especie: '+ ${tratamiento.cultivo.especie}"></p>
-			<p th:text="'Asunto: '+ ${tratamiento.cultivo.variedad}"></p>
-			<p th:text="${#temporals.format(tratamiento.cultivo.fechaPlantado, 'dd-MM-yyyy')}"></p>
-			<p th:text="'Zona: '+ ${tratamiento.cultivo.zona}"></p>
+
+	<header>
+		<nav class="navbar navbar-light mb-5">
+			<div class="container-fluid no-select">
+				<a id="logo" class="navbar-brand me-auto ms-lg-3 ms-sm-2 ms-0 no-select" href="/">
+					AgroWorld
+				</a>
+			</div>
+		</nav>
+	</header>
+
+	<section class="container my-5 mx-auto">
+	
+		<div class="grid-header">
+			<h2 class="mb-4 section-title">Tratamientos:</h2>
+			<a th:href="@{/tratamiento/new}" class="btn btn-success mx-1 add-element" data-bs-toggle="tooltip"
+				data-bs-placement="bottom" title="Nuevo tratamiento">
+				<i class="bi bi-plus"></i>
+			</a>
 		</div>
-
-
-		<div>
-			<p>Producto:</p>
-			<p th:text="'Nombre: '+ ${tratamiento.producto.nombre}"></p>
-			<p th:text="'Descripción: '+ ${tratamiento.producto.descripcion}"></p>
-			<p th:text="'Plazo de reentrada: '+ ${tratamiento.producto.plazoReentrada}"></p>
-			<p th:text="'Plazo de recolección: '+ ${tratamiento.producto.plazoRecoleccion}"></p>
+	
+		<div th:each="tratamiento : ${tratamientos}">
+			<div>
+				<p>Cultivo:</p>
+				<p th:text="'Especie: '+ ${tratamiento.cultivo.especie}"></p>
+				<p th:text="'Asunto: '+ ${tratamiento.cultivo.variedad}"></p>
+				<p th:text="${#temporals.format(tratamiento.cultivo.fechaPlantado, 'dd-MM-yyyy')}"></p>
+				<p th:text="'Zona: '+ ${tratamiento.cultivo.zona}"></p>
+			</div>
+	
+	
+			<div>
+				<p>Producto:</p>
+				<p th:text="'Nombre: '+ ${tratamiento.producto.nombre}"></p>
+				<p th:text="'Descripción: '+ ${tratamiento.producto.descripcion}"></p>
+				<p th:text="'Plazo de reentrada: '+ ${tratamiento.producto.plazoReentrada}"></p>
+				<p th:text="'Plazo de recolección: '+ ${tratamiento.producto.plazoRecoleccion}"></p>
+			</div>
+	
+			<p th:text="'Lote: '+ ${tratamiento.lote}"></p>
+			<p th:text="'Fecha de aplicación: ' + ${#temporals.format(tratamiento.fechaAplicacion, 'dd-MM-yyyy')}"></p>
+			<p th:text="'Fecha de reentrada: ' + ${#temporals.format(tratamiento.fechaReentrada, 'dd-MM-yyyy')}"></p>
+			<p th:text="'Fecha de recolección: ' + ${#temporals.format(tratamiento.fechaRecoleccion, 'dd-MM-yyyy')}"></p>
+	
 		</div>
-
-		<p th:text="'Lote: '+ ${tratamiento.lote}"></p>
-		<p th:text="'Fecha de aplicación: ' + ${#temporals.format(tratamiento.fechaAplicacion, 'dd-MM-yyyy')}"></p>
-		<p th:text="'Fecha de reentrada: ' + ${#temporals.format(tratamiento.fechaReentrada, 'dd-MM-yyyy')}"></p>
-		<p th:text="'Fecha de recolección: ' + ${#temporals.format(tratamiento.fechaRecoleccion, 'dd-MM-yyyy')}"></p>
-
-	</div>
+	
+	</section>
 
 </body>
 

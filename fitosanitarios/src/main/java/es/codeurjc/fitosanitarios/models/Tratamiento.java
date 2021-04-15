@@ -41,6 +41,16 @@ public class Tratamiento {
 		this.fechaReentrada = fechaReentrada;
 		this.fechaRecoleccion = fechaRecoleccion;
 	}
+	
+	public Tratamiento update (Tratamiento updatedTratamiento) {
+		this.cultivo = updatedTratamiento.getCultivo();
+		this.producto = updatedTratamiento.getProducto();
+		this.lote = updatedTratamiento.getLote();
+		this.fechaAplicacion = updatedTratamiento.getFechaAplicacion();
+		this.fechaReentrada = updatedTratamiento.getFechaReentrada();
+		this.fechaRecoleccion = updatedTratamiento.getFechaRecoleccion();
+		return this;
+	}
 
 	public long getId() {
 		return id;
