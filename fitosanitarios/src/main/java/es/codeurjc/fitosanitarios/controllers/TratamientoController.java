@@ -106,19 +106,19 @@ public class TratamientoController {
 		Optional<Tratamiento> tratamiento = tratamientoRepository.findById(id);
 		if (tratamiento.isPresent()) {
 			tratamientoRepository.save(tratamiento.get().update(updatedTratamiento));
-			return "tratamiento/view/" + id;
+			return board(model);
 		}
 		return "error";
 	}
 	
 	@RequestMapping("/tratamiento/delete/{id}")
-	public String deleteTratamiento(@PathVariable Long id, Model model) {
+	public void deleteTratamiento(@PathVariable Long id, Model model) {
 		Optional<Tratamiento> tratamiento = tratamientoRepository.findById(id);
 		if (tratamiento.isPresent()) {
 			tratamientoRepository.delete(tratamiento.get());
-			return "tratamientos";
+			//return board(model);
 		}
-		return "error";
+		//return "error";
 	}
 
 	@RequestMapping("/tratamiento/new")
@@ -129,6 +129,6 @@ public class TratamientoController {
 	@RequestMapping("/tratamiento/new/save")
 	public String newTratamiento(Model model, Tratamiento newTratamiento) {
 		tratamientoRepository.save(newTratamiento);
-		return "tratamientos";
+		return board(model);
 	}
 }

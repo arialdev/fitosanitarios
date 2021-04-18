@@ -30,7 +30,50 @@
     <section class="container my-5 mx-auto details-container">
         <div class="details m-auto">
             
-            <p> to be done </p>
+            <form>
+                <fieldset>
+                    <legend class="mb-3">Detalles de producto</legend>
+                    <div class="details-navigation mb-4 m-auto">
+                        <a th:href="@{/productos}" class="btn btn-secondary mx-2" data-bs-toggle="tooltip"
+                            data-bs-placement="bottom" title="Regresar">
+                            <i class="bi bi-arrow-return-left"></i>
+                        </a>
+                        <a th:href="@{/producto/update/{id}(id=${producto.id})}" class="btn btn-warning mx-2"
+                            data-bs-toggle="tooltip" data-bs-placement="bottom" title="Modificar">
+                            <i class="bi bi-pencil"></i>
+                        </a>
+                        <a th:href="@{/producto/delete/{id}(id=${producto.id})}" class="btn btn-danger mx-2"
+                            data-bs-toggle="tooltip" data-bs-placement="bottom" title="Eliminar">
+                            <i class="bi bi-trash"></i>
+                        </a>
+                    </div>
+                    <div class="form-data">
+                        <hr>
+                        <div class="mb-3">
+                            <label for="nombre-input" class="form-label">Nombre:</label>
+                            <input type="text" disabled id="nombre-input" class="form-control" placeholder="Nombre"
+                                th:value="${producto.nombre}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="descripcion-input" class="form-label">Descripcion:</label>
+                            <input type="text" disabled id="descripcion-input" class="form-control" placeholder="Descripcion"
+                                th:value="${producto.descripcion}">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="plazoReentrada-input" class="form-label">Plazo de reentrada:</label>
+                            <input type="text" disabled id="plazoReentrada-input" class="form-control" placeholder="Plazo de reentrada"
+                                th:value="${producto.plazoReentrada}">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="plazoRecoleccion-input" class="form-label">Plazo de recoleccion:</label>
+                            <input type="date" disabled id="plazoRecoleccion-input" class="form-control" placeholder="Plazo de recoleccion"
+                                th:value="${producto.plazoRecoleccion}" >
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
             
         </div>
     </section>

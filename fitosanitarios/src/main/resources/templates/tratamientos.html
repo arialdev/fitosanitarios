@@ -22,6 +22,10 @@
 				<a id="logo" class="navbar-brand me-auto ms-lg-3 ms-sm-2 ms-0 no-select" href="/">
 					AgroWorld
 				</a>
+				<a th:href="@{/}" class="btn btn-secondary mx-2" data-bs-toggle="tooltip"
+                            data-bs-placement="bottom" title="Retroceder">
+                            <i class="bi bi-arrow-return-left"></i>
+                </a>
 			</div>
 		</nav>
 	</header>
@@ -35,8 +39,37 @@
 				<i class="bi bi-plus"></i>
 			</a>
 		</div>
-	
-		<div th:each="tratamiento : ${tratamientos}">
+		
+		<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-6 g-4">
+			<div class="col" th:each="tratamiento : ${tratamientos}">
+				<div class="card h-100 grid-element">
+					<div class="element-header" th:text="${tratamiento.id}"></div>
+					<div class="card-body">
+						<p th:text="'Cultivo: '+ ${tratamiento.cultivo.id}"></p>
+						<p th:text="'Fecha de aplicación: ' + ${#temporals.format(tratamiento.fechaAplicacion, 'dd-MM-yyyy')}"></p>
+						<p th:text="'Fecha de reentrada: ' + ${#temporals.format(tratamiento.fechaReentrada, 'dd-MM-yyyy')}"></p>
+						<p th:text="'Fecha de recolección: ' + ${#temporals.format(tratamiento.fechaRecoleccion, 'dd-MM-yyyy')}"></p>
+						<p th:text="'Zona: '+ ${tratamiento.cultivo.zona}"></p>
+					</div>
+					<div class="card-footer d-flex justify-content-around">
+						<a th:href="@{/tratamiento/view/{id}(id=${tratamiento.id})}" class="btn btn-info mx-1"
+							data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ver detalles">
+							<i class="bi bi-info-circle"></i>
+						</a>
+						<a th:href="@{/tratamiento/update/{id}(id=${tratamiento.id})}" class="btn btn-warning mx-1"
+							data-bs-toggle="tooltip" data-bs-placement="bottom" title="Modificar">
+							<i class="bi bi-pencil"></i>
+						</a>
+						<a th:href="@{/tratamiento/delete/{id}(id=${tratamiento.id})}" class="btn btn-danger mx-1" data-bs-toggle="tooltip" 
+							data-bs-placement="bottom" title="Eliminar">
+							<i class="bi bi-trash"></i>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<!-- <div th:each="tratamiento : ${tratamientos}">
 			<div>
 				<p>Cultivo:</p>
 				<p th:text="'Especie: '+ ${tratamiento.cultivo.especie}"></p>
@@ -59,7 +92,7 @@
 			<p th:text="'Fecha de reentrada: ' + ${#temporals.format(tratamiento.fechaReentrada, 'dd-MM-yyyy')}"></p>
 			<p th:text="'Fecha de recolección: ' + ${#temporals.format(tratamiento.fechaRecoleccion, 'dd-MM-yyyy')}"></p>
 	
-		</div>
+		</div> -->
 	
 	</section>
 

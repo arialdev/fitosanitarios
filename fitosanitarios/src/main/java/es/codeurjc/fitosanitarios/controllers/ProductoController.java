@@ -50,7 +50,7 @@ public class ProductoController {
 		Optional<Producto> producto = productoRepository.findById(id);
 		if (producto.isPresent()) {
 			productoRepository.save(producto.get().update(updatedProducto));
-			return "producto/view/" + id;
+			return board(model);
 		}
 		return "error";
 	}
@@ -60,7 +60,7 @@ public class ProductoController {
 		Optional<Producto> producto = productoRepository.findById(id);
 		if (producto.isPresent()) {
 			productoRepository.delete(producto.get());
-			return "productos";
+			return board(model);
 		}
 		return "error";
 	}
@@ -73,6 +73,6 @@ public class ProductoController {
 	@RequestMapping("/producto/new/save")
 	public String newProducto(Model model, Producto newProducto) {
 		productoRepository.save(newProducto);
-		return "productos";
+		return board(model);
 	}
 }

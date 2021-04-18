@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import es.codeurjc.fitosanitarios.models.Cultivo;
+import es.codeurjc.fitosanitarios.models.Tratamiento;
 import es.codeurjc.fitosanitarios.repositories.CultivoRepository;
 
 @Controller
@@ -50,7 +51,7 @@ public class CultivoController {
 		Optional<Cultivo> cultivo = cultivoRepository.findById(id);
 		if (cultivo.isPresent()) {
 			cultivoRepository.save(cultivo.get().update(updatedCultivo));
-			return "cultivo/view/" + id;
+			return board(model);
 		}
 		return "error";
 	}
@@ -60,7 +61,7 @@ public class CultivoController {
 		Optional<Cultivo> cultivo = cultivoRepository.findById(id);
 		if (cultivo.isPresent()) {
 			cultivoRepository.delete(cultivo.get());
-			return "cultivos";
+			return board(model);
 		}
 		return "error";
 	}
@@ -73,6 +74,6 @@ public class CultivoController {
 	@RequestMapping("/cultivo/new/save")
 	public String newCultivo(Model model, Cultivo newCultivo) {
 		cultivoRepository.save(newCultivo);
-		return "cultivos";
+		return board(model);
 	}
 }

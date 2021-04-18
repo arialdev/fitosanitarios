@@ -23,6 +23,11 @@
                 <a id="logo" class="navbar-brand me-auto ms-lg-3 ms-sm-2 ms-0 no-select" href="/">
                     AgroWorld
                 </a>
+                <a th:href="@{/}" class="btn btn-secondary mx-2" data-bs-toggle="tooltip"
+                	data-bs-placement="bottom" title="retroceder">
+                	<i class="bi bi-arrow-return-left"></i>
+                </a>
+                
             </div>
         </nav>
     </header>
@@ -30,7 +35,66 @@
     <section class="container my-5 mx-auto details-container">
         <div class="details m-auto">
             
-            <p> to be done </p>
+            <form>
+                <fieldset>
+                    <legend class="mb-3">Detalles de tratamiento</legend>
+                    <div class="details-navigation mb-4 m-auto">
+                        <a th:href="@{/tratamientos}" class="btn btn-secondary mx-2" data-bs-toggle="tooltip"
+                            data-bs-placement="bottom" title="Regresar">
+                            <i class="bi bi-arrow-return-left"></i>
+                        </a>
+                        <a th:href="@{/tratamiento/update/{id}(id=${tratamiento.id})}" class="btn btn-warning mx-2"
+                            data-bs-toggle="tooltip" data-bs-placement="bottom" title="Modificar">
+                            <i class="bi bi-pencil"></i>
+                        </a>
+                        <a th:href="@{/tratamiento/delete/{id}(id=${tratamiento.id})}" class="btn btn-danger mx-2"
+                            data-bs-toggle="tooltip" data-bs-placement="bottom" title="Eliminar">
+                            <i class="bi bi-trash"></i>
+                        </a>
+                    </div>
+                    <div class="form-data">
+                        <hr>
+                        <div class="mb-3">
+                            <label for="fechaAplicacion-input" class="form-label">Fecha de aplicacion:</label>
+                            <input type="date" disabled id="fechaAplicacion-input" class="form-control" 
+                                th:value="${tratamiento.fechaAplicacion}" placeholder="Fecha aplicacion">
+                        </div>
+                        <div class="mb-3">
+                            <label for="fechaReentrada-input" class="form-label">Fecha de reentrada:</label>
+                            <input type="date" disabled id="fechaReentrada-input" class="form-control" 
+                                th:value="${tratamiento.fechaReentrada}" placeholder="Fecha reentrada">
+                        </div>
+                        <div class="mb-3">
+                            <label for="fechaRecoleccion-input" class="form-label">Fecha de recoleccion:</label>
+                            <input type="date" disabled id="fechaRecoleccion-input" class="form-control" 
+                                th:value="${tratamiento.fechaRecoleccion}" placeholder="Fecha recoleccion">
+                        </div>
+                        <div class="mb-3">
+                            <label for="lote-input" class="form-label">Lote:</label>
+                            <input type="text" disabled id="lote-input" class="form-control" placeholder="Variedad"
+                                th:value="${tratamiento.lote}">
+                        </div>
+
+                        <div class="mb-3">
+							<p>Cultivo:</p>
+							<p th:text="'Especie: '+ ${tratamiento.cultivo.especie}"></p>
+							<p th:text="'Asunto: '+ ${tratamiento.cultivo.variedad}"></p>
+							<p th:text="${#temporals.format(tratamiento.cultivo.fechaPlantado, 'dd-MM-yyyy')}"></p>
+							<p th:text="'Zona: '+ ${tratamiento.cultivo.zona}"></p>
+						</div>
+	
+	
+						<div>
+							<p>Producto:</p>
+							<p th:text="'Nombre: '+ ${tratamiento.producto.nombre}"></p>
+							<p th:text="'Descripción: '+ ${tratamiento.producto.descripcion}"></p>
+							<p th:text="'Plazo de reentrada: '+ ${tratamiento.producto.plazoReentrada}"></p>
+							<p th:text="'Plazo de recolección: '+ ${tratamiento.producto.plazoRecoleccion}"></p>
+						</div>
+                    </div>
+                    
+                </fieldset>
+            </form>
             
         </div>
     </section>
