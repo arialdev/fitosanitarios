@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
 
@@ -102,6 +103,17 @@ public class TratamientoControlador {
         List<Tratamiento> tratamientos = tratamientoRepositorio.findAll();
         tratamientos.sort((tratamiento1, tratamiento2)-> tratamiento1.getFechaRecoleccion().compareTo(tratamiento2.getFechaRecoleccion()));
         model.addAttribute("tratamientos", tratamientos);
+        return "tratamientos";
+    }
+	
+	@RequestMapping("/tratamientos/filtrado/{plazoSeguridad}")
+    public String sortTratamiento(@PathVariable LocalDate plazoSeguridad, Model modelo) {
+		List<Tratamiento> tratamientos = tratamientoRepositorio.findAll();
+		modelo.addAttribute("tratamientos", 
+				tratamientos.stream().filter(tramiento -> 
+					(tramiento.getFechaRecoleccion().compareTo(plazoSeguridad) > 0 || tramiento.getFechaReentrada().compareTo(plazoSeguridad) > 0))
+					.collect(Collectors.toList())
+		);
         return "tratamientos";
     }
 	
