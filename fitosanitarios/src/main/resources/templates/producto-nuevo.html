@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cultivos</title>
+    <title>Productos</title>
     <link rel="icon" type="image/png" th:href="@{/favicon.png}">
     <link rel="stylesheet" type="text/css" th:href="@{/lib/bootstrap-5.0.0-beta3-dist/css/bootstrap.min.css}" />
     <link rel="stylesheet" type="text/css" th:href="@{/lib/bootstrap-icons-1.4.0/bootstrap-icons.css}" />
@@ -27,62 +27,44 @@
     </header>
 
     <section class="container my-5 mx-auto details-container">
-        <div class="details m-auto">
-            <form th:action="@{/cultivo/new/save}" method="post" id="new-cultivo-form">
+        <form th:action="@{/producto/nuevo/guardado}" method="post" id="new-producto-form">
                 <fieldset>
-                    <legend class="mb-3">Nuevo cultivo</legend>
+                    <legend class="mb-3">Nuevo producto</legend>
                     <div class="details-navigation mb-4 m-auto">
-                        <a th:href="@{/cultivos}" class="btn btn-secondary mx-2" data-bs-toggle="tooltip"
+                        <a th:href="@{/productos}" class="btn btn-secondary mx-2" data-bs-toggle="tooltip"
                             data-bs-placement="bottom" title="Cancelar">
                             <i class="bi bi-arrow-return-left"></i>
                         </a>
+                        
                         <input type='submit' class="btn btn-success mx-2" data-bs-toggle="tooltip"
                             data-bs-placement="bottom" title="Guardar" value="Guardar" />
                     </div>
                     <div class="form-data">
                         <hr>
                         <div class="mb-3">
-                            <label for="especie-input" class="form-label">Especie:</label>
-                            <input type="text" id="especie-input" class="form-control" placeholder="Especie"
-                                name="especie">
+                            <label for="nombre-input" class="form-label">Nombre:</label>
+                            <input type="text" id="nombre-input" class="form-control" placeholder="Nombre"
+                                name="nombre">
                         </div>
 
                         <div class="mb-3">
-                            <label for="variedad-input" class="form-label">Variedad:</label>
-                            <input type="text" id="variedad-input" class="form-control" placeholder="Variedad"
-                                name="variedad">
+                            <label for="descripcion-input" class="form-label">Descripcion:</label>
+                            <input type="text" id="descripcion-input" class="form-control" placeholder="Descripcion"
+                                name="descripcion">
                         </div>
 
                         <div class="mb-3">
-                            <label for="zona-input" class="form-label">Zona:</label>
-                            <input type="text" id="zona-input" class="form-control" placeholder="Zona" name="zona">
+                            <label for="plazoReentrada-input" class="form-label">Plazo de reentrada:</label>
+                            <input type="text" id="plazoReentrada-input" class="form-control" placeholder="Plazo de reentrada" name="plazoReentrada">
                         </div>
 
                         <div class="mb-3">
-                            <label for="fPlant-input" class="form-label">Fecha de plantación:</label>
-                            <input type="date" id="fPlant-input" class="form-control" name="fechaPlantado"
-                                placeholder="Fecha de plantación">
-                        </div>
-                        <div id="lista-tratamientos" class="mb-1">
-                            <label class="form-label">Listado de tratamientos:</label>
-                        </div>
-                    </div>
-                    <div class="container-fluid listado">
-                        <div class="row g-4 justify-content-center">
-                            <div class="col">
-                                <a th:href="@{/tratamiento/new}" data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                    title="Añadir tratamiento">
-                                    <div class="card h-100 add-list grid-element">
-                                        <i class="bi bi-plus-circle-dotted m-auto"></i>
-                                    </div>
-                                </a>
-                            </div>
-                           
+                            <label for="plazoRecoleccion-input" class="form-label">Plazo de recoleccion:</label>
+                            <input type="text" id="plazoRecoleccion-input" class="form-control" placeholder="Plazo de recoleccion" name="plazoRecoleccion" >
                         </div>
                     </div>
                 </fieldset>
             </form>
-        </div>
     </section>
 
     <script type="text/javascript" th:src="@{/lib/bootstrap-5.0.0-beta3-dist/js/bootstrap.min.js}"></script>

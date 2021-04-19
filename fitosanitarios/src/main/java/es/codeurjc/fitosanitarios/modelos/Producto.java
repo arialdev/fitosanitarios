@@ -1,4 +1,4 @@
-package es.codeurjc.fitosanitarios.models;
+package es.codeurjc.fitosanitarios.modelos;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -31,11 +31,11 @@ public class Producto {
 		this.plazoRecoleccion = plazoRecoleccion;
 	}
 	
-	public Producto update (Producto updatedProducto) {
-		this.nombre = updatedProducto.getNombre();
-		this.descripcion = updatedProducto.getDescripcion();
-		this.plazoReentrada = updatedProducto.getPlazoReentrada();
-		this.plazoRecoleccion = updatedProducto.getPlazoRecoleccion();
+	public Producto actualizar (Producto productoModificado) {
+		this.nombre = productoModificado.getNombre();
+		this.descripcion = productoModificado.getDescripcion();
+		this.plazoReentrada = productoModificado.getPlazoReentrada();
+		this.plazoRecoleccion = productoModificado.getPlazoRecoleccion();
 		return this;
 	}
 

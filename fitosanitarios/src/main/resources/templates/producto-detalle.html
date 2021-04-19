@@ -10,9 +10,9 @@
     <link rel="stylesheet" type="text/css" th:href="@{/lib/bootstrap-5.0.0-beta3-dist/css/bootstrap.min.css}" />
     <link rel="stylesheet" type="text/css" th:href="@{/lib/bootstrap-icons-1.4.0/bootstrap-icons.css}" />
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/elements-grid.css}" />
     <link rel="stylesheet" type="text/css" th:href="@{/css/fonts.css}" />
     <link rel="stylesheet" type="text/css" th:href="@{/css/details.css}" />
-    <link rel="stylesheet" type="text/css" th:href="@{/css/elements-grid.css}" />
 </head>
 
 <body>
@@ -20,7 +20,7 @@
     <header>
         <nav class="navbar navbar-light mb-5">
             <div class="container-fluid no-select">
-                <a id="logo" class="navbar-brand me-auto ms-lg-3 ms-sm-2 ms-0 no-select" th:href="@{/}">
+                <a id="logo" class="navbar-brand me-auto ms-lg-3 ms-sm-2 ms-0 no-select" href="/">
                     AgroWorld
                 </a>
             </div>
@@ -29,52 +29,56 @@
 
     <section class="container my-5 mx-auto details-container">
         <div class="details m-auto">
-            <form th:action="@{/producto/update/save/__${producto.id}__}" method="post" id="update-producto-form">
+            
+            <form>
                 <fieldset>
-                    <legend class="mb-3">Modificar producto</legend>
+                    <legend class="mb-3">Detalles de producto</legend>
                     <div class="details-navigation mb-4 m-auto">
                         <a th:href="@{/productos}" class="btn btn-secondary mx-2" data-bs-toggle="tooltip"
-                            data-bs-placement="bottom" title="Cancelar">
+                            data-bs-placement="bottom" title="Regresar">
                             <i class="bi bi-arrow-return-left"></i>
                         </a>
-                        <input type='submit' class="btn btn-success mx-2" data-bs-toggle="tooltip"
-                            data-bs-placement="bottom" value="Guardar" />
+                        <a th:href="@{/producto/modificacion/{id}(id=${producto.id})}" class="btn btn-warning mx-2"
+                            data-bs-toggle="tooltip" data-bs-placement="bottom" title="Modificar">
+                            <i class="bi bi-pencil"></i>
+                        </a>
+                        <a th:href="@{/producto/borrado/{id}(id=${producto.id})}" class="btn btn-danger mx-2"
+                            data-bs-toggle="tooltip" data-bs-placement="bottom" title="Eliminar">
+                            <i class="bi bi-trash"></i>
+                        </a>
                     </div>
                     <div class="form-data">
                         <hr>
                         <div class="mb-3">
                             <label for="nombre-input" class="form-label">Nombre:</label>
-                            <input type="text" id="nombre-input" class="form-control" placeholder="Nombre"
-                                name="nombre" th:value="${producto.nombre}">
+                            <input type="text" disabled id="nombre-input" class="form-control" placeholder="Nombre"
+                                th:value="${producto.nombre}">
                         </div>
-
                         <div class="mb-3">
                             <label for="descripcion-input" class="form-label">Descripcion:</label>
-                            <input type="text" id="descripcion-input" class="form-control" placeholder="Descripcion"
-                                name="descripcion" th:value="${producto.descripcion}">
+                            <input type="text" disabled id="descripcion-input" class="form-control" placeholder="Descripcion"
+                                th:value="${producto.descripcion}">
                         </div>
 
                         <div class="mb-3">
                             <label for="plazoReentrada-input" class="form-label">Plazo de reentrada:</label>
-                            <input type="text" id="plazoReentrada-input" class="form-control" placeholder="Zona" name="Plazo de reentrada"
+                            <input type="text" disabled id="plazoReentrada-input" class="form-control" placeholder="Plazo de reentrada"
                                 th:value="${producto.plazoReentrada}">
                         </div>
 
                         <div class="mb-3">
                             <label for="plazoRecoleccion-input" class="form-label">Plazo de recoleccion:</label>
-                            <input type="text" id="plazoRecoleccion-input" class="form-control" name="plazoRecoleccion" placeholder="Plazo de Recoleccion"
-                                th:value="${producto.plazoRecoleccion}">
+                            <input type="date" disabled id="plazoRecoleccion-input" class="form-control" placeholder="Plazo de recoleccion"
+                                th:value="${producto.plazoRecoleccion}" >
                         </div>
-                        
                     </div>
-                    
                 </fieldset>
             </form>
+            
         </div>
     </section>
 
     <script type="text/javascript" th:src="@{/lib/bootstrap-5.0.0-beta3-dist/js/bootstrap.min.js}"></script>
-    <script type="text/javascript" th:src="@{/js/details.js}"></script>
 </body>
 
 </html>

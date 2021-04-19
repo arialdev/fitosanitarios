@@ -6,12 +6,12 @@ import org.springframework.format.datetime.standard.DateTimeFormatterRegistrar;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
-public class DateTimeFormatConfiguration implements WebMvcConfigurer {
+public class ConfiguracionFechas implements WebMvcConfigurer {
 
     @Override
-    public void addFormatters(FormatterRegistry registry) {
+    public void addFormatters(FormatterRegistry registro) {
         DateTimeFormatterRegistrar registrar = new DateTimeFormatterRegistrar();
         registrar.setUseIsoFormat(true);
-        registrar.registerFormatters(registry);
+        registrar.registerFormatters(registro);
     }
 }

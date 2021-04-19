@@ -1,4 +1,4 @@
-package es.codeurjc.fitosanitarios.models;
+package es.codeurjc.fitosanitarios.modelos;
 
 import java.time.LocalDate;
 
@@ -42,13 +42,13 @@ public class Tratamiento {
 		this.fechaRecoleccion = fechaRecoleccion;
 	}
 	
-	public Tratamiento update (Tratamiento updatedTratamiento) {
-		this.cultivo = updatedTratamiento.getCultivo();
-		this.producto = updatedTratamiento.getProducto();
-		this.lote = updatedTratamiento.getLote();
-		this.fechaAplicacion = updatedTratamiento.getFechaAplicacion();
-		this.fechaReentrada = updatedTratamiento.getFechaReentrada();
-		this.fechaRecoleccion = updatedTratamiento.getFechaRecoleccion();
+	public Tratamiento actualizar (Tratamiento tratamientoModificado) {
+		this.cultivo = tratamientoModificado.getCultivo();
+		this.producto = tratamientoModificado.getProducto();
+		this.lote = tratamientoModificado.getLote();
+		this.fechaAplicacion = tratamientoModificado.getFechaAplicacion();
+		this.fechaReentrada = tratamientoModificado.getFechaReentrada();
+		this.fechaRecoleccion = tratamientoModificado.getFechaRecoleccion();
 		return this;
 	}
 

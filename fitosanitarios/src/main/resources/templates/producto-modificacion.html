@@ -12,6 +12,7 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
     <link rel="stylesheet" type="text/css" th:href="@{/css/fonts.css}" />
     <link rel="stylesheet" type="text/css" th:href="@{/css/details.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/elements-grid.css}" />
 </head>
 
 <body>
@@ -27,44 +28,49 @@
     </header>
 
     <section class="container my-5 mx-auto details-container">
-        <form th:action="@{/producto/new/save}" method="post" id="new-producto-form">
+        <div class="details m-auto">
+            <form th:action="@{/producto/modificacion/guardado/__${producto.id}__}" method="post" id="update-producto-form">
                 <fieldset>
-                    <legend class="mb-3">Nuevo producto</legend>
+                    <legend class="mb-3">Modificar producto</legend>
                     <div class="details-navigation mb-4 m-auto">
                         <a th:href="@{/productos}" class="btn btn-secondary mx-2" data-bs-toggle="tooltip"
                             data-bs-placement="bottom" title="Cancelar">
                             <i class="bi bi-arrow-return-left"></i>
                         </a>
-                        
                         <input type='submit' class="btn btn-success mx-2" data-bs-toggle="tooltip"
-                            data-bs-placement="bottom" title="Guardar" value="Guardar" />
+                            data-bs-placement="bottom" value="Guardar" />
                     </div>
                     <div class="form-data">
                         <hr>
                         <div class="mb-3">
                             <label for="nombre-input" class="form-label">Nombre:</label>
                             <input type="text" id="nombre-input" class="form-control" placeholder="Nombre"
-                                name="nombre">
+                                name="nombre" th:value="${producto.nombre}">
                         </div>
 
                         <div class="mb-3">
                             <label for="descripcion-input" class="form-label">Descripcion:</label>
                             <input type="text" id="descripcion-input" class="form-control" placeholder="Descripcion"
-                                name="descripcion">
+                                name="descripcion" th:value="${producto.descripcion}">
                         </div>
 
                         <div class="mb-3">
                             <label for="plazoReentrada-input" class="form-label">Plazo de reentrada:</label>
-                            <input type="text" id="plazoReentrada-input" class="form-control" placeholder="Plazo de reentrada" name="plazoReentrada">
+                            <input type="text" id="plazoReentrada-input" class="form-control" placeholder="Zona" name="Plazo de reentrada"
+                                th:value="${producto.plazoReentrada}">
                         </div>
 
                         <div class="mb-3">
                             <label for="plazoRecoleccion-input" class="form-label">Plazo de recoleccion:</label>
-                            <input type="text" id="plazoRecoleccion-input" class="form-control" placeholder="Plazo de recoleccion" name="plazoRecoleccion" >
+                            <input type="text" id="plazoRecoleccion-input" class="form-control" name="plazoRecoleccion" placeholder="Plazo de Recoleccion"
+                                th:value="${producto.plazoRecoleccion}">
                         </div>
+                        
                     </div>
+                    
                 </fieldset>
             </form>
+        </div>
     </section>
 
     <script type="text/javascript" th:src="@{/lib/bootstrap-5.0.0-beta3-dist/js/bootstrap.min.js}"></script>

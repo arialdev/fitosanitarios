@@ -1,4 +1,4 @@
-package es.codeurjc.fitosanitarios.controllers;
+package es.codeurjc.fitosanitarios.controladores;
 
 import java.time.LocalDate;
 import java.util.Arrays;
@@ -14,22 +14,22 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import es.codeurjc.fitosanitarios.models.*;
-import es.codeurjc.fitosanitarios.repositories.CultivoRepository;
-import es.codeurjc.fitosanitarios.repositories.ProductoRepository;
-import es.codeurjc.fitosanitarios.repositories.TratamientoRepository;
+import es.codeurjc.fitosanitarios.modelos.*;
+import es.codeurjc.fitosanitarios.repositorios.CultivoRepositorio;
+import es.codeurjc.fitosanitarios.repositorios.ProductoRepositorio;
+import es.codeurjc.fitosanitarios.repositorios.TratamientoRepositorio;
 
 @Controller
-public class TratamientoController {
+public class TratamientoControlador {
 
 	@Autowired
-	private CultivoRepository cultivoRepository;
+	private CultivoRepositorio cultivoRepositorio;
 	
 	@Autowired
-	private ProductoRepository productoRepository;
+	private ProductoRepositorio productoRepositorio;
 	
 	@Autowired
-	private TratamientoRepository tratamientoRepository;
+	private TratamientoRepositorio tratamientoRepositorio;
 	
 	@PostConstruct
 	public void init() {
@@ -41,7 +41,7 @@ public class TratamientoController {
 		Producto producto5 = new Producto("Producto 5", "Descripcion 5", 0, 15);
 		Producto producto6 = new Producto("Producto 6", "Descripcion 6", 0, 0);
 		
-		productoRepository.saveAll(Arrays.asList(producto1, producto2, producto3, producto4, producto5, producto6));
+		productoRepositorio.saveAll(Arrays.asList(producto1, producto2, producto3, producto4, producto5, producto6));
 		
 		Cultivo cultivo1 = new Cultivo("Especie 1", "Variedad 1", LocalDate.now(), "", new LinkedList<>());
 		Cultivo cultivo2 = new Cultivo("Especie 1", "Variedad 1", LocalDate.now(), "", new LinkedList<>());
@@ -50,7 +50,7 @@ public class TratamientoController {
 		Cultivo cultivo5 = new Cultivo("Especie 2", "Variedad 2", LocalDate.now(), "", new LinkedList<>());
 		Cultivo cultivo6 = new Cultivo("Especie 2", "Variedad 2", LocalDate.now(), "", new LinkedList<>());
 		
-		cultivoRepository.saveAll(Arrays.asList(cultivo1, cultivo2, cultivo3, cultivo4, cultivo5, cultivo6));
+		cultivoRepositorio.saveAll(Arrays.asList(cultivo1, cultivo2, cultivo3, cultivo4, cultivo5, cultivo6));
 		
 		Tratamiento tratamiento1 = new Tratamiento(cultivo2, producto6, "lote 1", LocalDate.now(), LocalDate.now().plusDays(1), LocalDate.now().plusDays(2));
 		Tratamiento tratamiento2 = new Tratamiento(cultivo3, producto5, "lote 2", LocalDate.now(), LocalDate.now().plusDays(1), LocalDate.now().plusDays(2));
@@ -63,7 +63,7 @@ public class TratamientoController {
 		Tratamiento tratamiento7 = new Tratamiento(cultivo6, producto1, "lote 5", LocalDate.now(), LocalDate.now().plusDays(1), LocalDate.now().plusDays(2));
 		Tratamiento tratamiento8 = new Tratamiento(cultivo6, producto2, "lote 5", LocalDate.now(), LocalDate.now().plusDays(1), LocalDate.now().plusDays(2));
 
-		tratamientoRepository.saveAll(Arrays.asList(tratamiento1, tratamiento2, tratamiento3, tratamiento4, tratamiento5, tratamiento6, tratamiento7, tratamiento8));
+		tratamientoRepositorio.saveAll(Arrays.asList(tratamiento1, tratamiento2, tratamiento3, tratamiento4, tratamiento5, tratamiento6, tratamiento7, tratamiento8));
 		
 		cultivo2.getTratamientos().add(tratamiento1);
 		cultivo3.getTratamientos().add(tratamiento2);
@@ -71,64 +71,64 @@ public class TratamientoController {
 		cultivo5.getTratamientos().addAll(Arrays.asList(tratamiento4, tratamiento5));
 		cultivo6.getTratamientos().addAll(Arrays.asList(tratamiento6, tratamiento7, tratamiento8));
 		
-		cultivoRepository.saveAll(Arrays.asList(cultivo2, cultivo3, cultivo4, cultivo5, cultivo6));
+		cultivoRepositorio.saveAll(Arrays.asList(cultivo2, cultivo3, cultivo4, cultivo5, cultivo6));
 	}
 
 	@RequestMapping("/tratamientos")
-	public String board(Model model) {
-		List<Tratamiento> tratamientos = tratamientoRepository.findAll();
-		model.addAttribute("tratamientos", tratamientos);
+	public String vista(Model modelo) {
+		List<Tratamiento> tratamientos = tratamientoRepositorio.findAll();
+		modelo.addAttribute("tratamientos", tratamientos);
 		return "tratamientos";
 	}
 	
-	@RequestMapping("/tratamiento/view/{id}")
-	public String viewTratamiento(@PathVariable Long id, Model model) {
-		Optional<Tratamiento> tratamiento = tratamientoRepository.findById(id);
+	@RequestMapping("/tratamiento/detalle/{id}")
+	public String detalleTratamiento(@PathVariable Long id, Model modelo) {
+		Optional<Tratamiento> tratamiento = tratamientoRepositorio.findById(id);
 		if (tratamiento.isPresent()) {
-			model.addAttribute("tratamiento", tratamiento.get());
-			return "tratamiento-detail-view";
+			modelo.addAttribute("tratamiento", tratamiento.get());
+			return "tratamiento-detalle";
 		}
 		return "error";
 	}
 	
-	@RequestMapping("/tratamiento/update/{id}")
-	public String modifyTratamiento(@PathVariable Long id, Model model) {
-		Optional<Tratamiento> tratamiento = tratamientoRepository.findById(id);
+	@RequestMapping("/tratamiento/modificacion/{id}")
+	public String modificacion(@PathVariable Long id, Model modelo) {
+		Optional<Tratamiento> tratamiento = tratamientoRepositorio.findById(id);
 		if (tratamiento.isPresent()) {
-			model.addAttribute("tratamiento", tratamiento.get());
-			return "tratamiento-detail-modify";
+			modelo.addAttribute("tratamiento", tratamiento.get());
+			return "tratamiento-modificacion";
 		}
 		return "error";
 	}
 
-	@RequestMapping("/tratamiento/update/save/{id}")
-	public String updateTratamiento(@PathVariable Long id, Model model, Tratamiento updatedTratamiento) {
-		Optional<Tratamiento> tratamiento = tratamientoRepository.findById(id);
+	@RequestMapping("/tratamiento/modificacion/guardado/{id}")
+	public String modificacionGuardadoTratamiento(@PathVariable Long id, Model modelo, Tratamiento tratamientoModificado) {
+		Optional<Tratamiento> tratamiento = tratamientoRepositorio.findById(id);
 		if (tratamiento.isPresent()) {
-			tratamientoRepository.save(tratamiento.get().update(updatedTratamiento));
-			return board(model);
+			tratamientoRepositorio.save(tratamiento.get().actualizar(tratamientoModificado));
+			return vista(modelo);
 		}
 		return "error";
 	}
 	
-	@RequestMapping("/tratamiento/delete/{id}")
-	public String deleteTratamiento(@PathVariable Long id, Model model) {
-		Optional<Tratamiento> tratamiento = tratamientoRepository.findById(id);
+	@RequestMapping("/tratamiento/borrado/{id}")
+	public String borradoTratamiento(@PathVariable Long id, Model modelo) {
+		Optional<Tratamiento> tratamiento = tratamientoRepositorio.findById(id);
 		if (tratamiento.isPresent()) {
-			tratamientoRepository.delete(tratamiento.get());
-			return board(model);
+			tratamientoRepositorio.delete(tratamiento.get());
+			return vista(modelo);
 		}
 		return "error";
 	}
 
-	@RequestMapping("/tratamiento/new")
-	public String newTratamiento(Model model) {
-		return "tratamiento-new";
+	@RequestMapping("/tratamiento/nuevo")
+	public String nuevoTratamiento(Model modelo) {
+		return "tratamiento-nuevo";
 	}
 
-	@RequestMapping("/tratamiento/new/save")
-	public String newTratamiento(Model model, Tratamiento newTratamiento) {
-		tratamientoRepository.save(newTratamiento);
-		return board(model);
+	@RequestMapping("/tratamiento/nuevo/guardado")
+	public String nuevoTratamiento(Model modelo, Tratamiento tratamientoNuevo) {
+		tratamientoRepositorio.save(tratamientoNuevo);
+		return vista(modelo);
 	}
 }

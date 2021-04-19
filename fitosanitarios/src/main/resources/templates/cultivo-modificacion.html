@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cultivos</title>
+    <link rel="icon" type="image/png" th:href="@{/favicon.png}">
+    <link rel="stylesheet" type="text/css" th:href="@{/lib/bootstrap-5.0.0-beta3-dist/css/bootstrap.min.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/lib/bootstrap-icons-1.4.0/bootstrap-icons.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/fonts.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/details.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/elements-grid.css}" />
+</head>
+
+<body>
+
+    <header>
+        <nav class="navbar navbar-light mb-5">
+            <div class="container-fluid no-select">
+                <a id="logo" class="navbar-brand me-auto ms-lg-3 ms-sm-2 ms-0 no-select" th:href="@{/}">
+                    AgroWorld
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <section class="container my-5 mx-auto details-container">
+        <div class="details m-auto">
+            <form th:action="@{/cultivo/modificacion/guardado/__${cultivo.id}__}" method="post" id="update-cultivo-form">
+                <fieldset>
+                    <legend class="mb-3">Modificar cultivo</legend>
+                    <div class="details-navigation mb-4 m-auto">
+                        <a th:href="@{/cultivos}" class="btn btn-secondary mx-2" data-bs-toggle="tooltip"
+                            data-bs-placement="bottom" title="Cancelar">
+                            <i class="bi bi-arrow-return-left"></i>
+                        </a>
+                        <input type='submit' class="btn btn-success mx-2" data-bs-toggle="tooltip"
+                            data-bs-placement="bottom" value="Guardar" />
+                    </div>
+                    <div class="form-data">
+                        <hr>
+                        <div class="mb-3">
+                            <label for="especie-input" class="form-label">Especie:</label>
+                            <input type="text" id="especie-input" class="form-control" placeholder="Especie"
+                                name="especie" th:value="${cultivo.especie}">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="variedad-input" class="form-label">Variedad:</label>
+                            <input type="text" id="variedad-input" class="form-control" placeholder="Variedad"
+                                name="variedad" th:value="${cultivo.variedad}">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="zona-input" class="form-label">Zona:</label>
+                            <input type="text" id="zona-input" class="form-control" placeholder="Zona" name="zona"
+                                th:value="${cultivo.zona}">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="fPlant-input" class="form-label">Fecha de plantación:</label>
+                            <input type="date" id="fPlant-input" class="form-control" name="fechaPlantado"
+                                th:value="${cultivo.fechaPlantado}" placeholder="Fecha de plantación" required>
+                        </div>
+                        <div id="lista-tratamientos" class="mb-1">
+                            <label class="form-label">Listado de tratamientos:</label>
+                        </div>
+                    </div>
+                    <div class="container-fluid listado">
+                        <div class="row g-4 justify-content-center">
+                            <div class="col">
+                                <a th:href="@{/tratamiento/nuevo}" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                    title="Añadir tratamiento">
+                                    <div class="card h-100 add-list grid-element">
+                                        <i class="bi bi-plus-circle-dotted m-auto"></i>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col" th:each="tratamiento : ${cultivo.tratamientos}">
+                                <div class="card h-100 grid-element ">
+                                    <div class="element-header d-flex justify-content-end">
+                                        <p th:text="'Idsdfsdfsdf sdfsdfsdfsfsdfsd: '+${tratamiento.id}"
+                                            class="mb-0 me-auto "></p>
+                                        <a th:href="@{/tratamiento/detalle/{id}(id=${tratamiento.id})}"
+                                            class="btn btn-info mx-1 p-0" data-bs-toggle="tooltip"
+                                            data-bs-placement="bottom" title="Info">
+                                            <i class="bi bi-info-circle"></i>
+                                        </a>
+                                        <a th:href="@{/tratamiento/borrado/{id}(id=${tratamiento.id})}"
+                                            class="btn btn-danger mx-1 p-0" data-bs-toggle="tooltip"
+                                            data-bs-placement="bottom" title="Borrar">
+                                            <i class="bi bi-x"></i>
+                                        </a>
+                                    </div>
+                                    <div class="card-body">
+                                        <p class="card-subtitle mb-2"
+                                            th:text="${#temporals.format(tratamiento.fechaAplicacion, 'dd-MM-yyyy')}">
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </section>
+
+    <script type="text/javascript" th:src="@{/lib/bootstrap-5.0.0-beta3-dist/js/bootstrap.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/details.js}"></script>
+</body>
+
+</html>

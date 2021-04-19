@@ -1,13 +1,13 @@
-package es.codeurjc.fitosanitarios.controllers;
+package es.codeurjc.fitosanitarios.controladores;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class HomeController {
+public class MenuControlador {
 
     @RequestMapping("/")
-    public String loadHome() {
-        return "home-view";
+    public String cargarMenu() {
+        return "menu";
     }
 }

@@ -1,4 +1,4 @@
-package es.codeurjc.fitosanitarios.models;
+package es.codeurjc.fitosanitarios.modelos;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -39,12 +39,12 @@ public class Cultivo {
 		this.tratamientos = tratamientos;
 	}
 	
-	public Cultivo update (Cultivo updatedCultivo) {
-		this.especie = updatedCultivo.getEspecie();
-		this.variedad = updatedCultivo.getVariedad();
-		this.fechaPlantado = updatedCultivo.getFechaPlantado();
-		this.zona = updatedCultivo.getZona();
-		this.tratamientos = updatedCultivo.getTratamientos();
+	public Cultivo actualizar(Cultivo cultivoModificado) {
+		this.especie = cultivoModificado.getEspecie();
+		this.variedad = cultivoModificado.getVariedad();
+		this.fechaPlantado = cultivoModificado.getFechaPlantado();
+		this.zona = cultivoModificado.getZona();
+		this.tratamientos = cultivoModificado.getTratamientos();
 		return this;
 	}
 

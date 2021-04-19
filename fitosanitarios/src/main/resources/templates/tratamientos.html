@@ -34,7 +34,7 @@
 	
 		<div class="grid-header">
 			<h2 class="mb-4 section-title">Tratamientos:</h2>
-			<a th:href="@{/tratamiento/new}" class="btn btn-success mx-1 add-element" data-bs-toggle="tooltip"
+			<a th:href="@{/tratamiento/nuevo}" class="btn btn-success mx-1 add-element" data-bs-toggle="tooltip"
 				data-bs-placement="bottom" title="Nuevo tratamiento">
 				<i class="bi bi-plus"></i>
 			</a>
@@ -52,15 +52,15 @@
 						<p th:text="'Zona: '+ ${tratamiento.cultivo.zona}"></p>
 					</div>
 					<div class="card-footer d-flex justify-content-around">
-						<a th:href="@{/tratamiento/view/{id}(id=${tratamiento.id})}" class="btn btn-info mx-1"
+						<a th:href="@{/tratamiento/detalle/{id}(id=${tratamiento.id})}" class="btn btn-info mx-1"
 							data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ver detalles">
 							<i class="bi bi-info-circle"></i>
 						</a>
-						<a th:href="@{/tratamiento/update/{id}(id=${tratamiento.id})}" class="btn btn-warning mx-1"
+						<a th:href="@{/tratamiento/modificacion/{id}(id=${tratamiento.id})}" class="btn btn-warning mx-1"
 							data-bs-toggle="tooltip" data-bs-placement="bottom" title="Modificar">
 							<i class="bi bi-pencil"></i>
 						</a>
-						<a th:href="@{/tratamiento/delete/{id}(id=${tratamiento.id})}" class="btn btn-danger mx-1" data-bs-toggle="tooltip" 
+						<a th:href="@{/tratamiento/borrado/{id}(id=${tratamiento.id})}" class="btn btn-danger mx-1" data-bs-toggle="tooltip" 
 							data-bs-placement="bottom" title="Eliminar">
 							<i class="bi bi-trash"></i>
 						</a>
