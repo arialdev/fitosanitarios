@@ -43,12 +43,12 @@ public class TratamientoControlador {
 		
 		productoRepositorio.saveAll(Arrays.asList(producto1, producto2, producto3, producto4, producto5, producto6));
 		
-		Cultivo cultivo1 = new Cultivo("Especie 1", "Variedad 1", LocalDate.now(), "", new LinkedList<>());
-		Cultivo cultivo2 = new Cultivo("Especie 1", "Variedad 1", LocalDate.now(), "", new LinkedList<>());
-		Cultivo cultivo3 = new Cultivo("Especie 1", "Variedad 1", LocalDate.now(), "", new LinkedList<>());
-		Cultivo cultivo4 = new Cultivo("Especie 2", "Variedad 2", LocalDate.now().plusDays(1), "Alicante", new LinkedList<>());
-		Cultivo cultivo5 = new Cultivo("Especie 2", "Variedad 2", LocalDate.now(), "", new LinkedList<>());
-		Cultivo cultivo6 = new Cultivo("Especie 2", "Variedad 2", LocalDate.now(), "", new LinkedList<>());
+		Cultivo cultivo1 = new Cultivo("Especie 2", "Variedad 1", LocalDate.now(), "", new LinkedList<>());
+		Cultivo cultivo2 = new Cultivo("Especie 2", "Variedad 1", LocalDate.now(), "", new LinkedList<>());
+		Cultivo cultivo3 = new Cultivo("Especie 2", "Variedad 1", LocalDate.now(), "", new LinkedList<>());
+		Cultivo cultivo4 = new Cultivo("Especie 1", "Variedad 2", LocalDate.now().plusDays(1), "Alicante", new LinkedList<>());
+		Cultivo cultivo5 = new Cultivo("Especie 1", "Variedad 2", LocalDate.now(), "", new LinkedList<>());
+		Cultivo cultivo6 = new Cultivo("Especie 1", "Variedad 2", LocalDate.now(), "", new LinkedList<>());
 		
 		cultivoRepositorio.saveAll(Arrays.asList(cultivo1, cultivo2, cultivo3, cultivo4, cultivo5, cultivo6));
 		
@@ -56,7 +56,7 @@ public class TratamientoControlador {
 		Tratamiento tratamiento2 = new Tratamiento(cultivo3, producto5, "lote 2", LocalDate.now(), LocalDate.now().plusDays(1), LocalDate.now().plusDays(2));
 		Tratamiento tratamiento3 = new Tratamiento(cultivo4, producto1, "lote 3", LocalDate.now(), LocalDate.now().plusDays(1), LocalDate.now().plusDays(2));
 		
-		Tratamiento tratamiento4 = new Tratamiento(cultivo5, producto1, "lote 4", LocalDate.now(), LocalDate.now().plusDays(1), LocalDate.now().plusDays(2));
+		Tratamiento tratamiento4 = new Tratamiento(cultivo5, producto1, "lote 4", LocalDate.now(), LocalDate.now().plusDays(10), LocalDate.now().plusDays(21));
 		Tratamiento tratamiento5 = new Tratamiento(cultivo5, producto2, "lote 4", LocalDate.now().plusDays(10), LocalDate.now().plusDays(11), LocalDate.now().plusDays(12));
 		
 		Tratamiento tratamiento6 = new Tratamiento(cultivo6, producto5, "lote 5", LocalDate.now(), LocalDate.now().plusDays(1), LocalDate.now().plusDays(2));
@@ -80,6 +80,30 @@ public class TratamientoControlador {
 		modelo.addAttribute("tratamientos", tratamientos);
 		return "tratamientos";
 	}
+	
+	@RequestMapping("/tratamientos/especie")
+    public String vistaEspecie (Model model) {
+        List<Tratamiento> tratamientos = tratamientoRepositorio.findAll();
+        tratamientos.sort((tratamiento1, tratamiento2)-> tratamiento1.getCultivo().getEspecie().compareTo(tratamiento2.getCultivo().getEspecie()));
+        model.addAttribute("tratamientos", tratamientos);
+        return "tratamientos";
+    }
+	
+	@RequestMapping("/tratamientos/fechaReentrada")
+    public String vistaFechaReentrada (Model model) {
+        List<Tratamiento> tratamientos = tratamientoRepositorio.findAll();
+        tratamientos.sort((tratamiento1, tratamiento2)-> tratamiento1.getFechaReentrada().compareTo(tratamiento2.getFechaReentrada()));
+        model.addAttribute("tratamientos", tratamientos);
+        return "tratamientos";
+    }
+	
+	@RequestMapping("/tratamientos/fechaRecoleccion")
+    public String vistaFechaRecoleccion (Model model) {
+        List<Tratamiento> tratamientos = tratamientoRepositorio.findAll();
+        tratamientos.sort((tratamiento1, tratamiento2)-> tratamiento1.getFechaRecoleccion().compareTo(tratamiento2.getFechaRecoleccion()));
+        model.addAttribute("tratamientos", tratamientos);
+        return "tratamientos";
+    }
 	
 	@RequestMapping("/tratamiento/detalle/{id}")
 	public String detalleTratamiento(@PathVariable Long id, Model modelo) {
