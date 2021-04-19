@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import es.codeurjc.fitosanitarios.models.Cultivo;
-import es.codeurjc.fitosanitarios.models.Tratamiento;
 import es.codeurjc.fitosanitarios.repositories.CultivoRepository;
 
 @Controller

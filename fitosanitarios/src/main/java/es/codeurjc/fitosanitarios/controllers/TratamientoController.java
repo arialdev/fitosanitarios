@@ -112,13 +112,13 @@ public class TratamientoController {
 	}
 	
 	@RequestMapping("/tratamiento/delete/{id}")
-	public void deleteTratamiento(@PathVariable Long id, Model model) {
+	public String deleteTratamiento(@PathVariable Long id, Model model) {
 		Optional<Tratamiento> tratamiento = tratamientoRepository.findById(id);
 		if (tratamiento.isPresent()) {
 			tratamientoRepository.delete(tratamiento.get());
-			//return board(model);
+			return board(model);
 		}
-		//return "error";
+		return "error";
 	}
 
 	@RequestMapping("/tratamiento/new")
