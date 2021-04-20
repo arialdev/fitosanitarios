@@ -63,3 +63,16 @@ header {
     background-color: #6a9766;
     box-shadow: 5px 3px #5f7a5e;
 }
+
+.retroceso {
+    background-color: hsl(116, 33%, 38%);
+    border-color: hsla(116, 33%, 20%, 0.7);
+}
+
+.retroceso:hover {
+    background-color: hsl(116, 33%, 30%);
+}
+
+.retroceso i {
+    color: white;
+}

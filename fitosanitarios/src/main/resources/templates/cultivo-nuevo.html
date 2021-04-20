@@ -16,15 +16,19 @@
 
 <body>
 
-    <header>
-        <nav class="navbar navbar-light mb-5">
-            <div class="container-fluid no-select">
-                <a id="logo" class="navbar-brand me-auto ms-lg-3 ms-sm-2 ms-0 no-select" th:href="@{/}">
-                    AgroWorld
+	<header>
+		<nav class="navbar navbar-light mb-5">
+			<div class="container-fluid no-select">
+				<a id="logo" class="navbar-brand me-auto ms-lg-3 ms-sm-2 ms-0 no-select" href="/">
+					AgroWorld
+				</a>
+				<a href="javascript:history.back()" class="btn mx-2 retroceso" data-bs-toggle="tooltip"
+                            data-bs-placement="bottom" title="Retroceder">
+                            <i class="bi bi-arrow-return-left"></i>
                 </a>
-            </div>
-        </nav>
-    </header>
+			</div>
+		</nav>
+	</header>
 
     <section class="container my-5 mx-auto details-container">
         <div class="details m-auto">
