@@ -16,19 +16,19 @@
 
 <body>
 
-	<header>
-		<nav class="navbar navbar-light mb-5">
-			<div class="container-fluid no-select">
-				<a id="logo" class="navbar-brand me-auto ms-lg-3 ms-sm-2 ms-0 no-select" href="/">
-					AgroWorld
-				</a>
-				<a href="javascript:history.back()" class="btn mx-2 retroceso" data-bs-toggle="tooltip"
-                            data-bs-placement="bottom" title="Retroceder">
-                            <i class="bi bi-arrow-return-left"></i>
+    <header>
+        <nav class="navbar navbar-light mb-5">
+            <div class="container-fluid no-select">
+                <a id="logo" class="navbar-brand me-auto ms-lg-3 ms-sm-2 ms-0 no-select" href="/">
+                    AgroWorld
                 </a>
-			</div>
-		</nav>
-	</header>
+                <a href="javascript:history.back()" class="btn mx-2 retroceso" data-bs-toggle="tooltip"
+                    data-bs-placement="bottom" title="Retroceder">
+                    <i class="bi bi-arrow-return-left"></i>
+                </a>
+            </div>
+        </nav>
+    </header>
 
     <section class="container my-5 mx-auto details-container">
         <div class="details m-auto">
@@ -74,14 +74,12 @@
                     <div class="container-fluid listado">
                         <div class="row g-4 justify-content-center">
                             <div class="col">
-                                <a th:href="@{/tratamiento/nuevo}" data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                    title="Añadir tratamiento">
-                                    <div class="card h-100 add-list grid-element">
-                                        <i class="bi bi-plus-circle-dotted m-auto"></i>
-                                    </div>
+                                <a th:href="@{/tratamiento/nuevo}" class="card h-100 add-list grid-element"
+                                    data-bs-toggle="tooltip" data-bs-placement="bottom" title="Añadir tratamiento">
+                                    <i class="bi bi-plus-circle-dotted m-auto"></i>
                                 </a>
                             </div>
-                           
+                            <!-- TODO: LISTADO DE TRATAMIENTOS YA CREADOS PARA EL CULTIVO -->
                         </div>
                     </div>
                 </fieldset>
