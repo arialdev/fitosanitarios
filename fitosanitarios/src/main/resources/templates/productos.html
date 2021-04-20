@@ -22,26 +22,26 @@
 				<a id="logo" class="navbar-brand me-auto ms-lg-3 ms-sm-2 ms-0 no-select" href="/">
 					AgroWorld
 				</a>
-				<a href="javascript:history.back()" class="btn mx-2 retroceso" data-bs-toggle="tooltip"
-                            data-bs-placement="bottom" title="Retroceder">
-                            <i class="bi bi-arrow-return-left"></i>
-                </a>
+				<a href="/" class="btn mx-2 retroceso" data-bs-toggle="tooltip" data-bs-placement="bottom"
+					title="Retroceder">
+					<i class="bi bi-arrow-return-left"></i>
+				</a>
 			</div>
 		</nav>
 	</header>
 
 	<section class="container my-5 mx-auto">
-	
+
 		<div class="grid-header">
 			<h2 class="mb-4 section-title">Productos:</h2>
-			<a th:href="@{/producto/nuevo}" class="btn btn-success mx-1 add-element" data-bs-toggle="tooltip"
+			<a th:href="@{/producto/nuevo}" class="btn btn-success mx-sm-1 mx-2 add-element" data-bs-toggle="tooltip"
 				data-bs-placement="bottom" title="Nuevo producto">
 				<i class="bi bi-plus"></i>
 			</a>
 		</div>
-		
-		
-		
+
+
+
 		<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-6 g-4">
 			<div class="col" th:each="producto : ${productos}">
 				<div class="card h-100 grid-element">
@@ -58,16 +58,16 @@
 							data-bs-toggle="tooltip" data-bs-placement="bottom" title="Modificar">
 							<i class="bi bi-pencil"></i>
 						</a>
-						<a th:href="@{/producto/borrado/{id}(id=${producto.id})}" class="btn btn-danger mx-1" data-bs-toggle="tooltip" 
-							data-bs-placement="bottom" title="Eliminar">
+						<a th:href="@{/producto/borrado/{id}(id=${producto.id})}" class="btn btn-danger mx-1"
+							data-bs-toggle="tooltip" data-bs-placement="bottom" title="Eliminar">
 							<i class="bi bi-trash"></i>
 						</a>
 					</div>
 				</div>
 			</div>
 		</div>
-		
-		
+
+
 		<!--
 		<div th:each="producto : ${productos}">
 			<p th:text="'Nombre: '+ ${producto.nombre}"></p>
@@ -76,7 +76,7 @@
 			<p th:text="'Plazo de recolección: '+ ${producto.plazoRecoleccion}"></p>
 		</div>
 		-->
-	
+
 	</section>
 
 </body>

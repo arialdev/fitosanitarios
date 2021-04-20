@@ -16,59 +16,56 @@
 
 <body>
 
-	<header>
-		<nav class="navbar navbar-light mb-5">
-			<div class="container-fluid no-select">
-				<a id="logo" class="navbar-brand me-auto ms-lg-3 ms-sm-2 ms-0 no-select" href="/">
-					AgroWorld
-				</a>
-				<a href="javascript:history.back()" class="btn mx-2 retroceso" data-bs-toggle="tooltip"
-                            data-bs-placement="bottom" title="Retroceder">
-                            <i class="bi bi-arrow-return-left"></i>
+    <header>
+        <nav class="navbar navbar-light mb-5">
+            <div class="container-fluid no-select">
+                <a id="logo" class="navbar-brand me-auto ms-lg-3 ms-sm-2 ms-0 no-select" href="/">
+                    AgroWorld
                 </a>
-			</div>
-		</nav>
-	</header>
+            </div>
+        </nav>
+    </header>
 
     <section class="container my-5 mx-auto details-container">
         <form th:action="@{/producto/nuevo/guardado}" method="post" id="new-producto-form">
-                <fieldset>
-                    <legend class="mb-3">Nuevo producto</legend>
-                    <div class="details-navigation mb-4 m-auto">
-                        <a th:href="@{/productos}" class="btn btn-secondary mx-2" data-bs-toggle="tooltip"
-                            data-bs-placement="bottom" title="Cancelar">
-                            <i class="bi bi-arrow-return-left"></i>
-                        </a>
-                        
-                        <input type='submit' class="btn btn-success mx-2" data-bs-toggle="tooltip"
-                            data-bs-placement="bottom" title="Guardar" value="Guardar" />
+            <fieldset>
+                <legend class="mb-3">Nuevo producto</legend>
+                <div class="details-navigation mb-4 m-auto">
+                    <a th:href="@{/productos}" class="btn btn-secondary mx-2" data-bs-toggle="tooltip"
+                        data-bs-placement="bottom" title="Cancelar">
+                        <i class="bi bi-arrow-return-left"></i>
+                    </a>
+
+                    <input type='submit' class="btn btn-success mx-2" data-bs-toggle="tooltip"
+                        data-bs-placement="bottom" title="Guardar" value="Guardar" />
+                </div>
+                <div class="form-data">
+                    <hr>
+                    <div class="mb-3">
+                        <label for="nombre-input" class="form-label">Nombre:</label>
+                        <input type="text" id="nombre-input" class="form-control" placeholder="Nombre" name="nombre">
                     </div>
-                    <div class="form-data">
-                        <hr>
-                        <div class="mb-3">
-                            <label for="nombre-input" class="form-label">Nombre:</label>
-                            <input type="text" id="nombre-input" class="form-control" placeholder="Nombre"
-                                name="nombre">
-                        </div>
 
-                        <div class="mb-3">
-                            <label for="descripcion-input" class="form-label">Descripcion:</label>
-                            <input type="text" id="descripcion-input" class="form-control" placeholder="Descripcion"
-                                name="descripcion">
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="plazoReentrada-input" class="form-label">Plazo de reentrada:</label>
-                            <input type="text" id="plazoReentrada-input" class="form-control" placeholder="Plazo de reentrada" name="plazoReentrada">
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="plazoRecoleccion-input" class="form-label">Plazo de recoleccion:</label>
-                            <input type="text" id="plazoRecoleccion-input" class="form-control" placeholder="Plazo de recoleccion" name="plazoRecoleccion" >
-                        </div>
+                    <div class="mb-3">
+                        <label for="descripcion-input" class="form-label">Descripcion:</label>
+                        <input type="text" id="descripcion-input" class="form-control" placeholder="Descripcion"
+                            name="descripcion">
                     </div>
-                </fieldset>
-            </form>
+
+                    <div class="mb-3">
+                        <label for="plazoReentrada-input" class="form-label">Plazo de reentrada:</label>
+                        <input type="text" id="plazoReentrada-input" class="form-control"
+                            placeholder="Plazo de reentrada" name="plazoReentrada">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="plazoRecoleccion-input" class="form-label">Plazo de recoleccion:</label>
+                        <input type="text" id="plazoRecoleccion-input" class="form-control"
+                            placeholder="Plazo de recoleccion" name="plazoRecoleccion">
+                    </div>
+                </div>
+            </fieldset>
+        </form>
     </section>
 
     <script type="text/javascript" th:src="@{/lib/bootstrap-5.0.0-beta3-dist/js/bootstrap.min.js}"></script>

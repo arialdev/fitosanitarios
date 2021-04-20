@@ -22,10 +22,10 @@
 				<a id="logo" class="navbar-brand me-auto ms-lg-3 ms-sm-2 ms-0 no-select" href="/">
 					AgroWorld
 				</a>
-				<a href="javascript:history.back()" class="btn mx-2 retroceso" data-bs-toggle="tooltip"
-                            data-bs-placement="bottom" title="Retroceder">
-                            <i class="bi bi-arrow-return-left"></i>
-                </a>
+				<a href="/" class="btn mx-2 retroceso" data-bs-toggle="tooltip" data-bs-placement="bottom"
+					title="Retroceder">
+					<i class="bi bi-arrow-return-left"></i>
+				</a>
 			</div>
 		</nav>
 	</header>
@@ -33,7 +33,7 @@
 	<section class="container my-5 mx-auto">
 		<div class="grid-header">
 			<h2 class="mb-4 section-title">Cultivos:</h2>
-			<a th:href="@{/cultivo/nuevo}" class="btn btn-success mx-1 add-element" data-bs-toggle="tooltip"
+			<a th:href="@{/cultivo/nuevo}" class="btn btn-success mx-sm-1 mx-2 add-element" data-bs-toggle="tooltip"
 				data-bs-placement="bottom" title="Nuevo cultivo">
 				<i class="bi bi-plus"></i>
 			</a>
@@ -54,8 +54,8 @@
 							data-bs-toggle="tooltip" data-bs-placement="bottom" title="Modificar">
 							<i class="bi bi-pencil"></i>
 						</a>
-						<a th:href="@{/cultivo/borrado/{id}(id=${cultivo.id})}" class="btn btn-danger mx-1" data-bs-toggle="tooltip" 
-							data-bs-placement="bottom" title="Eliminar">
+						<a th:href="@{/cultivo/borrado/{id}(id=${cultivo.id})}" class="btn btn-danger mx-1"
+							data-bs-toggle="tooltip" data-bs-placement="bottom" title="Eliminar">
 							<i class="bi bi-trash"></i>
 						</a>
 					</div>
