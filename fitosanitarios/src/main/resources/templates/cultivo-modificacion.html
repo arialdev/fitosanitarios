@@ -81,8 +81,7 @@
                             <div class="col" th:each="tratamiento : ${cultivo.tratamientos}">
                                 <div class="card h-100 grid-element ">
                                     <div class="element-header d-flex justify-content-end">
-                                        <p th:text="'Idsdfsdfsdf sdfsdfsdfsfsdfsd: '+${tratamiento.id}"
-                                            class="mb-0 me-auto "></p>
+                                        <p th:text="'Id: '+${tratamiento.id}" class="mb-0 me-auto "></p>
                                         <a th:href="@{/tratamiento/detalle/{id}(id=${tratamiento.id})}"
                                             class="btn btn-info mx-1 p-0" data-bs-toggle="tooltip"
                                             data-bs-placement="bottom" title="Info">
