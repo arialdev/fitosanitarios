@@ -83,31 +83,31 @@ public class TratamientoControlador {
 	}
 	
 	@RequestMapping("/tratamientos/especie")
-    public String vistaEspecie (Model model) {
+    public String vistaEspecie (Model modelo) {
         List<Tratamiento> tratamientos = tratamientoRepositorio.findAll();
         tratamientos.sort((tratamiento1, tratamiento2)-> tratamiento1.getCultivo().getEspecie().compareTo(tratamiento2.getCultivo().getEspecie()));
-        model.addAttribute("tratamientos", tratamientos);
+        modelo.addAttribute("tratamientos", tratamientos);
         return "tratamientos";
     }
 	
 	@RequestMapping("/tratamientos/fechaReentrada")
-    public String vistaFechaReentrada (Model model) {
+    public String vistaFechaReentrada (Model modelo) {
         List<Tratamiento> tratamientos = tratamientoRepositorio.findAll();
         tratamientos.sort((tratamiento1, tratamiento2)-> tratamiento1.getFechaReentrada().compareTo(tratamiento2.getFechaReentrada()));
-        model.addAttribute("tratamientos", tratamientos);
+        modelo.addAttribute("tratamientos", tratamientos);
         return "tratamientos";
     }
 	
 	@RequestMapping("/tratamientos/fechaRecoleccion")
-    public String vistaFechaRecoleccion (Model model) {
+    public String vistaFechaRecoleccion (Model modelo) {
         List<Tratamiento> tratamientos = tratamientoRepositorio.findAll();
         tratamientos.sort((tratamiento1, tratamiento2)-> tratamiento1.getFechaRecoleccion().compareTo(tratamiento2.getFechaRecoleccion()));
-        model.addAttribute("tratamientos", tratamientos);
+        modelo.addAttribute("tratamientos", tratamientos);
         return "tratamientos";
     }
 	
 	@RequestMapping("/tratamientos/filtrado/{plazoSeguridad}")
-    public String sortTratamiento(@PathVariable LocalDate plazoSeguridad, Model modelo) {
+    public String filtrarTratamiento(@PathVariable LocalDate plazoSeguridad, Model modelo) {
 		List<Tratamiento> tratamientos = tratamientoRepositorio.findAll();
 		modelo.addAttribute("tratamientos", 
 				tratamientos.stream().filter(tramiento -> 
