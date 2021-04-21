@@ -19,3 +19,21 @@
     display: flex;
     justify-content: space-between;
 }
+
+#filtro-plazo {
+    height: min-content;
+    /* margin: auto 1rem auto 2rem; */
+    border: 1px solid black;
+    padding: 3px;
+    border-radius: .25rem;
+    background-color: hsl(117deg 42% 55%);
+}
+
+#filtro-plazo-input {
+    width: 145px;
+    background-color: hsl(117deg 42% 90%);
+}
+
+#limpiar-filtro-plazo {
+    color: black;
+}
