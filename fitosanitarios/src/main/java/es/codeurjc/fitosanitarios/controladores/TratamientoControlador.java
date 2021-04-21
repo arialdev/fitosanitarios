@@ -98,6 +98,7 @@ public class TratamientoControlador {
 		tratamientos.sort((tratamiento1, tratamiento2) -> tratamiento1.getCultivo().getEspecie()
 				.compareTo(tratamiento2.getCultivo().getEspecie()));
 		modelo.addAttribute("tratamientos", tratamientos);
+		modelo.addAttribute("ordenEspecie", true);
 		return "tratamientos";
 	}
 
@@ -107,6 +108,7 @@ public class TratamientoControlador {
 		tratamientos.sort((tratamiento1, tratamiento2) -> tratamiento1.getFechaReentrada()
 				.compareTo(tratamiento2.getFechaReentrada()));
 		modelo.addAttribute("tratamientos", tratamientos);
+		modelo.addAttribute("ordenReentrada", true);
 		return "tratamientos";
 	}
 
@@ -116,6 +118,7 @@ public class TratamientoControlador {
 		tratamientos.sort((tratamiento1, tratamiento2) -> tratamiento1.getFechaRecoleccion()
 				.compareTo(tratamiento2.getFechaRecoleccion()));
 		modelo.addAttribute("tratamientos", tratamientos);
+		modelo.addAttribute("ordenRecoleccion", true);
 		return "tratamientos";
 	}
 

@@ -76,3 +76,11 @@ header {
 .retroceso i {
     color: white;
 }
+
+.no-clickable {
+    cursor: initial;
+}
+
+.clickable {
+    cursor: pointer;
+}

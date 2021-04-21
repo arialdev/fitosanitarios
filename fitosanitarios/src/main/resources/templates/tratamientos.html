@@ -32,24 +32,53 @@
 
 	<section class="container my-5 mx-auto">
 
-		<div class="grid-header mb-4">
-			<h2 class="section-title pe-md-2">Tratamientos:</h2>
-
-			<div id="filtro-plazo" class="me-auto my-auto ms-md-2 ms-2">
-				<label for="filtro-plazo-input">Filtrar por plazo:</label>
-				<input id="filtro-plazo-input" type="date" class="filtro-fecha" th:value="${fechaPlazo}">
-				<a th:if="${fechaPlazo!=null}" id="limpiar-filtro-plazo" href="/tratamientos" class="btn mx-1 p-0"
-					data-bs-toggle="tooltip" data-bs-placement="bottom" title="Borrar">
-					<i class="bi bi-x"></i>
+		<div class="mb-4">
+			<div class="grid-header">
+				<h2 class="section-title pe-md-2">Tratamientos:</h2>
+				<div class="me-auto my-auto ms-md-5 ms-2">
+					<label for="opciones-checkbox">Mostrar opciones:</label>
+					<input id="opciones-checkbox" type="checkbox" onclick="eventHandler(this.checked)"
+						th:checked="${fechaPlazo!=null || ordenReentrada !=null || ordenRecoleccion!=null || ordenEspecie!=null}">
+				</div>
+				<a th:href="@{/tratamiento/nuevo}" class="btn btn-success mx-sm-1 mx-2 add-element"
+					data-bs-toggle="tooltip" data-bs-placement="bottom" title="Nuevo tratamiento">
+					<i class="bi bi-plus"></i>
 				</a>
 			</div>
-
-
-			<a th:href="@{/tratamiento/nuevo}" class="btn btn-success mx-sm-1 mx-2 add-element" data-bs-toggle="tooltip"
-				data-bs-placement="bottom" title="Nuevo tratamiento">
-				<i class="bi bi-plus"></i>
-			</a>
+			<div id='opciones'
+				th:styleappend="${fechaPlazo!=null || ordenReentrada !=null || ordenRecoleccion!=null || ordenEspecie!=null}? 'display:flex;' : 'display:none;'">
+				<div id="filtros" class="mx-2">
+					<a href="/tratamientos/especie" class="btn" data-bs-toggle="tooltip" data-bs-placement="right"
+						title="Ordenar por especie"
+						th:classappend="${ordenEspecie!=null} ? 'filter-pressed' : 'filtro'">
+						Ordenar por especie
+					</a>
+					<a href="/tratamientos/fechaReentrada" class="btn" data-bs-toggle="tooltip"
+						data-bs-placement="right" title="Ordenar por fecha de reentrada"
+						th:classappend="${ordenReentrada!=null} ? 'filter-pressed' : 'filtro'">
+						Ordenar por Fecha de Reentrada
+					</a>
+					<a href="/tratamientos/fechaRecoleccion" class="btn" data-bs-toggle="tooltip"
+						data-bs-placement="right" title="Ordenar por fecha de recolección"
+						th:classappend="${ordenRecoleccion!=null} ? 'filter-pressed' : 'filtro'">
+						Ordenar por Fecha de Recolección
+					</a>
+					<div class="btn no-clickable" data-bs-toggle="tooltip" data-bs-placement="right"
+						title="Filtrar por una fecha de plazo"
+						th:classappend="${fechaPlazo!=null} ? 'filter-pressed' : 'filtro'">
+						<label for="filtro-plazo-input">Filtrar por plazo:</label>
+						<input id="filtro-plazo-input" type="date" class="filtro-fecha" th:value="${fechaPlazo}">
+					</div>
+				</div>
+				<a th:if="${fechaPlazo!=null || ordenReentrada !=null || ordenRecoleccion!=null || ordenEspecie!=null}"
+					id="limpiar-filtro-plazo" href="/tratamientos" class="btn btn-secondary mx-1 mt-3"
+					data-bs-toggle="tooltip" data-bs-placement="bottom" title="Reiniciar">
+					Reiniciar
+				</a>
+			</div>
 		</div>
+
+
 
 		<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-6 g-4">
 			<div class="col" th:each="tratamiento : ${tratamientos}">
