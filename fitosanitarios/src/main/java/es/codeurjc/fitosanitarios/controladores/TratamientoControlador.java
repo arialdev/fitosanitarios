@@ -156,15 +156,21 @@ public class TratamientoControlador {
 	}
 
 	@RequestMapping("/tratamiento/modificacion/guardado/{id}")
-	public String modificacionGuardadoTratamiento(@PathVariable Long id, Model modelo,
-			Tratamiento tratamientoModificado) {
+	public String modificacionGuardadoTratamiento(@PathVariable Long id, Model modelo, @RequestParam Long cultivoID,
+			@RequestParam Long productoID, @RequestParam String lote, @RequestParam LocalDate fAplicacion, @RequestParam LocalDate fRecoleccion, @RequestParam LocalDate fReentrada) {
 		Optional<Tratamiento> tratamiento = tratamientoRepositorio.findById(id);
 		if (tratamiento.isPresent()) {
+			Cultivo caux = new Cultivo();
+	        caux = cultivoRepositorio.findById(cultivoID).get();
+	        Producto paux = new Producto();
+	        paux = productoRepositorio.findById(productoID).get();
+			Tratamiento tratamientoModificado = new Tratamiento(caux, paux, lote, fAplicacion, fReentrada, fRecoleccion);
 			tratamientoRepositorio.save(tratamiento.get().actualizar(tratamientoModificado));
 			return vista(modelo);
 		}
 		return "error";
 	}
+	
 
 	@RequestMapping("/tratamiento/borrado/{id}")
 	public String borradoTratamiento(@PathVariable Long id, Model modelo) {

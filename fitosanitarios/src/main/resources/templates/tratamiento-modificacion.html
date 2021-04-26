@@ -29,7 +29,66 @@
 
     <section class="container my-5 mx-auto details-container">
         <div class="details m-auto">
+<<<<<<< HEAD
             
+=======
+
+            <form th:action="@{/tratamiento/modificacion/guardado/__${tratamiento.id}__}" method="post"
+                id="update-tratamiento-form">
+                <fieldset>
+                    <legend class="mb-3">Modificar tratamiento</legend>
+                    <div class="details-navigation mb-4 m-auto">
+                        <a href="javascript:history.back()" class="btn btn-secondary mx-2" data-bs-toggle="tooltip"
+                            data-bs-placement="bottom" title="Cancelar">
+                            <i class="bi bi-arrow-return-left"></i>
+                        </a>
+                        <input type='submit' class="btn btn-success mx-2" data-bs-toggle="tooltip"
+                            data-bs-placement="bottom" value="Guardar" />
+                    </div>
+                    <div class="form-data">
+                        <hr>
+                        <div class="mb-3">
+                            <label for="fechaAplicacion-input" class="form-label">Fecha de aplicación:</label>
+                            <input type="date" id="fechaAplicacion-input" class="form-control" name="fAplicacion" 
+                                th:value="${tratamiento.fechaAplicacion}" placeholder="Fecha de aplicación" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="fechaReentrada-input" class="form-label">Fecha de reentrada:</label>
+                            <input type="date" id="fechaReentrada-input" class="form-control" name="fReentrada"
+                                th:value="${tratamiento.fechaReentrada}" placeholder="Fecha de reentrada" required>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="fechaRecoleccion-input" class="form-label">Fecha de recolección:</label>
+                            <input type="date" id="fechaRecoleccion-input" class="form-control" name="fRecoleccion"
+                                th:value="${tratamiento.fechaRecoleccion}" placeholder="Fecha de recolección" required>
+						</div>
+						
+                        <div class="mb-3">
+                            <label for="lote-input" class="form-label">Lote:</label>
+                            <input type="text" id="lote-input" class="form-control" placeholder="Lote" name="lote"
+                                th:value="${tratamiento.lote}">
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="cultivo-input" class="form-label">Cultivo ID:</label>
+                            <input type="text" id="cultivo-input" class="form-control" placeholder="Cultivo ID" name="cultivoID"
+                                th:value="${tratamiento.cultivo.id}">
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="producto-input" class="form-label">Producto ID:</label>
+                            <input type="text" id="producto-input" class="form-control" placeholder="Producto ID" name="productoID"
+                                th:value="${tratamiento.producto.id}">
+                        </div>
+                        
+                        
+                    </div>
+                </fieldset>
+            </form>
+
+>>>>>>> branch 'main' of https://github.com/Varo412/fitosanitarios.git
         </div>
     </section>
 
