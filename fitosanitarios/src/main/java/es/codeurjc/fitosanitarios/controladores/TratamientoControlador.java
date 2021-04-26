@@ -150,21 +150,19 @@ public class TratamientoControlador {
 		Optional<Tratamiento> tratamiento = tratamientoRepositorio.findById(id);
 		if (tratamiento.isPresent()) {
 			modelo.addAttribute("tratamiento", tratamiento.get());
+			modelo.addAttribute("cultivos", cultivoRepositorio.findAll());
+			modelo.addAttribute("productos", productoRepositorio.findAll());
 			return "tratamiento-modificacion";
 		}
 		return "error";
 	}
 
 	@RequestMapping("/tratamiento/modificacion/guardado/{id}")
-	public String modificacionGuardadoTratamiento(@PathVariable Long id, Model modelo, @RequestParam Long cultivoID,
-			@RequestParam Long productoID, @RequestParam String lote, @RequestParam LocalDate fAplicacion, @RequestParam LocalDate fRecoleccion, @RequestParam LocalDate fReentrada) {
+	public String modificacionGuardadoTratamiento(@PathVariable Long id, Model modelo, @RequestParam Cultivo cultivo, @RequestParam Producto producto, 
+			@RequestParam String lote, @RequestParam LocalDate fechaAplicacion, @RequestParam LocalDate fechaRecoleccion, @RequestParam LocalDate fechaReentrada) {
 		Optional<Tratamiento> tratamiento = tratamientoRepositorio.findById(id);
 		if (tratamiento.isPresent()) {
-			Cultivo caux = new Cultivo();
-	        caux = cultivoRepositorio.findById(cultivoID).get();
-	        Producto paux = new Producto();
-	        paux = productoRepositorio.findById(productoID).get();
-			Tratamiento tratamientoModificado = new Tratamiento(caux, paux, lote, fAplicacion, fReentrada, fRecoleccion);
+			Tratamiento tratamientoModificado = new Tratamiento(cultivo, producto, lote, fechaAplicacion, fechaReentrada, fechaRecoleccion);
 			tratamientoRepositorio.save(tratamiento.get().actualizar(tratamientoModificado));
 			return vista(modelo);
 		}
@@ -184,17 +182,14 @@ public class TratamientoControlador {
 
 	@RequestMapping("/tratamiento/nuevo")
 	public String nuevoTratamiento(Model modelo) {
+		modelo.addAttribute("cultivos", cultivoRepositorio.findAll());
+		modelo.addAttribute("productos", productoRepositorio.findAll());
 		return "tratamiento-nuevo";
 	}
 
 	@RequestMapping("/tratamiento/nuevo/guardado")
-	public String nuevoTratamiento(Model modelo, @RequestParam Long cultivoID, @RequestParam Long productoID, @RequestParam String lote, @RequestParam LocalDate fAplicacion) {
-		Cultivo caux = new Cultivo();
-		caux = cultivoRepositorio.findById(cultivoID).get();
-		Producto paux = new Producto();
-		paux = productoRepositorio.findById(productoID).get();
-		
-		Tratamiento nuevoTratamiento = new Tratamiento(caux, paux, lote, fAplicacion,fAplicacion.plusDays(paux.getPlazoReentrada()), fAplicacion.plusDays(paux.getPlazoRecoleccion()));
+	public String nuevoTratamiento(Model modelo, @RequestParam Cultivo cultivo, @RequestParam Producto producto, @RequestParam String lote, @RequestParam LocalDate fechaAplicacion) {
+		Tratamiento nuevoTratamiento = new Tratamiento(cultivo, producto, lote, fechaAplicacion, fechaAplicacion.plusDays(producto.getPlazoReentrada()), fechaAplicacion.plusDays(producto.getPlazoRecoleccion()));
 		tratamientoRepositorio.save(nuevoTratamiento);
 		return vista(modelo);
 	}
