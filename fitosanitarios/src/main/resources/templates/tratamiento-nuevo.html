@@ -27,11 +27,58 @@
     </header>
 
     <section class="container my-5 mx-auto details-container">
-        <div class="details m-auto">
+        <form th:action="@{/tratamiento/nuevo/guardado}" method="post" id="new-tratamiento-form">
+            <fieldset>
+                <legend class="mb-3">Nuevo tratamiento</legend>
+                <div class="details-navigation mb-4 m-auto">
+                    <a th:href="@{/tratamientos}" class="btn btn-secondary mx-2" data-bs-toggle="tooltip"
+                        data-bs-placement="bottom" title="Cancelar">
+                        <i class="bi bi-arrow-return-left"></i>
+                    </a>
 
-            <p> to be done </p>
+                    <input type='submit' class="btn btn-success mx-2" data-bs-toggle="tooltip"
+                        data-bs-placement="bottom" title="Guardar" value="Guardar" />
+                </div>
+                
+				
+                <div class="form-data">
+                    <hr>
+                    
+                    <div class="mb-3">
+                            <label for="cultivo-input" class="form-label">Cultivo ID:</label>
+                            <input type="text" id="cultivo-input" class="form-control" name="cultivoID"
+                                placeholder="CultivoID">
+                            <a th:href="@{/cultivo/nuevo}" class="btn btn-success mx-sm-1 mx-2 add-element" data-bs-toggle="tooltip"
+								data-bs-placement="bottom" title="Nuevo producto">
+								<i class="bi bi-plus"></i>
+							</a>
+                    </div>
+                    
+                    <div class="mb-3">
+                            <label for="producto-input" class="form-label">Producto ID:</label>
+                            <input type="text" id="producto-input" class="form-control" name="productoID"
+                                placeholder="ProductoID">
+                            <a th:href="@{/producto/nuevo}" class="btn btn-success mx-sm-1 mx-2 add-element" data-bs-toggle="tooltip"
+								data-bs-placement="bottom" title="Nuevo producto">
+								<i class="bi bi-plus"></i>
+							</a>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="lote-input" class="form-label">Lote:</label>
+                        <input type="text" id="lote-input" class="form-control" placeholder="Lote" name="lote">
+                    </div>
 
-        </div>
+                    <div class="mb-3">
+                    	<label for="fAplicacion-input" class="form-label">Fecha de Aplicacion:</label>
+                    	<input type="date" id="fAplicacion-input" class="form-control" name="fAplicacion"
+                    	 placeholder="Fecha de Aplicacion">
+                    </div>
+
+
+                </div>
+            </fieldset>
+        </form>
     </section>
 
     <script type="text/javascript" th:src="@{/lib/bootstrap-5.0.0-beta3-dist/js/bootstrap.min.js}"></script>

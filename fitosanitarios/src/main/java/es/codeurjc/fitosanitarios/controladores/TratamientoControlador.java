@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import es.codeurjc.fitosanitarios.modelos.*;
 import es.codeurjc.fitosanitarios.repositorios.CultivoRepositorio;
@@ -181,8 +182,14 @@ public class TratamientoControlador {
 	}
 
 	@RequestMapping("/tratamiento/nuevo/guardado")
-	public String nuevoTratamiento(Model modelo, Tratamiento tratamientoNuevo) {
-		tratamientoRepositorio.save(tratamientoNuevo);
+	public String nuevoTratamiento(Model modelo, @RequestParam Long cultivoID, @RequestParam Long productoID, @RequestParam String lote, @RequestParam LocalDate fAplicacion) {
+		Cultivo caux = new Cultivo();
+		caux = cultivoRepositorio.findById(cultivoID).get();
+		Producto paux = new Producto();
+		paux = productoRepositorio.findById(productoID).get();
+		
+		Tratamiento nuevoTratamiento = new Tratamiento(caux, paux, lote, fAplicacion,fAplicacion.plusDays(paux.getPlazoReentrada()), fAplicacion.plusDays(paux.getPlazoRecoleccion()));
+		tratamientoRepositorio.save(nuevoTratamiento);
 		return vista(modelo);
 	}
 }

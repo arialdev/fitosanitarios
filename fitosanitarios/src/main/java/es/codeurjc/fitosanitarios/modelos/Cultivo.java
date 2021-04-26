@@ -27,7 +27,7 @@ public class Cultivo {
 	@OneToMany(cascade = CascadeType.REMOVE, mappedBy="cultivo")
 	private List<Tratamiento> tratamientos;
 
-	protected Cultivo() {
+	public Cultivo() {
 		
 	}
 	
