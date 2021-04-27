@@ -71,7 +71,7 @@
                                 th:value="${cultivo.fechaPlantado}" placeholder="Fecha de plantación" disabled required>
                         </div>
                         <div id="lista-tratamientos" class="mb-1">
-                            <label class="form-label">Listado de tratamientos:</label>
+                            <label class="form-label" th:text="${listadoTratamientosInfo}"></label>
                         </div>
                     </div>
                     <div class="container-fluid">

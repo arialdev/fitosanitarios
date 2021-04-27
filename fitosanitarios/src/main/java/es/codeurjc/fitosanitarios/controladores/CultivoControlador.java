@@ -40,6 +40,7 @@ public class CultivoControlador {
 		Optional<Cultivo> cultivo = cultivoRepositorio.findById(id);
 		if (cultivo.isPresent()) {
 			modelo.addAttribute("cultivo", cultivo.get());
+			modelo.addAttribute("listadoTratamientosInfo", ((cultivo.get().getTratamientos().isEmpty()))? "Sin tratamientos asociados" : "Listado de tratamientos:");
 			return "cultivo-detalle";
 		}
 		return "error";
