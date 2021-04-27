@@ -11,12 +11,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import es.codeurjc.fitosanitarios.modelos.Producto;
 import es.codeurjc.fitosanitarios.repositorios.ProductoRepositorio;
+import es.codeurjc.fitosanitarios.repositorios.TratamientoRepositorio;
 
 @Controller
 public class ProductoControlador {
 
 	@Autowired
 	private ProductoRepositorio productoRepositorio;
+	
+	@Autowired
+	private TratamientoRepositorio tratamientoRepositorio;
 
 	@RequestMapping("/productos")
 	public String vista(Model modelo) {
@@ -59,6 +63,7 @@ public class ProductoControlador {
 	public String borradoProducto(@PathVariable Long id, Model modelo) {
 		Optional<Producto> producto = productoRepositorio.findById(id);
 		if (producto.isPresent()) {
+			tratamientoRepositorio.findAll().stream().filter(tratamiento -> tratamiento.getProducto().equals(producto.get())).forEach(tratamientoRepositorio::delete);
 			productoRepositorio.delete(producto.get());
 			return "redirect:/productos";
 		}
