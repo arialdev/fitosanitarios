@@ -39,8 +39,6 @@
                     <input type='submit' class="btn btn-success mx-2" data-bs-toggle="tooltip"
                         data-bs-placement="bottom" title="Guardar" value="Guardar" />
                 </div>
-
-
                 <div class="form-data">
                     <hr>
 
@@ -59,7 +57,6 @@
                             </a>
                         </div>
                     </div>
-
                     <div class="mb-3">
                         <label for="producto-input" class="form-label">Producto:</label>
                         <div class="d-flex">
@@ -85,7 +82,13 @@
                         <input type="date" id="fechaAplicacion-input" class="form-control" name="fechaAplicacion"
                             placeholder="Fecha de Aplicacion">
                     </div>
-
+                    
+                    <!-- Chapuza is here -->
+                    <div hidden>
+                    <select id="VengoDeCultivo" name="vengoDeCultivo">
+    						<option th:each="vengoDeCultivo : ${vengoDeCultivo}" th:value="${vengoDeCultivo}"></option>
+					</select>
+                    </div>
 
                 </div>
             </fieldset>

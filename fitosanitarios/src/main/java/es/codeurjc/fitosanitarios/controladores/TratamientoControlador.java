@@ -6,6 +6,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import es.codeurjc.fitosanitarios.controladores.CultivoControlador;
 
 import javax.annotation.PostConstruct;
 
@@ -82,9 +83,10 @@ public class TratamientoControlador {
 		cultivo4.getTratamientos().add(tratamiento3);
 		cultivo5.getTratamientos().addAll(Arrays.asList(tratamiento4, tratamiento5));
 		cultivo6.getTratamientos().addAll(Arrays.asList(tratamiento6, tratamiento7, tratamiento8));
-
+		
 		cultivoRepositorio.saveAll(Arrays.asList(cultivo2, cultivo3, cultivo4, cultivo5, cultivo6));
 	}
+
 
 	@RequestMapping("/tratamientos")
 	public String vista(Model modelo) {
@@ -164,7 +166,7 @@ public class TratamientoControlador {
 		if (tratamiento.isPresent()) {
 			Tratamiento tratamientoModificado = new Tratamiento(cultivo, producto, lote, fechaAplicacion, fechaReentrada, fechaRecoleccion);
 			tratamientoRepositorio.save(tratamiento.get().actualizar(tratamientoModificado));
-			return vista(modelo);
+			return "tratamientos";
 		}
 		return "error";
 	}
@@ -184,13 +186,19 @@ public class TratamientoControlador {
 	public String nuevoTratamiento(Model modelo) {
 		modelo.addAttribute("cultivos", cultivoRepositorio.findAll());
 		modelo.addAttribute("productos", productoRepositorio.findAll());
+		modelo.addAttribute("vengoDeCultivo", false);
 		return "tratamiento-nuevo";
 	}
 
 	@RequestMapping("/tratamiento/nuevo/guardado")
-	public String nuevoTratamiento(Model modelo, @RequestParam Cultivo cultivo, @RequestParam Producto producto, @RequestParam String lote, @RequestParam LocalDate fechaAplicacion) {
+	public String nuevoTratamiento(Model modelo, @RequestParam Cultivo cultivo, @RequestParam Producto producto, @RequestParam String lote, @RequestParam LocalDate fechaAplicacion, @RequestParam boolean vengoDeCultivo) {
 		Tratamiento nuevoTratamiento = new Tratamiento(cultivo, producto, lote, fechaAplicacion, fechaAplicacion.plusDays(producto.getPlazoReentrada()), fechaAplicacion.plusDays(producto.getPlazoRecoleccion()));
 		tratamientoRepositorio.save(nuevoTratamiento);
+		if(vengoDeCultivo) {
+			List<Cultivo> cultivos = cultivoRepositorio.findAll();
+			modelo.addAttribute("cultivos", cultivos);
+			return "cultivos";
+		}
 		return vista(modelo);
 	}
 }
