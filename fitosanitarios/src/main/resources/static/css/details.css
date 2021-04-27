@@ -3,7 +3,7 @@
     * This stylesheet is for the details view.
 */
 
-.form-control:disabled {
+.form-control:read-only, .form-control:disabled {
     background-color: white !important;
 }
 

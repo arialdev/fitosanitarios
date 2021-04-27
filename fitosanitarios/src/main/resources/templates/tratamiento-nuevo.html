@@ -27,7 +27,7 @@
     </header>
 
     <section class="container my-5 mx-auto details-container">
-        <form th:action="@{/tratamiento/nuevo/guardado}" method="post" id="new-tratamiento-form">
+        <form th:action="@{/tratamiento/nuevo/guardado}" method="post" id="new-tratamiento-form" class="new-form">
             <fieldset>
                 <legend class="mb-3">Nuevo tratamiento</legend>
                 <div class="details-navigation mb-4 m-auto">
@@ -35,22 +35,19 @@
                         data-bs-placement="bottom" title="Cancelar">
                         <i class="bi bi-arrow-return-left"></i>
                     </a>
-
                     <input type='submit' class="btn btn-success mx-2" data-bs-toggle="tooltip"
                         data-bs-placement="bottom" title="Guardar" value="Guardar" />
                 </div>
                 <div class="form-data">
                     <hr>
-
                     <div class="mb-3">
                         <label for="cultivo-input" class="form-label">Cultivo:</label>
                         <div class="d-flex">
                             <select id="cultivos" name="cultivo" class="form-select"
-                                aria-label="Selecciona un cultivo asociado">
+                                aria-label="Selecciona un cultivo asociado" required>
                                 <option th:each="cultivo : ${cultivos}" th:value="${cultivo.id}"
                                     th:text="${cultivo.especie} + ' (' + ${cultivo.id} + ') '"></option>
                             </select>
-
                             <a th:href="@{/cultivo/nuevo}" class="btn btn-success mx-sm-1 mx-2 add-element"
                                 data-bs-toggle="tooltip" data-bs-placement="bottom" title="Nuevo cultivo">
                                 <i class="bi bi-plus"></i>
@@ -61,7 +58,7 @@
                         <label for="producto-input" class="form-label">Producto:</label>
                         <div class="d-flex">
                             <select id="productos" name="producto" class="form-select"
-                                aria-label="Selecciona un producto asociado">
+                                aria-label="Selecciona un producto asociado" required>
                                 <option th:each="producto : ${productos}" th:value="${producto.id}"
                                     th:text="${producto.nombre} + ' (' + ${producto.id} + ') '"></option>
                             </select>
@@ -74,16 +71,16 @@
 
                     <div class="mb-3">
                         <label for="lote-input" class="form-label">Lote:</label>
-                        <input type="text" id="lote-input" class="form-control" placeholder="Lote" name="lote">
+                        <input type="text" id="lote-input" class="form-control" placeholder="Lote" name="lote" required>
                     </div>
 
                     <div class="mb-3">
-                        <label for="fechaAplicacion-input" class="form-label">Fecha de Aplicacion:</label>
+                        <label for="fechaAplicacion-input" class="form-label">Fecha de aplicación:</label>
                         <input type="date" id="fechaAplicacion-input" class="form-control" name="fechaAplicacion"
-                            placeholder="Fecha de Aplicacion">
+                            placeholder="Fecha de aplicación" required>
                     </div>
-                    
-                    <input id="origenCultivoId" name="origenCultivoId" type="hidden" th:value="${origenCultivoId}"/>
+
+                    <input id="origenCultivoId" name="origenCultivoId" type="hidden" th:value="${origenCultivoId}" />
 
                 </div>
             </fieldset>

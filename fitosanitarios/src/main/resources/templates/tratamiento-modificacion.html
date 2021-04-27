@@ -31,7 +31,7 @@
         <div class="details m-auto">
 
             <form th:action="@{/tratamiento/__${tratamiento.id}__/modificacion/guardado}" method="post"
-                id="update-tratamiento-form">
+                id="update-tratamiento-form" class="update-form">
                 <fieldset>
                     <legend class="mb-3">Modificar tratamiento</legend>
                     <div class="details-navigation mb-4 m-auto">
@@ -44,29 +44,6 @@
                     </div>
                     <div class="form-data">
                         <hr>
-                        <div class="mb-3">
-                            <label for="fechaAplicacion-input" class="form-label">Fecha de aplicación:</label>
-                            <input type="date" id="fechaAplicacion-input" class="form-control" name="fechaAplicacion"
-                                th:value="${tratamiento.fechaAplicacion}" placeholder="Fecha de aplicación" required>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="fechaReentrada-input" class="form-label">Fecha de reentrada:</label>
-                            <input type="date" id="fechaReentrada-input" class="form-control" name="fechaReentrada"
-                                th:value="${tratamiento.fechaReentrada}" placeholder="Fecha de reentrada" required>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="fechaRecoleccion-input" class="form-label">Fecha de recolección:</label>
-                            <input type="date" id="fechaRecoleccion-input" class="form-control" name="fechaRecoleccion"
-                                th:value="${tratamiento.fechaRecoleccion}" placeholder="Fecha de recolección" required>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="lote-input" class="form-label">Lote:</label>
-                            <input type="text" id="lote-input" class="form-control" placeholder="Lote" name="lote"
-                                th:value="${tratamiento.lote}">
-                        </div>
                         <div class="mb-3">
                             <label for="cultivo-input" class="form-label">Cultivo:</label>
                             <div class="d-flex">
@@ -98,10 +75,32 @@
                                 </a>
                             </div>
                         </div>
+                        <div class="mb-3">
+                            <label for="fechaAplicacion-input" class="form-label">Fecha de aplicación:</label>
+                            <input type="date" id="fechaAplicacion-input" class="form-control" name="fechaAplicacion"
+                                th:value="${tratamiento.fechaAplicacion}" placeholder="Fecha de aplicación" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="fechaReentrada-input" class="form-label">Fecha de reentrada:</label>
+                            <input type="date" id="fechaReentrada-input" class="form-control" name="fechaReentrada"
+                                th:value="${tratamiento.fechaReentrada}" placeholder="Fecha de reentrada" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="fechaRecoleccion-input" class="form-label">Fecha de recolección:</label>
+                            <input type="date" id="fechaRecoleccion-input" class="form-control" name="fechaRecoleccion"
+                                th:value="${tratamiento.fechaRecoleccion}" placeholder="Fecha de recolección" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="lote-input" class="form-label">Lote:</label>
+                            <input type="text" id="lote-input" class="form-control" placeholder="Lote" name="lote"
+                                th:value="${tratamiento.lote}" required>
+                        </div>
                     </div>
                 </fieldset>
             </form>
-
         </div>
     </section>
 

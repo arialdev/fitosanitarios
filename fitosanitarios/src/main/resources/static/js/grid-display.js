@@ -2,7 +2,6 @@ const opciones = document.querySelector("#opciones");
 
 document.querySelectorAll('.filtro-fecha').forEach(filter => {
     filter.addEventListener('change', (e) => {
-        console.log(e.target.value);
         window.location.pathname = (e.target.value) ? `tratamientos/filtrado/${e.target.value}` : `tratamientos`
     })
 });

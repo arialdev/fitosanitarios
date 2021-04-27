@@ -29,8 +29,8 @@
 
     <section class="container my-5 mx-auto details-container">
         <div class="details m-auto">
-            <form th:action="@{/cultivo/__${cultivo.id}__/modificacion/guardado}" method="post"
-                id="update-cultivo-form">
+            <form th:action="@{/cultivo/__${cultivo.id}__/modificacion/guardado}" method="post" id="update-cultivo-form"
+                class="update-form">
                 <fieldset>
                     <legend class="mb-3">Modificar cultivo</legend>
                     <div class="details-navigation mb-4 m-auto">
@@ -46,13 +46,13 @@
                         <div class="mb-3">
                             <label for="especie-input" class="form-label">Especie:</label>
                             <input type="text" id="especie-input" class="form-control" placeholder="Especie"
-                                name="especie" th:value="${cultivo.especie}">
+                                name="especie" th:value="${cultivo.especie}" required>
                         </div>
 
                         <div class="mb-3">
                             <label for="variedad-input" class="form-label">Variedad:</label>
                             <input type="text" id="variedad-input" class="form-control" placeholder="Variedad"
-                                name="variedad" th:value="${cultivo.variedad}">
+                                name="variedad" th:value="${cultivo.variedad}" required>
                         </div>
 
                         <div class="mb-3">
@@ -73,8 +73,9 @@
                     <div class="container-fluid listado">
                         <div class="row g-4 justify-content-center">
                             <div class="col">
-                                <a th:href="@{/cultivo/{id}/nuevo/tratamiento(id=${cultivo.id})}" class="card h-100 add-list grid-element"
-                                    data-bs-toggle="tooltip" data-bs-placement="bottom" title="Añadir tratamiento">
+                                <a th:href="@{/cultivo/{id}/nuevo/tratamiento(id=${cultivo.id})}"
+                                    class="card h-100 add-list grid-element" data-bs-toggle="tooltip"
+                                    data-bs-placement="bottom" title="Añadir tratamiento">
                                     <i class="bi bi-plus-circle-dotted m-auto"></i>
                                 </a>
                             </div>
@@ -88,7 +89,7 @@
                                             <i class="bi bi-info-circle"></i>
                                         </a>
 
-                                        <a th:href="@{/cultivo/{cultivoId}/borrado/tratamiento/{tratamientoId}(cultivoId=${(cultivo.id)}, tratamientoId=${(tratamiento.id)})}" 
+                                        <a th:href="@{/cultivo/{cultivoId}/borrado/tratamiento/{tratamientoId}(cultivoId=${(cultivo.id)}, tratamientoId=${(tratamiento.id)})}"
                                             class="btn btn-danger mx-1 p-0" data-bs-toggle="tooltip"
                                             data-bs-placement="bottom" title="Borrar">
                                             <i class="bi bi-x"></i>

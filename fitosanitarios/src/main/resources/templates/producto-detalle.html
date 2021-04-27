@@ -29,52 +29,44 @@
 
     <section class="container my-5 mx-auto details-container">
         <div class="details m-auto">
-
-            <form>
-                <fieldset>
-                    <legend class="mb-3">Detalles de producto</legend>
-                    <div class="details-navigation mb-4 m-auto">
-                        <a href="javascript:history.back()" class="btn btn-secondary mx-2" data-bs-toggle="tooltip"
-                            data-bs-placement="bottom" title="Regresar">
-                            <i class="bi bi-arrow-return-left"></i>
-                        </a>
-                        <a th:href="@{/producto/{id}/modificacion(id=${producto.id})}" class="btn btn-warning mx-2"
-                            data-bs-toggle="tooltip" data-bs-placement="bottom" title="Modificar">
-                            <i class="bi bi-pencil"></i>
-                        </a>
-                        <a th:href="@{/producto/{id}/borrado(id=${producto.id})}" class="btn btn-danger mx-2"
-                            data-bs-toggle="tooltip" data-bs-placement="bottom" title="Eliminar">
-                            <i class="bi bi-trash"></i>
-                        </a>
-                    </div>
-                    <div class="form-data">
-                        <hr>
-                        <div class="mb-3">
-                            <label for="nombre-input" class="form-label">Nombre:</label>
-                            <input type="text" disabled id="nombre-input" class="form-control" placeholder="Nombre"
-                                th:value="${producto.nombre}">
-                        </div>
-                        <div class="mb-3">
-                            <label for="descripcion-input" class="form-label">Descripcion:</label>
-                            <input type="text" disabled id="descripcion-input" class="form-control"
-                                placeholder="Descripcion" th:value="${producto.descripcion}">
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="plazoReentrada-input" class="form-label">Plazo de reentrada:</label>
-                            <input type="text" disabled id="plazoReentrada-input" class="form-control"
-                                placeholder="Plazo de reentrada" th:value="${producto.plazoReentrada}">
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="plazoRecoleccion-input" class="form-label">Plazo de recoleccion:</label>
-                            <input type="date" disabled id="plazoRecoleccion-input" class="form-control"
-                                placeholder="Plazo de recoleccion" th:value="${producto.plazoRecoleccion}">
-                        </div>
-                    </div>
-                </fieldset>
-            </form>
-
+            <legend class="mb-3">Detalles de producto</legend>
+            <div class="details-navigation mb-4 m-auto">
+                <a href="javascript:history.back()" class="btn btn-secondary mx-2" data-bs-toggle="tooltip"
+                    data-bs-placement="bottom" title="Regresar">
+                    <i class="bi bi-arrow-return-left"></i>
+                </a>
+                <a th:href="@{/producto/{id}/modificacion(id=${producto.id})}" class="btn btn-warning mx-2"
+                    data-bs-toggle="tooltip" data-bs-placement="bottom" title="Modificar">
+                    <i class="bi bi-pencil"></i>
+                </a>
+                <a th:href="@{/producto/{id}/borrado(id=${producto.id})}" class="btn btn-danger mx-2"
+                    data-bs-toggle="tooltip" data-bs-placement="bottom" title="Eliminar">
+                    <i class="bi bi-trash"></i>
+                </a>
+            </div>
+            <div class="form-data">
+                <hr>
+                <div class="mb-3">
+                    <label for="nombre-input" class="form-label">Nombre:</label>
+                    <input type="text" id="nombre-input" class="form-control" placeholder="Nombre"
+                        th:value="${producto.nombre}" readonly>
+                </div>
+                <div class="mb-3">
+                    <label for="descripcion-input" class="form-label">Descripción:</label>
+                    <input type="text" id="descripcion-input" class="form-control" placeholder="Descripción"
+                        th:value="${producto.descripcion}" readonly>
+                </div>
+                <div class="mb-3">
+                    <label for="plazoReentrada-input" class="form-label">Plazo de reentrada:</label>
+                    <input type="text" id="plazoReentrada-input" class="form-control" placeholder="Plazo de reentrada"
+                        th:value="${producto.plazoReentrada}" readonly>
+                </div>
+                <div class="mb-3">
+                    <label for="plazoRecoleccion-input" class="form-label">Plazo de recolección:</label>
+                    <input type="text" id="plazoRecoleccion-input" class="form-control"
+                        placeholder="Plazo de recolección" th:value="${producto.plazoRecoleccion}" readonly>
+                </div>
+            </div>
         </div>
     </section>
 
