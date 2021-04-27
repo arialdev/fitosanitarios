@@ -45,36 +45,6 @@
                     <div class="form-data">
                         <hr>
                         <div class="mb-3">
-                            <label for="cultivo-input" class="form-label">Cultivo:</label>
-                            <div class="d-flex">
-                                <select id="cultivos" name="cultivo" class="form-select"
-                                    aria-label="Selecciona un cultivo asociado">
-                                    <option th:each="cultivo : ${cultivos}" th:value="${cultivo.id}"
-                                        th:text="${cultivo.especie} + ' (' + ${cultivo.id} + ') '"></option>
-                                </select>
-
-                                <a th:href="@{/cultivo/nuevo}" class="btn btn-success mx-sm-1 mx-2 add-element"
-                                    data-bs-toggle="tooltip" data-bs-placement="bottom" title="Nuevo cultivo">
-                                    <i class="bi bi-plus"></i>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="producto-input" class="form-label">Producto:</label>
-                            <div class="d-flex">
-                                <select id="productos" name="producto" class="form-select"
-                                    aria-label="Selecciona un producto asociado">
-                                    <option th:each="producto : ${productos}" th:value="${producto.id}"
-                                        th:text="${producto.nombre} + ' (' + ${producto.id} + ') '"></option>
-                                </select>
-                                <a th:href="@{/producto/nuevo}" class="btn btn-success mx-sm-1 mx-2 add-element"
-                                    data-bs-toggle="tooltip" data-bs-placement="bottom" title="Nuevo producto">
-                                    <i class="bi bi-plus"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="mb-3">
                             <label for="fechaAplicacion-input" class="form-label">Fecha de aplicación:</label>
                             <input type="date" id="fechaAplicacion-input" class="form-control" name="fechaAplicacion"
                                 th:value="${tratamiento.fechaAplicacion}" placeholder="Fecha de aplicación" required>
@@ -97,10 +67,35 @@
                             <input type="text" id="lote-input" class="form-control" placeholder="Lote" name="lote"
                                 th:value="${tratamiento.lote}">
                         </div>
+                        <div class="mb-3">
+                            <label for="cultivo-input" class="form-label">Cultivo:</label>
+                            <div class="d-flex">
+                                <select id="cultivos" name="cultivo" class="form-select"
+                                    aria-label="Selecciona un cultivo asociado">
+                                    <option th:each="cultivo : ${cultivos}" th:value="${cultivo.id}"
+                                        th:text="${cultivo.especie} + ' (' + ${cultivo.id} + ') '"></option>
+                                </select>
 
-
-
-
+                                <a th:href="@{/cultivo/nuevo}" class="btn btn-success mx-sm-1 mx-2 add-element"
+                                    data-bs-toggle="tooltip" data-bs-placement="bottom" title="Nuevo cultivo">
+                                    <i class="bi bi-plus"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="producto-input" class="form-label">Producto:</label>
+                            <div class="d-flex">
+                                <select id="productos" name="producto" class="form-select"
+                                    aria-label="Selecciona un producto asociado">
+                                    <option th:each="producto : ${productos}" th:value="${producto.id}"
+                                        th:text="${producto.nombre} + ' (' + ${producto.id} + ') '"></option>
+                                </select>
+                                <a th:href="@{/producto/nuevo}" class="btn btn-success mx-sm-1 mx-2 add-element"
+                                    data-bs-toggle="tooltip" data-bs-placement="bottom" title="Nuevo producto">
+                                    <i class="bi bi-plus"></i>
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </fieldset>
             </form>
