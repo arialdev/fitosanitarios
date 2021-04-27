@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import es.codeurjc.fitosanitarios.modelos.Cultivo;
+import es.codeurjc.fitosanitarios.modelos.Tratamiento;
 import es.codeurjc.fitosanitarios.repositorios.CultivoRepositorio;
 import es.codeurjc.fitosanitarios.repositorios.ProductoRepositorio;
+import es.codeurjc.fitosanitarios.repositorios.TratamientoRepositorio;
 
 @Controller
 public class CultivoControlador {
@@ -22,7 +24,10 @@ public class CultivoControlador {
 	@Autowired
 	private ProductoRepositorio productoRepositorio;
 	
-	
+	@Autowired
+	private TratamientoRepositorio tratamientoRepositorio; 
+
+
 	@RequestMapping("/cultivos")
 	public String vista(Model modelo) {
 		List<Cultivo> cultivos = cultivoRepositorio.findAll();
@@ -46,6 +51,17 @@ public class CultivoControlador {
 		if (cultivo.isPresent()) {
 			modelo.addAttribute("cultivo", cultivo.get());
 			return "cultivo-modificacion";
+		}
+		return "error";
+	}
+	
+	@RequestMapping("/cultivo/borrado/tratamiento/{id}")
+	public String borradoTratamientoCultivo(@PathVariable Long id, Model modelo) {
+		Optional<Tratamiento> tratamiento = tratamientoRepositorio.findById(id);		
+		if (tratamiento.isPresent()) {
+			modelo.addAttribute("cultivo", tratamiento.get().getCultivo());
+			tratamientoRepositorio.delete(tratamiento.get());
+			return vista(modelo);
 		}
 		return "error";
 	}
