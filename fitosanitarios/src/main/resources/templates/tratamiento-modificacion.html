@@ -30,7 +30,7 @@
     <section class="container my-5 mx-auto details-container">
         <div class="details m-auto">
 
-            <form th:action="@{/tratamiento/modificacion/guardado/__${tratamiento.id}__}" method="post"
+            <form th:action="@{/tratamiento/__${tratamiento.id}__/modificacion/guardado}" method="post"
                 id="update-tratamiento-form">
                 <fieldset>
                     <legend class="mb-3">Modificar tratamiento</legend>

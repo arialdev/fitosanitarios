@@ -29,7 +29,7 @@
 
     <section class="container my-5 mx-auto details-container">
         <div class="details m-auto">
-            <form th:action="@{/cultivo/modificacion/guardado/__${cultivo.id}__}" method="post"
+            <form th:action="@{/cultivo/__${cultivo.id}__/modificacion/guardado}" method="post"
                 id="update-cultivo-form">
                 <fieldset>
                     <legend class="mb-3">Modificar cultivo</legend>
