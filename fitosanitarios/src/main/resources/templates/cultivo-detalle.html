@@ -62,7 +62,7 @@
                         <div class="mb-3">
                             <label for="zona-input" class="form-label">Zona:</label>
                             <input type="text" disabled id="zona-input" class="form-control" placeholder="Zona"
-                                th:value="${(cultivo.zona.length == 0)? '-' : cultivo.zona }">
+                                th:value="${(cultivo.zona.length == 0)? 'Indefinido' : cultivo.zona }">
                         </div>
 
                         <div class="mb-3">
@@ -71,7 +71,7 @@
                                 th:value="${cultivo.fechaPlantado}" placeholder="Fecha de plantación" disabled required>
                         </div>
                         <div id="lista-tratamientos" class="mb-1">
-                            <label class="form-label" th:text="${listadoTratamientosInfo}"></label>
+                            <label class="form-label" th:text="${cultivo.tratamientos.isEmpty()? 'Sin tratamientos asociados' : 'Listado de tratamientos:'}"></label>
                         </div>
                     </div>
                     <div class="container-fluid">

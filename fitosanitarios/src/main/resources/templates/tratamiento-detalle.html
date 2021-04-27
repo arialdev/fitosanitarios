@@ -89,7 +89,7 @@
                                            th:text="'Fecha de plantado: ' + ${#temporals.format(tratamiento.cultivo.fechaPlantado, 'dd-MM-yyyy')}">
                                        </p>
                                        <p class="card-subtitle mb-2"
-                                           th:text="'Zona: ' + ${tratamiento.cultivo.zona}">
+                                           th:text="'Zona: ' + ${(tratamiento.cultivo.zona.length == 0)? 'No especificada' : tratamiento.cultivo.zona}">
                                        </p>
                                    </div>
                                </div>
