@@ -1,13 +1,18 @@
-var opcionesDesplegadas = false;
+const opciones = document.querySelector("#opciones");
 
 document.querySelectorAll('.filtro-fecha').forEach(filter => {
     filter.addEventListener('change', (e) => {
-        window.location.pathname = `tratamientos/filtrado/${e.target.value}`
+        console.log(e.target.value);
+        window.location.pathname = (e.target.value) ? `tratamientos/filtrado/${e.target.value}` : `tratamientos`
     })
 });
 
-// document.querySelector('#opciones-filtro').addEventListener('click', eventHandler(this));
-
 function eventHandler(status) {
-    document.querySelector("#opciones").style.display = (status) ? 'flex' : 'none'
+    if (status) {
+        opciones.classList.add('mostrar-opciones');
+    }
+    else {
+        opciones.removeAttribute("style");  //elimina el estilo hardcoreado desde thymeleaf
+        opciones.classList.remove('mostrar-opciones');
+    }
 }
