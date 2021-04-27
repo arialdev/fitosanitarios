@@ -36,42 +36,42 @@ public class TratamientoControlador {
 	@PostConstruct
 	public void init() {
 
-		Producto producto1 = new Producto("Producto 1", "Descripcion 1", 15, 30);
-		Producto producto2 = new Producto("Producto 2", "Descripcion 2", 20, 35);
-		Producto producto3 = new Producto("Producto 3", "Descripcion 3", 25, 40);
-		Producto producto4 = new Producto("Producto 4", "Descripcion 4", 15, 0);
-		Producto producto5 = new Producto("Producto 5", "Descripcion 5", 0, 15);
-		Producto producto6 = new Producto("Producto 6", "Descripcion 6", 0, 0);
+		Producto producto1 = new Producto("Insecticida", "Válido contra todo tipo de insectos", 15, 30);
+		Producto producto2 = new Producto("Fungicida", "Efectivo contra musgos", 20, 35);
+		Producto producto3 = new Producto("Nitrato", "Para nitrogenar la tierra", 25, 40);
+		Producto producto4 = new Producto("Anti-topos", "No queda ni uno", 15, 20);
+		Producto producto5 = new Producto("Mata-ratas", "Consultar fecha de caducidad", 0, 15);
+		Producto producto6 = new Producto("Abono", "Origen porcino", 0, 0);
 
 		productoRepositorio.saveAll(Arrays.asList(producto1, producto2, producto3, producto4, producto5, producto6));
 
-		Cultivo cultivo1 = new Cultivo("Especie 2", "Variedad 1", LocalDate.now(), "", new LinkedList<>());
-		Cultivo cultivo2 = new Cultivo("Especie 2", "Variedad 1", LocalDate.now(), "", new LinkedList<>());
-		Cultivo cultivo3 = new Cultivo("Especie 2", "Variedad 1", LocalDate.now(), "", new LinkedList<>());
-		Cultivo cultivo4 = new Cultivo("Especie 1", "Variedad 2", LocalDate.now().plusDays(1), "Alicante",
+		Cultivo cultivo1 = new Cultivo("Naranja", "Navel", LocalDate.now(), "La Solana", new LinkedList<>());
+		Cultivo cultivo2 = new Cultivo("Patata", "Monalisa", LocalDate.now(), "Los Cerrillos", new LinkedList<>());
+		Cultivo cultivo3 = new Cultivo("Naranja", "Blanca", LocalDate.now(), "", new LinkedList<>());
+		Cultivo cultivo4 = new Cultivo("Judía", "Pardiña", LocalDate.now().plusDays(1), "Los Yesares",
 				new LinkedList<>());
-		Cultivo cultivo5 = new Cultivo("Especie 1", "Variedad 2", LocalDate.now(), "", new LinkedList<>());
-		Cultivo cultivo6 = new Cultivo("Especie 1", "Variedad 2", LocalDate.now(), "", new LinkedList<>());
+		Cultivo cultivo5 = new Cultivo("Patata", "Red pontiac", LocalDate.now(), "Los Terreros", new LinkedList<>());
+		Cultivo cultivo6 = new Cultivo("Judía", "Colorada", LocalDate.now(), "La Cañada", new LinkedList<>());
 
 		cultivoRepositorio.saveAll(Arrays.asList(cultivo1, cultivo2, cultivo3, cultivo4, cultivo5, cultivo6));
 
-		Tratamiento tratamiento1 = new Tratamiento(cultivo2, producto6, "lote 1", LocalDate.now(),
+		Tratamiento tratamiento1 = new Tratamiento(cultivo2, producto6, "472/z4", LocalDate.now(),
 				LocalDate.now().plusDays(1), LocalDate.now().plusDays(2));
-		Tratamiento tratamiento2 = new Tratamiento(cultivo3, producto5, "lote 2", LocalDate.now(),
+		Tratamiento tratamiento2 = new Tratamiento(cultivo3, producto5, "158/x3", LocalDate.now(),
 				LocalDate.now().plusDays(1), LocalDate.now().plusDays(2));
-		Tratamiento tratamiento3 = new Tratamiento(cultivo4, producto1, "lote 3", LocalDate.now(),
+		Tratamiento tratamiento3 = new Tratamiento(cultivo4, producto1, "875/z6", LocalDate.now(),
 				LocalDate.now().plusDays(1), LocalDate.now().plusDays(2));
 
-		Tratamiento tratamiento4 = new Tratamiento(cultivo5, producto1, "lote 4", LocalDate.now(),
+		Tratamiento tratamiento4 = new Tratamiento(cultivo5, producto1, "452/f8", LocalDate.now(),
 				LocalDate.now().plusDays(10), LocalDate.now().plusDays(21));
-		Tratamiento tratamiento5 = new Tratamiento(cultivo5, producto2, "lote 4", LocalDate.now().plusDays(10),
+		Tratamiento tratamiento5 = new Tratamiento(cultivo5, producto2, "993/h1", LocalDate.now().plusDays(10),
 				LocalDate.now().plusDays(11), LocalDate.now().plusDays(12));
 
-		Tratamiento tratamiento6 = new Tratamiento(cultivo6, producto5, "lote 5", LocalDate.now(),
+		Tratamiento tratamiento6 = new Tratamiento(cultivo6, producto5, "812/f4", LocalDate.now(),
 				LocalDate.now().plusDays(1), LocalDate.now().plusDays(2));
-		Tratamiento tratamiento7 = new Tratamiento(cultivo6, producto1, "lote 5", LocalDate.now(),
+		Tratamiento tratamiento7 = new Tratamiento(cultivo6, producto1, "873/p1", LocalDate.now(),
 				LocalDate.now().plusDays(1), LocalDate.now().plusDays(2));
-		Tratamiento tratamiento8 = new Tratamiento(cultivo6, producto2, "lote 5", LocalDate.now(),
+		Tratamiento tratamiento8 = new Tratamiento(cultivo6, producto2, "564/u7", LocalDate.now(),
 				LocalDate.now().plusDays(1), LocalDate.now().plusDays(2));
 
 		tratamientoRepositorio.saveAll(Arrays.asList(tratamiento1, tratamiento2, tratamiento3, tratamiento4,
