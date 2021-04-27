@@ -29,136 +29,90 @@
 
     <section class="container my-5 mx-auto details-container">
         <div class="details m-auto">
+            <legend class="mb-3">Detalles de tratamiento</legend>
+            <div class="details-navigation mb-4 m-auto">
+                <a href="javascript:history.back()" class="btn btn-secondary mx-2" data-bs-toggle="tooltip"
+                    data-bs-placement="bottom" title="Regresar">
+                    <i class="bi bi-arrow-return-left"></i>
+                </a>
+                <a th:href="@{/tratamiento/{id}/modificacion(id=${tratamiento.id})}" class="btn btn-warning mx-2"
+                    data-bs-toggle="tooltip" data-bs-placement="bottom" title="Modificar">
+                    <i class="bi bi-pencil"></i>
+                </a>
+                <a th:href="@{/tratamiento/{id}/borrado(id=${tratamiento.id})}" class="btn btn-danger mx-2"
+                    data-bs-toggle="tooltip" data-bs-placement="bottom" title="Eliminar">
+                    <i class="bi bi-trash"></i>
+                </a>
+            </div>
+            <div class="form-data">
+                <hr>
+                <div class="mb-3">
+                    <label for="fechaAplicacion-input" class="form-label">Fecha de aplicación:</label>
+                    <input type="text" id="fechaAplicacion-input" class="form-control"
+                        th:value="${#temporals.format(tratamiento.fechaAplicacion, 'dd-MM-yyyy')}"
+                        placeholder="Fecha aplicación" readonly>
 
-            <form>
-                <fieldset>
-                    <legend class="mb-3">Detalles de tratamiento</legend>
-                    <div class="details-navigation mb-4 m-auto">
-                        <a href="javascript:history.back()" class="btn btn-secondary mx-2" data-bs-toggle="tooltip"
-                            data-bs-placement="bottom" title="Regresar">
-                            <i class="bi bi-arrow-return-left"></i>
-                        </a>
-                        <a th:href="@{/tratamiento/{id}/modificacion(id=${tratamiento.id})}"
-                            class="btn btn-warning mx-2" data-bs-toggle="tooltip" data-bs-placement="bottom"
-                            title="Modificar">
-                            <i class="bi bi-pencil"></i>
-                        </a>
-                        <a th:href="@{/tratamiento/{id}/borrado(id=${tratamiento.id})}" class="btn btn-danger mx-2"
-                            data-bs-toggle="tooltip" data-bs-placement="bottom" title="Eliminar">
-                            <i class="bi bi-trash"></i>
-                        </a>
+                </div>
+                <div class="mb-3">
+                    <label for="fechaReentrada-input" class="form-label">Fecha de reentrada:</label>
+                    <input type="text" readonly id="fechaReentrada-input" class="form-control"
+                        th:value="${#temporals.format(tratamiento.fechaReentrada, 'dd-MM-yyyy')}"
+                        placeholder="Fecha de reentrada">
+                </div>
+                <div class="mb-3">
+                    <label for="fechaRecoleccion-input" class="form-label">Fecha de recolección:</label>
+                    <input type="text" readonly id="fechaRecoleccion-input" class="form-control"
+                        th:value="${#temporals.format(tratamiento.fechaRecoleccion, 'dd-MM-yyyy')}"
+                        placeholder="Fecha recolección">
+                </div>
+                <div class="mb-3">
+                    <label for="lote-input" class="form-label">Lote:</label>
+                    <input type="text" readonly id="lote-input" class="form-control" placeholder="Lote"
+                        th:value="${tratamiento.lote}">
+                </div>
+                <div class="mb-3">
+                    <label for="cultivo-asociado" class="form-label">Cultivo:</label>
+                    <div id="cultivo-asociado" class="card h-100 grid-element">
+                        <div class="element-header"
+                            th:text="${tratamiento.cultivo.especie} + ' (' + ${tratamiento.cultivo.id} + ') '"
+                            data-bs-toggle="tooltip" data-bs-placement="right"
+                            th:title="'Id: ' + ${tratamiento.cultivo.id}+ '     Especie: ' + ${tratamiento.cultivo.especie}">
+                            >
+                        </div>
+                        <div class="card-body">
+                            <p class="card-subtitle mb-2" th:text="'Variedad: ' + ${tratamiento.cultivo.variedad}">
+                            </p>
+                            <p class="card-subtitle mb-2"
+                                th:text="'Fecha de plantado: ' + ${#temporals.format(tratamiento.cultivo.fechaPlantado, 'dd-MM-yyyy')}">
+                            </p>
+                            <p class="card-subtitle mb-2"
+                                th:text="'Zona: ' + ${(tratamiento.cultivo.zona.length == 0)? 'No especificada' : tratamiento.cultivo.zona}">
+                            </p>
+                        </div>
                     </div>
-                    <div class="form-data">
-                        <hr>
-                        <div class="mb-3">
-                            <label for="fechaAplicacion-input" class="form-label">Fecha de aplicacion:</label>
-                            <input type="date" disabled id="fechaAplicacion-input" class="form-control"
-                                th:value="${tratamiento.fechaAplicacion}" placeholder="Fecha aplicacion">
+                </div>
+                <div class="mb-3">
+                    <label for="producto-asociado" class="form-label">Producto:</label>
+                    <div id="producto-asociado" class="card h-100 grid-element">
+                        <div class="element-header"
+                            th:text="${tratamiento.producto.nombre} + ' (' + ${tratamiento.producto.id} + ') '"
+                            data-bs-toggle="tooltip" data-bs-placement="right"
+                            th:title="'Id: ' + ${tratamiento.producto.id}+ '     Nombre: ' + ${tratamiento.producto.nombre}">
                         </div>
-                        <div class="mb-3">
-                            <label for="fechaReentrada-input" class="form-label">Fecha de reentrada:</label>
-                            <input type="date" disabled id="fechaReentrada-input" class="form-control"
-                                th:value="${tratamiento.fechaReentrada}" placeholder="Fecha reentrada">
+                        <div class="card-body">
+                            <p class="card-subtitle mb-2"
+                                th:text="'Descripción: '+ ${tratamiento.producto.descripcion}">
+                            </p>
+                            <p class="card-subtitle mb-2"
+                                th:text="'Plazo de reentrada: '+ ${tratamiento.producto.plazoReentrada} + ' días'">
+                            </p>
+                            <p class="card-subtitle mb-2"
+                                th:text="'Plazo de recolección: '+ ${tratamiento.producto.plazoRecoleccion} + ' días'">
+                            </p>
                         </div>
-                        <div class="mb-3">
-                            <label for="fechaRecoleccion-input" class="form-label">Fecha de recoleccion:</label>
-                            <input type="date" disabled id="fechaRecoleccion-input" class="form-control"
-                                th:value="${tratamiento.fechaRecoleccion}" placeholder="Fecha recoleccion">
-                        </div>
-                        <div class="mb-3">
-                            <label for="lote-input" class="form-label">Lote:</label>
-                            <input type="text" disabled id="lote-input" class="form-control" placeholder="Lote"
-                                th:value="${tratamiento.lote}">
-                        </div>
-                        <div class="mb-3">
-                            <label for="cultivo-asociado" class="form-label">Cultivo:</label>
-                            <div id="cultivo-asociado" class="card h-100 grid-element">
-                                <div class="element-header"
-                                    th:text="${tratamiento.cultivo.especie} + ' (' + ${tratamiento.cultivo.id} + ') '">
-                                </div>
-                                <div class="card-body">
-                                    <p class="card-subtitle mb-2"
-                                        th:text="'Variedad: ' + ${tratamiento.cultivo.variedad}">
-                                    </p>
-                                    <p class="card-subtitle mb-2"
-                                        th:text="'Fecha de plantado: ' + ${#temporals.format(tratamiento.cultivo.fechaPlantado, 'dd-MM-yyyy')}">
-                                    </p>
-                                    <p class="card-subtitle mb-2"
-                                        th:text="'Zona: ' + ${(tratamiento.cultivo.zona.length == 0)? 'No especificada' : tratamiento.cultivo.zona}">
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="producto-asociado" class="form-label">Producto:</label>
-                            <div id="producto-asociado" class="card h-100 grid-element">
-                                <div class="element-header"
-                                    th:text="${tratamiento.producto.nombre} + ' (' + ${tratamiento.producto.id} + ') '">
-                                </div>
-                                <div class="card-body">
-                                    <p class="card-subtitle mb-2"
-                                        th:text="'Descripción: '+ ${tratamiento.producto.descripcion}">
-                                    </p>
-                                    <p class="card-subtitle mb-2"
-                                        th:text="'Plazo de reentrada: '+ ${tratamiento.producto.plazoReentrada} + ' días'">
-                                    </p>
-                                    <p class="card-subtitle mb-2"
-                                        th:text="'Plazo de recolección: '+ ${tratamiento.producto.plazoRecoleccion} + ' días'">
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-
-
-
-                        <!-- <div id="cultivo-producto" class="mb-1">
-                            <label class="form-label">Cultivo y producto:</label>
-                            <div
-                                class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-6 g-4 justify-content-center">
-                                <div class="card h-100 grid-element">
-                                    <div class="element-header"
-                                        th:text="'Cultivo: ' + ${tratamiento.cultivo.especie} + ' (' + ${tratamiento.cultivo.id} + ') '">
-                                    </div>
-                                    <div class="card-body">
-                                        <p class="card-subtitle mb-2"
-                                            th:text="'Variedad: ' + ${tratamiento.cultivo.variedad}">
-                                        </p>
-                                        <p class="card-subtitle mb-2"
-                                            th:text="'Fecha de plantado: ' + ${#temporals.format(tratamiento.cultivo.fechaPlantado, 'dd-MM-yyyy')}">
-                                        </p>
-                                        <p class="card-subtitle mb-2"
-                                            th:text="'Zona: ' + ${(tratamiento.cultivo.zona.length == 0)? 'No especificada' : tratamiento.cultivo.zona}">
-                                        </p>
-                                    </div>
-                                </div>
-                            </div> -->
-                        <!-- <br> -->
-                        <!-- <div
-                                class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-6 g-4 justify-content-center">
-                                <div class="card h-100 grid-element">
-                                    <div class="element-header"
-                                        th:text="'Producto: ' + ${tratamiento.producto.nombre} + ' (' + ${tratamiento.producto.id} + ') '">
-                                    </div>
-                                    <div class="card-body">
-                                        <p class="card-subtitle mb-2"
-                                            th:text="'Descripción: '+ ${tratamiento.producto.descripcion}">
-                                        </p>
-                                        <p class="card-subtitle mb-2"
-                                            th:text="'Plazo de reentrada: '+ ${tratamiento.producto.plazoReentrada} + ' días'">
-                                        </p>
-                                        <p class="card-subtitle mb-2"
-                                            th:text="'Plazo de recolección: '+ ${tratamiento.producto.plazoRecoleccion} + ' días'">
-                                        </p>
-                                    </div>
-                                </div>
-                            </div> -->
-                        <!-- </div> -->
                     </div>
-
-                </fieldset>
-            </form>
-
+                </div>
+            </div>
         </div>
     </section>
 

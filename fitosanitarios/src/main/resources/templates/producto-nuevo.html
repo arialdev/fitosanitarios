@@ -27,7 +27,7 @@
     </header>
 
     <section class="container my-5 mx-auto details-container">
-        <form th:action="@{/producto/nuevo/guardado}" method="post" id="new-producto-form">
+        <form th:action="@{/producto/nuevo/guardado}" method="post" id="new-producto-form" class="new-form">
             <fieldset>
                 <legend class="mb-3">Nuevo producto</legend>
                 <div class="details-navigation mb-4 m-auto">
@@ -43,25 +43,26 @@
                     <hr>
                     <div class="mb-3">
                         <label for="nombre-input" class="form-label">Nombre:</label>
-                        <input type="text" id="nombre-input" class="form-control" placeholder="Nombre" name="nombre">
+                        <input type="text" id="nombre-input" class="form-control" placeholder="Nombre" name="nombre"
+                            required>
                     </div>
 
                     <div class="mb-3">
-                        <label for="descripcion-input" class="form-label">Descripcion:</label>
-                        <input type="text" id="descripcion-input" class="form-control" placeholder="Descripcion"
+                        <label for="descripcion-input" class="form-label">Descripción:</label>
+                        <input type="text" id="descripcion-input" class="form-control" placeholder="Descripción"
                             name="descripcion">
                     </div>
 
                     <div class="mb-3">
                         <label for="plazoReentrada-input" class="form-label">Plazo de reentrada:</label>
-                        <input type="text" id="plazoReentrada-input" class="form-control"
-                            placeholder="Plazo de reentrada" name="plazoReentrada">
+                        <input type="number" id="plazoReentrada-input" class="form-control plazo"
+                            placeholder="Plazo de reentrada" name="plazoReentrada" value="0" min="0" required>
                     </div>
 
                     <div class="mb-3">
-                        <label for="plazoRecoleccion-input" class="form-label">Plazo de recoleccion:</label>
-                        <input type="text" id="plazoRecoleccion-input" class="form-control"
-                            placeholder="Plazo de recoleccion" name="plazoRecoleccion">
+                        <label for="plazoRecoleccion-input" class="form-label">Plazo de recolección:</label>
+                        <input type="number" id="plazoRecoleccion-input" class="form-control plazo"
+                            placeholder="Plazo de recolección" name="plazoRecoleccion" value="0" min="0" required>
                     </div>
                 </div>
             </fieldset>

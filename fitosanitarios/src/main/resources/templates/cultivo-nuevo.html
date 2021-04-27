@@ -27,7 +27,7 @@
 
     <section class="container my-5 mx-auto details-container">
         <div class="details m-auto">
-            <form th:action="@{/cultivo/nuevo/guardado}" method="post" id="new-cultivo-form">
+            <form th:action="@{/cultivo/nuevo/guardado}" method="post" id="new-cultivo-form" class="new-form">
                 <fieldset>
                     <legend class="mb-3">Nuevo cultivo</legend>
                     <div class="details-navigation mb-4 m-auto">
@@ -43,13 +43,13 @@
                         <div class="mb-3">
                             <label for="especie-input" class="form-label">Especie:</label>
                             <input type="text" id="especie-input" class="form-control" placeholder="Especie"
-                                name="especie">
+                                name="especie" required>
                         </div>
 
                         <div class="mb-3">
                             <label for="variedad-input" class="form-label">Variedad:</label>
                             <input type="text" id="variedad-input" class="form-control" placeholder="Variedad"
-                                name="variedad">
+                                name="variedad" required>
                         </div>
 
                         <div class="mb-3">
@@ -60,7 +60,7 @@
                         <div class="mb-3">
                             <label for="fPlant-input" class="form-label">Fecha de plantación:</label>
                             <input type="date" id="fPlant-input" class="form-control" name="fechaPlantado"
-                                placeholder="Fecha de plantación">
+                                placeholder="Fecha de plantación" required>
                         </div>
                 </fieldset>
             </form>

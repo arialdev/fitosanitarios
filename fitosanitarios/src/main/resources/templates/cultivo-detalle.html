@@ -29,68 +29,65 @@
 
     <section class="container my-5 mx-auto details-container">
         <div class="details m-auto">
-            <form>
-                <fieldset>
-                    <legend class="mb-3">Detalles de cultivo</legend>
-                    <div class="details-navigation mb-4 m-auto">
-                        <a href="javascript:history.back()" class="btn btn-secondary mx-2" data-bs-toggle="tooltip"
-                            data-bs-placement="bottom" title="Regresar">
-                            <i class="bi bi-arrow-return-left"></i>
-                        </a>
-                        <a th:href="@{/cultivo/{id}/modificacion(id=${cultivo.id})}" class="btn btn-warning mx-2"
-                            data-bs-toggle="tooltip" data-bs-placement="bottom" title="Modificar">
-                            <i class="bi bi-pencil"></i>
-                        </a>
-                        <a th:href="@{/cultivo/{id}/borrado(id=${cultivo.id})}" class="btn btn-danger mx-2"
-                            data-bs-toggle="tooltip" data-bs-placement="bottom" title="Eliminar">
-                            <i class="bi bi-trash"></i>
-                        </a>
-                    </div>
-                    <div class="form-data">
-                        <hr>
-                        <div class="mb-3">
-                            <label for="especie-input" class="form-label">Especie:</label>
-                            <input type="text" disabled id="especie-input" class="form-control" placeholder="Especie"
-                                th:value="${cultivo.especie}">
-                        </div>
-                        <div class="mb-3">
-                            <label for="variedad-input" class="form-label">Variedad:</label>
-                            <input type="text" disabled id="variedad-input" class="form-control" placeholder="Variedad"
-                                th:value="${cultivo.variedad}">
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="zona-input" class="form-label">Zona:</label>
-                            <input type="text" disabled id="zona-input" class="form-control" placeholder="Zona"
-                                th:value="${(cultivo.zona.length == 0)? 'Indefinido' : cultivo.zona }">
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="fPlant-input" class="form-label">Fecha de plantación:</label>
-                            <input type="date" id="fPlant-input" class="form-control"
-                                th:value="${cultivo.fechaPlantado}" placeholder="Fecha de plantación" disabled required>
-                        </div>
-                        <div id="lista-tratamientos" class="mb-1">
-                            <label class="form-label" th:text="${cultivo.tratamientos.isEmpty()? 'Sin tratamientos asociados' : 'Listado de tratamientos:'}"></label>
-                        </div>
-                    </div>
-                    <div class="container-fluid">
-                        <div
-                            class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-6 g-4 justify-content-center">
-                            <div class="col" th:each="tratamiento : ${cultivo.tratamientos}">
-                                <div class="card h-100 grid-element">
-                                    <div class="element-header" th:text="'Id: '+${tratamiento.id}"></div>
-                                    <div class="card-body">
-                                        <p class="card-subtitle mb-2"
-                                            th:text="${#temporals.format(tratamiento.fechaAplicacion, 'dd-MM-yyyy')}">
-                                        </p>
-                                    </div>
-                                </div>
+            <legend class="mb-3">Detalles de cultivo</legend>
+            <div class="details-navigation mb-4 m-auto">
+                <a href="javascript:history.back()" class="btn btn-secondary mx-2" data-bs-toggle="tooltip"
+                    data-bs-placement="bottom" title="Regresar">
+                    <i class="bi bi-arrow-return-left"></i>
+                </a>
+                <a th:href="@{/cultivo/{id}/modificacion(id=${cultivo.id})}" class="btn btn-warning mx-2"
+                    data-bs-toggle="tooltip" data-bs-placement="bottom" title="Modificar">
+                    <i class="bi bi-pencil"></i>
+                </a>
+                <a th:href="@{/cultivo/{id}/borrado(id=${cultivo.id})}" class="btn btn-danger mx-2"
+                    data-bs-toggle="tooltip" data-bs-placement="bottom" title="Eliminar">
+                    <i class="bi bi-trash"></i>
+                </a>
+            </div>
+            <div class="form-data">
+                <hr>
+                <div class="mb-3">
+                    <label for="especie-input" class="form-label">Especie:</label>
+                    <input type="text" id="especie-input" class="form-control" placeholder="Especie"
+                        th:value="${cultivo.especie}" readonly>
+                </div>
+                <div class="mb-3">
+                    <label for="variedad-input" class="form-label">Variedad:</label>
+                    <input type="text" id="variedad-input" class="form-control" placeholder="Variedad"
+                        th:value="${cultivo.variedad}" readonly>
+                </div>
+                <div class="mb-3">
+                    <label for="zona-input" class="form-label">Zona:</label>
+                    <input type="text" id="zona-input" class="form-control" placeholder="Zona"
+                        th:value="${(cultivo.zona.length == 0)? 'Indefinido' : cultivo.zona }" readonly>
+                </div>
+                <div class="mb-3">
+                    <label for="fPlant-input" class="form-label">Fecha de plantación:</label>
+                    <input type="text" id="fPlant-input" class="form-control"
+                        th:value="${#temporals.format(cultivo.fechaPlantado, 'dd-MM-yyyy')}"
+                        placeholder="Fecha de plantación" readonly>
+                </div>
+                <div id="lista-tratamientos" class="mb-1">
+                    <label class="form-label"
+                        th:text="${cultivo.tratamientos.isEmpty()? 'Sin tratamientos asociados' : 'Listado de tratamientos:'}"></label>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div
+                    class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-6 g-4 justify-content-center">
+                    <div class="col" th:each="tratamiento : ${cultivo.tratamientos}">
+                        <div class="card h-100 grid-element">
+                            <div class="element-header" th:text="'Id: '+${tratamiento.id}"></div>
+                            <div class="card-body">
+                                <span>Fecha de aplicación:</span>
+                                <p class="card-subtitle mb-2"
+                                    th:text="${#temporals.format(tratamiento.fechaAplicacion, 'dd-MM-yyyy')}">
+                                </p>
                             </div>
                         </div>
                     </div>
-                </fieldset>
-            </form>
+                </div>
+            </div>
         </div>
     </section>
 
