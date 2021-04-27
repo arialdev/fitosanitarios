@@ -11,13 +11,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import es.codeurjc.fitosanitarios.modelos.Cultivo;
 import es.codeurjc.fitosanitarios.repositorios.CultivoRepositorio;
+import es.codeurjc.fitosanitarios.repositorios.ProductoRepositorio;
 
 @Controller
 public class CultivoControlador {
 
 	@Autowired
 	private CultivoRepositorio cultivoRepositorio;
-
+	
+	@Autowired
+	private ProductoRepositorio productoRepositorio;
+	
+	
 	@RequestMapping("/cultivos")
 	public String vista(Model modelo) {
 		List<Cultivo> cultivos = cultivoRepositorio.findAll();
@@ -63,6 +68,15 @@ public class CultivoControlador {
 			return vista(modelo);
 		}
 		return "error";
+	}
+	
+	//esto es lo que hemos añadido que es un copy-paste del tratamiento controlador solo que este envía true
+	@RequestMapping("/cultivo/nuevo/tratamiento")
+	public String nuevoTratamiento(Model modelo) {
+		modelo.addAttribute("cultivos", cultivoRepositorio.findAll());
+		modelo.addAttribute("productos", productoRepositorio.findAll());
+		modelo.addAttribute("vengoDeCultivo", true);
+		return "tratamiento-nuevo";
 	}
 
 	@RequestMapping("/cultivo/nuevo")

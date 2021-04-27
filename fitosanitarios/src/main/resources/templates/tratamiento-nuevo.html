@@ -40,6 +40,7 @@
                         data-bs-placement="bottom" title="Guardar" value="Guardar" />
                 </div>
                 
+
 				
                 <div class="form-data">
                     <hr>
@@ -56,6 +57,8 @@
 							</a>
                     </div>
                     
+
+					
                     <div class="mb-3">
                             <label for="producto-input" class="form-label">Producto:</label>
                             <select id="productos" name="producto" class="form-select" aria-label="Selecciona un producto asociado">
@@ -77,7 +80,13 @@
                     	<input type="date" id="fechaAplicacion-input" class="form-control" name="fechaAplicacion"
                     	 placeholder="Fecha de Aplicacion">
                     </div>
-
+                    
+                    <!-- Chapuza is here -->
+                    <div hidden>
+                    <select id="VengoDeCultivo" name="vengoDeCultivo">
+    						<option th:each="vengoDeCultivo : ${vengoDeCultivo}" th:value="${vengoDeCultivo}"></option>
+					</select>
+                    </div>
 
                 </div>
             </fieldset>
