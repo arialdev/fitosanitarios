@@ -6,7 +6,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-import es.codeurjc.fitosanitarios.controladores.CultivoControlador;
 
 import javax.annotation.PostConstruct;
 
