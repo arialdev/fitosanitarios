@@ -1,4 +1,5 @@
-document.querySelectorAll("form input").forEach((input) => {
+document.querySelectorAll("form input, select").forEach((input) => {
+    console.log(input)
     input.setAttribute('data-origVal', input.value);
 
     input.addEventListener('change', (e) => {
