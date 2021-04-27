@@ -34,15 +34,15 @@
                 <fieldset>
                     <legend class="mb-3">Detalles de producto</legend>
                     <div class="details-navigation mb-4 m-auto">
-                        <a th:href="@{/productos}" class="btn btn-secondary mx-2" data-bs-toggle="tooltip"
+                        <a href="javascript:history.back()" class="btn btn-secondary mx-2" data-bs-toggle="tooltip"
                             data-bs-placement="bottom" title="Regresar">
                             <i class="bi bi-arrow-return-left"></i>
                         </a>
-                        <a th:href="@{/producto/modificacion/{id}(id=${producto.id})}" class="btn btn-warning mx-2"
+                        <a th:href="@{/producto/{id}/modificacion(id=${producto.id})}" class="btn btn-warning mx-2"
                             data-bs-toggle="tooltip" data-bs-placement="bottom" title="Modificar">
                             <i class="bi bi-pencil"></i>
                         </a>
-                        <a th:href="@{/producto/borrado/{id}(id=${producto.id})}" class="btn btn-danger mx-2"
+                        <a th:href="@{/producto/{id}/borrado(id=${producto.id})}" class="btn btn-danger mx-2"
                             data-bs-toggle="tooltip" data-bs-placement="bottom" title="Eliminar">
                             <i class="bi bi-trash"></i>
                         </a>

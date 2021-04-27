@@ -25,7 +25,7 @@ public class ProductoControlador {
 		return "productos";
 	}
 	
-	@RequestMapping("/producto/detalle/{id}")
+	@RequestMapping("/producto/{id}/detalle")
 	public String detalleProducto(@PathVariable Long id, Model model) {
 		Optional<Producto> producto = productoRepositorio.findById(id);
 		if (producto.isPresent()) {
@@ -35,7 +35,7 @@ public class ProductoControlador {
 		return "error";
 	}
 	
-	@RequestMapping("/producto/modificacion/{id}")
+	@RequestMapping("/producto/{id}/modificacion")
 	public String modificacionProducto(@PathVariable Long id, Model modelo) {
 		Optional<Producto> producto = productoRepositorio.findById(id);
 		if (producto.isPresent()) {
@@ -45,22 +45,22 @@ public class ProductoControlador {
 		return "error";
 	}
 
-	@RequestMapping("/producto/modificacion/guardado/{id}")
+	@RequestMapping("/producto/{id}/modificacion/guardado")
 	public String updateProducto(@PathVariable Long id, Model modelo, Producto productoModificado) {
 		Optional<Producto> producto = productoRepositorio.findById(id);
 		if (producto.isPresent()) {
 			productoRepositorio.save(producto.get().actualizar(productoModificado));
-			return vista(modelo);
+			return  "redirect:/productos";
 		}
 		return "error";
 	}
 	
-	@RequestMapping("/producto/borrado/{id}")
+	@RequestMapping("/producto/{id}/borrado")
 	public String borradoProducto(@PathVariable Long id, Model modelo) {
 		Optional<Producto> producto = productoRepositorio.findById(id);
 		if (producto.isPresent()) {
 			productoRepositorio.delete(producto.get());
-			return vista(modelo);
+			return "redirect:/productos";
 		}
 		return "error";
 	}
@@ -73,6 +73,6 @@ public class ProductoControlador {
 	@RequestMapping("/producto/nuevo/guardado")
 	public String nuevoProducto(Model modelo, Producto productoNuevo) {
 		productoRepositorio.save(productoNuevo);
-		return vista(modelo);
+		return "redirect:/productos";
 	}
 }

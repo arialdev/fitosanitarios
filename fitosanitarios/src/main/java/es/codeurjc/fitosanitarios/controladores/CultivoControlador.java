@@ -35,7 +35,7 @@ public class CultivoControlador {
 		return "cultivos";
 	}
 
-	@RequestMapping("/cultivo/detalle/{id}")
+	@RequestMapping("/cultivo/{id}/detalle")
 	public String detalleCultivo(@PathVariable Long id, Model modelo) {
 		Optional<Cultivo> cultivo = cultivoRepositorio.findById(id);
 		if (cultivo.isPresent()) {
@@ -45,7 +45,7 @@ public class CultivoControlador {
 		return "error";
 	}
 
-	@RequestMapping("/cultivo/modificacion/{id}")
+	@RequestMapping("/cultivo/{id}/modificacion")
 	public String modificacionCultivo(@PathVariable Long id, Model modelo) {
 		Optional<Cultivo> cultivo = cultivoRepositorio.findById(id);
 		if (cultivo.isPresent()) {
@@ -54,44 +54,43 @@ public class CultivoControlador {
 		}
 		return "error";
 	}
-	
-	@RequestMapping("/cultivo/borrado/tratamiento/{id}")
-	public String borradoTratamientoCultivo(@PathVariable Long id, Model modelo) {
-		Optional<Tratamiento> tratamiento = tratamientoRepositorio.findById(id);		
-		if (tratamiento.isPresent()) {
-			modelo.addAttribute("cultivo", tratamiento.get().getCultivo());
-			tratamientoRepositorio.delete(tratamiento.get());
-			return vista(modelo);
-		}
-		return "error";
-	}
 
-	@RequestMapping("/cultivo/modificacion/guardado/{id}")
+	@RequestMapping("/cultivo/{id}/modificacion/guardado")
 	public String modificacionCultivo(@PathVariable Long id, Model modelo, Cultivo cultivoModificado) {
 		Optional<Cultivo> cultivo = cultivoRepositorio.findById(id);
 		if (cultivo.isPresent()) {
 			cultivoRepositorio.save(cultivo.get().actualizar(cultivoModificado));
-			return vista(modelo);
+			return "redirect:/cultivos";
 		}
 		return "error";
 	}
 
-	@RequestMapping("/cultivo/borrado/{id}")
+	@RequestMapping("/cultivo/{id}/borrado")
 	public String borradoCultivo(@PathVariable Long id, Model modelo) {
 		Optional<Cultivo> cultivo = cultivoRepositorio.findById(id);
 		if (cultivo.isPresent()) {
 			cultivoRepositorio.delete(cultivo.get());
-			return vista(modelo);
+			return "redirect:/cultivos";
 		}
 		return "error";
 	}
 	
-	//esto es lo que hemos añadido que es un copy-paste del tratamiento controlador solo que este envía true
-	@RequestMapping("/cultivo/nuevo/tratamiento")
-	public String nuevoTratamiento(Model modelo) {
+	@RequestMapping("/cultivo/{cultivoId}/borrado/tratamiento/{tratamientoId}")
+	public String borradoTratamientoCultivo(@PathVariable Long cultivoId, @PathVariable Long tratamientoId, Model modelo) {
+		Optional<Tratamiento> tratamiento = tratamientoRepositorio.findById(tratamientoId);		
+		if (tratamiento.isPresent()) {
+			modelo.addAttribute("cultivo", tratamiento.get().getCultivo());
+			tratamientoRepositorio.delete(tratamiento.get());
+			return "redirect:/cultivo/{cultivoId}/modificacion";
+		}
+		return "error";
+	}
+	
+	@RequestMapping("/cultivo/{id}/nuevo/tratamiento")
+	public String nuevoTratamiento(@PathVariable Long id, Model modelo) {
 		modelo.addAttribute("cultivos", cultivoRepositorio.findAll());
 		modelo.addAttribute("productos", productoRepositorio.findAll());
-		modelo.addAttribute("vengoDeCultivo", true);
+		modelo.addAttribute("origenCultivoId", id);
 		return "tratamiento-nuevo";
 	}
 
@@ -103,6 +102,6 @@ public class CultivoControlador {
 	@RequestMapping("/cultivo/nuevo/guardado")
 	public String nuevoCultivo(Model modelo, Cultivo cultivoNuevo) {
 		cultivoRepositorio.save(cultivoNuevo);
-		return vista(modelo);
+		return "redirect:/cultivos";
 	}
 }

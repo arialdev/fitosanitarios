@@ -136,7 +136,7 @@ public class TratamientoControlador {
 		return "tratamientos";
 	}
 
-	@RequestMapping("/tratamiento/detalle/{id}")
+	@RequestMapping("/tratamiento/{id}/detalle")
 	public String detalleTratamiento(@PathVariable Long id, Model modelo) {
 		Optional<Tratamiento> tratamiento = tratamientoRepositorio.findById(id);
 		if (tratamiento.isPresent()) {
@@ -146,7 +146,7 @@ public class TratamientoControlador {
 		return "error";
 	}
 
-	@RequestMapping("/tratamiento/modificacion/{id}")
+	@RequestMapping("/tratamiento/{id}/modificacion")
 	public String modificacion(@PathVariable Long id, Model modelo) {
 		Optional<Tratamiento> tratamiento = tratamientoRepositorio.findById(id);
 		if (tratamiento.isPresent()) {
@@ -158,25 +158,25 @@ public class TratamientoControlador {
 		return "error";
 	}
 
-	@RequestMapping("/tratamiento/modificacion/guardado/{id}")
+	@RequestMapping("/tratamiento/{id}/modificacion/guardado")
 	public String modificacionGuardadoTratamiento(@PathVariable Long id, Model modelo, @RequestParam Cultivo cultivo, @RequestParam Producto producto, 
 			@RequestParam String lote, @RequestParam LocalDate fechaAplicacion, @RequestParam LocalDate fechaRecoleccion, @RequestParam LocalDate fechaReentrada) {
 		Optional<Tratamiento> tratamiento = tratamientoRepositorio.findById(id);
 		if (tratamiento.isPresent()) {
 			Tratamiento tratamientoModificado = new Tratamiento(cultivo, producto, lote, fechaAplicacion, fechaReentrada, fechaRecoleccion);
 			tratamientoRepositorio.save(tratamiento.get().actualizar(tratamientoModificado));
-			return "tratamientos";
+			return "redirect:/tratamientos";
 		}
 		return "error";
 	}
 	
 
-	@RequestMapping("/tratamiento/borrado/{id}")
+	@RequestMapping("/tratamiento/{id}/borrado")
 	public String borradoTratamiento(@PathVariable Long id, Model modelo) {
 		Optional<Tratamiento> tratamiento = tratamientoRepositorio.findById(id);
 		if (tratamiento.isPresent()) {
 			tratamientoRepositorio.delete(tratamiento.get());
-			return vista(modelo);
+			return "redirect:/tratamientos";
 		}
 		return "error";
 	}
@@ -185,19 +185,14 @@ public class TratamientoControlador {
 	public String nuevoTratamiento(Model modelo) {
 		modelo.addAttribute("cultivos", cultivoRepositorio.findAll());
 		modelo.addAttribute("productos", productoRepositorio.findAll());
-		modelo.addAttribute("vengoDeCultivo", false);
+		modelo.addAttribute("origenCultivoId", -1);
 		return "tratamiento-nuevo";
 	}
 
 	@RequestMapping("/tratamiento/nuevo/guardado")
-	public String nuevoTratamiento(Model modelo, @RequestParam Cultivo cultivo, @RequestParam Producto producto, @RequestParam String lote, @RequestParam LocalDate fechaAplicacion, @RequestParam boolean vengoDeCultivo) {
+	public String nuevoTratamiento(Model modelo, @RequestParam Cultivo cultivo, @RequestParam Producto producto, @RequestParam String lote, @RequestParam LocalDate fechaAplicacion, @RequestParam String origenCultivoId) {
 		Tratamiento nuevoTratamiento = new Tratamiento(cultivo, producto, lote, fechaAplicacion, fechaAplicacion.plusDays(producto.getPlazoReentrada()), fechaAplicacion.plusDays(producto.getPlazoRecoleccion()));
 		tratamientoRepositorio.save(nuevoTratamiento);
-		if(vengoDeCultivo) {
-			List<Cultivo> cultivos = cultivoRepositorio.findAll();
-			modelo.addAttribute("cultivos", cultivos);
-			return "cultivos";
-		}
-		return vista(modelo);
+		return (!origenCultivoId.equals("-1"))? "redirect:/cultivo/" + Long.parseLong(origenCultivoId) + "/modificacion" : "redirect:/tratamientos";
 	}
 }

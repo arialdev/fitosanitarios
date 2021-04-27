@@ -37,11 +37,11 @@
                             data-bs-placement="bottom" title="Regresar">
                             <i class="bi bi-arrow-return-left"></i>
                         </a>
-                        <a th:href="@{/cultivo/modificacion/{id}(id=${cultivo.id})}" class="btn btn-warning mx-2"
+                        <a th:href="@{/cultivo/{id}/modificacion(id=${cultivo.id})}" class="btn btn-warning mx-2"
                             data-bs-toggle="tooltip" data-bs-placement="bottom" title="Modificar">
                             <i class="bi bi-pencil"></i>
                         </a>
-                        <a th:href="@{/cultivo/borrado/{id}(id=${cultivo.id})}" class="btn btn-danger mx-2"
+                        <a th:href="@{/cultivo/{id}/borrado(id=${cultivo.id})}" class="btn btn-danger mx-2"
                             data-bs-toggle="tooltip" data-bs-placement="bottom" title="Eliminar">
                             <i class="bi bi-trash"></i>
                         </a>

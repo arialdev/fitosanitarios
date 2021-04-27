@@ -22,7 +22,7 @@
 				<a id="logo" class="navbar-brand me-auto ms-lg-3 ms-sm-2 ms-0 no-select" href="/">
 					AgroWorld
 				</a>
-				<a href="/" class="btn mx-2 retroceso" data-bs-toggle="tooltip" data-bs-placement="bottom"
+				<a href="javascript:history.back()" class="btn mx-2 retroceso" data-bs-toggle="tooltip" data-bs-placement="bottom"
 					title="Retroceder">
 					<i class="bi bi-arrow-return-left"></i>
 				</a>
@@ -46,15 +46,15 @@
 						<p class="card-subtitle mb-2" th:text="${cultivo.variedad}"></p>
 					</div>
 					<div class="card-footer d-flex justify-content-around">
-						<a th:href="@{/cultivo/detalle/{id}(id=${cultivo.id})}" class="btn btn-info mx-1"
+						<a th:href="@{/cultivo/{id}/detalle(id=${cultivo.id})}" class="btn btn-info mx-1"
 							data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ver detalles">
 							<i class="bi bi-info-circle"></i>
 						</a>
-						<a th:href="@{/cultivo/modificacion/{id}(id=${cultivo.id})}" class="btn btn-warning mx-1"
+						<a th:href="@{/cultivo/{id}/modificacion(id=${cultivo.id})}" class="btn btn-warning mx-1"
 							data-bs-toggle="tooltip" data-bs-placement="bottom" title="Modificar">
 							<i class="bi bi-pencil"></i>
 						</a>
-						<a th:href="@{/cultivo/borrado/{id}(id=${cultivo.id})}" class="btn btn-danger mx-1"
+						<a th:href="@{/cultivo/{id}/borrado(id=${cultivo.id})}" class="btn btn-danger mx-1"
 							data-bs-toggle="tooltip" data-bs-placement="bottom" title="Eliminar">
 							<i class="bi bi-trash"></i>
 						</a>
