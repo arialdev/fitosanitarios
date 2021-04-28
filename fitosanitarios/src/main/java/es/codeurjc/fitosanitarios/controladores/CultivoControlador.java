@@ -21,13 +21,12 @@ public class CultivoControlador {
 
 	@Autowired
 	private CultivoRepositorio cultivoRepositorio;
-	
+
 	@Autowired
 	private ProductoRepositorio productoRepositorio;
-	
-	@Autowired
-	private TratamientoRepositorio tratamientoRepositorio; 
 
+	@Autowired
+	private TratamientoRepositorio tratamientoRepositorio;
 
 	@RequestMapping("/cultivos")
 	public String vista(Model modelo) {
@@ -75,10 +74,11 @@ public class CultivoControlador {
 		}
 		return "error";
 	}
-	
+
 	@RequestMapping("/cultivo/{cultivoId}/borrado/tratamiento/{tratamientoId}")
-	public String borradoTratamientoCultivo(@PathVariable Long cultivoId, @PathVariable Long tratamientoId, Model modelo) {
-		Optional<Tratamiento> tratamiento = tratamientoRepositorio.findById(tratamientoId);		
+	public String borradoTratamientoCultivo(@PathVariable Long cultivoId, @PathVariable Long tratamientoId,
+			Model modelo) {
+		Optional<Tratamiento> tratamiento = tratamientoRepositorio.findById(tratamientoId);
 		if (tratamiento.isPresent()) {
 			modelo.addAttribute("cultivo", tratamiento.get().getCultivo());
 			tratamientoRepositorio.delete(tratamiento.get());
@@ -86,7 +86,7 @@ public class CultivoControlador {
 		}
 		return "error";
 	}
-	
+
 	@RequestMapping("/cultivo/{id}/nuevo/tratamiento")
 	public String nuevoTratamiento(@PathVariable Long id, Model modelo) {
 		modelo.addAttribute("cultivos", cultivoRepositorio.findAll());
@@ -104,7 +104,7 @@ public class CultivoControlador {
 	@RequestMapping("/cultivo/nuevo/guardado")
 	public String nuevoCultivo(Model modelo, Cultivo cultivoNuevo, @RequestParam int origenTratamiento) {
 		cultivoRepositorio.save(cultivoNuevo);
-		if(origenTratamiento == 0) {
+		if (origenTratamiento == 0) {
 			modelo.addAttribute("cultivos", cultivoRepositorio.findAll());
 			return "redirect:/cultivos";
 		} else {

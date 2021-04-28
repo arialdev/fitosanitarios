@@ -22,8 +22,8 @@
 				<a id="logo" class="navbar-brand me-auto ms-lg-3 ms-sm-2 ms-0 no-select" href="/">
 					AgroWorld
 				</a>
-				<a href="javascript:history.back()" class="btn mx-2 retroceso" data-bs-toggle="tooltip" data-bs-placement="bottom"
-					title="Retroceder">
+				<a href="javascript:history.back()" class="btn mx-2 retroceso" data-bs-toggle="tooltip"
+					data-bs-placement="bottom" title="Retroceder">
 					<i class="bi bi-arrow-return-left"></i>
 				</a>
 			</div>
@@ -36,30 +36,42 @@
 			<div class="grid-header">
 				<h2 class="section-title pe-md-2">Tratamientos:</h2>
 				<div class="me-auto my-auto ms-md-5 ms-2">
-					<label for="opciones-checkbox">Mostrar opciones:</label>
-					<input id="opciones-checkbox" type="checkbox" onclick="eventHandler(this.checked)"
-						th:checked="${fechaPlazo!=null || ordenReentrada !=null || ordenRecoleccion!=null || ordenEspecie!=null}">
+					<div th:if="${fechaPlazo!=null}">
+						<label for="opciones-checkbox">Mostrar opciones:</label>
+						<input id="opciones-checkbox" type="checkbox" onclick="eventHandler(this.checked)"
+							th:checked="${fechaPlazo!=null}">
+					</div>
+					<div th:if="${fechaPlazo==null}" class="btn no-clickable .filtro" data-bs-toggle="tooltip"
+						data-bs-placement="right" title="Filtrar por una fecha de plazo"
+						th:classappend="${fechaPlazo!=null} ? 'filter-pressed' : 'filtro'">
+						<label for="filtro-plazo-input">Filtrar por plazo:</label>
+						<input id="filtro-plazo-input" type="date" class="filtro-fecha" th:value="${fechaPlazo}">
+					</div>
 				</div>
+
 				<a th:href="@{/tratamiento/nuevo}" class="btn btn-success mx-sm-1 mx-2 add-element"
 					data-bs-toggle="tooltip" data-bs-placement="bottom" title="Nuevo tratamiento">
 					<i class="bi bi-plus"></i>
 				</a>
 			</div>
-			<div id='opciones'
-				th:styleappend="${fechaPlazo!=null || ordenReentrada !=null || ordenRecoleccion!=null || ordenEspecie!=null}? 'display:flex;' : 'display:none;'">
+			<div id='opciones' th:if="${fechaPlazo!=null}"
+				th:classappend="${fechaPlazo!=null} ? 'mostrar-opciones' : ''">
 				<div id="filtros" class="mx-2">
-					<a href="/tratamientos/especie" class="btn" data-bs-toggle="tooltip" data-bs-placement="right"
-						title="Ordenar por especie"
+					<a th:href="@{/tratamientos/filtrado/{plazoSeguridad}/especie(plazoSeguridad=${plazoSeguridad})}"
+						class="btn" data-bs-toggle="tooltip" data-bs-placement="right" title="Ordenar por especie"
 						th:classappend="${ordenEspecie!=null} ? 'filter-pressed' : 'filtro'">
 						Ordenar por especie
+
 					</a>
-					<a href="/tratamientos/fechaReentrada" class="btn" data-bs-toggle="tooltip"
-						data-bs-placement="right" title="Ordenar por fecha de reentrada"
+					<a th:href="@{/tratamientos/filtrado/{plazoSeguridad}/fechaReentrada(plazoSeguridad=${plazoSeguridad})}"
+						class="btn" data-bs-toggle="tooltip" data-bs-placement="right"
+						title="Ordenar por fecha de reentrada"
 						th:classappend="${ordenReentrada!=null} ? 'filter-pressed' : 'filtro'">
 						Ordenar por Fecha de Reentrada
 					</a>
-					<a href="/tratamientos/fechaRecoleccion" class="btn" data-bs-toggle="tooltip"
-						data-bs-placement="right" title="Ordenar por fecha de recolección"
+					<a th:href="@{/tratamientos/filtrado/{plazoSeguridad}/fechaRecoleccion(plazoSeguridad=${plazoSeguridad})}"
+						class="btn" data-bs-toggle="tooltip" data-bs-placement="right"
+						title="Ordenar por fecha de recolección"
 						th:classappend="${ordenRecoleccion!=null} ? 'filter-pressed' : 'filtro'">
 						Ordenar por Fecha de Recolección
 					</a>
@@ -85,11 +97,21 @@
 				<div class="card h-100 grid-element">
 					<div class="element-header" th:text="${tratamiento.id}"></div>
 					<div class="card-body">
-						<p th:text="'Cultivo: '+ ${tratamiento.cultivo.especie} + ' (' + ${tratamiento.cultivo.id} + ')'"></p>
-						<p th:text="'Fecha de aplicación: ' + ${#temporals.format(tratamiento.fechaAplicacion, 'dd-MM-yyyy')}"></p>
-						<p th:text="'Fecha de reentrada: ' + ${#temporals.format(tratamiento.fechaReentrada, 'dd-MM-yyyy')}"></p>
-						<p th:text="'Fecha de recolección: ' + ${#temporals.format(tratamiento.fechaRecoleccion, 'dd-MM-yyyy')}"></p>
-						<p th:text="'Zona: '+ ${(tratamiento.cultivo.zona.length == 0)? 'No especificada' : tratamiento.cultivo.zona}"></p>
+						<p
+							th:text="'Cultivo: '+ ${tratamiento.cultivo.especie} + ' (' + ${tratamiento.cultivo.id} + ')'">
+						</p>
+						<p
+							th:text="'Fecha de aplicación: ' + ${#temporals.format(tratamiento.fechaAplicacion, 'dd-MM-yyyy')}">
+						</p>
+						<p
+							th:text="'Fecha de reentrada: ' + ${#temporals.format(tratamiento.fechaReentrada, 'dd-MM-yyyy')}">
+						</p>
+						<p
+							th:text="'Fecha de recolección: ' + ${#temporals.format(tratamiento.fechaRecoleccion, 'dd-MM-yyyy')}">
+						</p>
+						<p
+							th:text="'Zona: '+ ${(tratamiento.cultivo.zona.length == 0)? 'No especificada' : tratamiento.cultivo.zona}">
+						</p>
 					</div>
 					<div class="card-footer d-flex justify-content-around">
 						<a th:href="@{/tratamiento/{id}/detalle(id=${tratamiento.id})}" class="btn btn-info mx-1"

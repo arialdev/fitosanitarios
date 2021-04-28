@@ -11,7 +11,6 @@ function eventHandler(status) {
         opciones.classList.add('mostrar-opciones');
     }
     else {
-        opciones.removeAttribute("style");  //elimina el estilo hardcoreado desde thymeleaf
         opciones.classList.remove('mostrar-opciones');
     }
 }

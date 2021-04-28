@@ -8,16 +8,15 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import es.codeurjc.fitosanitarios.modelos.Tratamiento;
 
 public interface TratamientoRepositorio extends JpaRepository<Tratamiento, Long> {
-	
+
 	List<Tratamiento> findByOrderByFechaReentradaAsc();
-	List<Tratamiento> findByFechaRecoleccionGreaterThanOrderByFechasReentradaAsc(LocalDate fechaRecollecion);
-	
-	List<Tratamiento> findByOrderByFechaRecoleccionAsc();
-	List<Tratamiento> findByFechaRecoleccionGreaterThanOrderByFechasRecoleccionAsc(LocalDate fechaRecollecion);
-	
-	List<Tratamiento> findByOrderByCultivo_EspecieAsc();
-	List<Tratamiento> findByFechaRecoleccionGreaterThanOrderByCultiva_EspecieAsc(LocalDate fechaRecollecion);
-	
+
+	List<Tratamiento> findByFechaRecoleccionGreaterThanOrderByFechaReentradaAsc(LocalDate fechaRecoleccion);
+
+	List<Tratamiento> findByFechaRecoleccionGreaterThanOrderByFechaRecoleccionAsc(LocalDate fechaRecoleccion);
+
+	List<Tratamiento> findByFechaRecoleccionGreaterThanOrderByCultivo_EspecieAsc(LocalDate fechaRecoleccion);
+
 	List<Tratamiento> findByFechaRecoleccionGreaterThan(LocalDate fechaRecoleccion);
 
 }

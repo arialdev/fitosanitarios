@@ -81,10 +81,9 @@ public class TratamientoControlador {
 		cultivo4.getTratamientos().add(tratamiento3);
 		cultivo5.getTratamientos().addAll(Arrays.asList(tratamiento4, tratamiento5));
 		cultivo6.getTratamientos().addAll(Arrays.asList(tratamiento6, tratamiento7, tratamiento8));
-		
+
 		cultivoRepositorio.saveAll(Arrays.asList(cultivo2, cultivo3, cultivo4, cultivo5, cultivo6));
 	}
-
 
 	@RequestMapping("/tratamientos")
 	public String vista(Model modelo) {
@@ -95,22 +94,28 @@ public class TratamientoControlador {
 
 	@RequestMapping("/tratamientos/filtrado/{plazoSeguridad}/especie")
 	public String vistaEspecie(@PathVariable LocalDate plazoSeguridad, Model modelo) {
-		modelo.addAttribute("tratamientos", tratamientoRepositorio.findByFechaRecoleccionGreaterThanOrderByCultiva_EspecieAsc(plazoSeguridad));
+		modelo.addAttribute("tratamientos",
+				tratamientoRepositorio.findByFechaRecoleccionGreaterThanOrderByCultivo_EspecieAsc(plazoSeguridad));
 		modelo.addAttribute("ordenEspecie", true);
+		modelo.addAttribute("fechaPlazo", plazoSeguridad);
 		return "tratamientos";
 	}
 
 	@RequestMapping("/tratamientos/filtrado/{plazoSeguridad}/fechaReentrada")
 	public String vistaFechaReentrada(@PathVariable LocalDate plazoSeguridad, Model modelo) {
-		modelo.addAttribute("tratamientos", tratamientoRepositorio.findByFechaRecoleccionGreaterThanOrderByFechasReentradaAsc(plazoSeguridad));
+		modelo.addAttribute("tratamientos",
+				tratamientoRepositorio.findByFechaRecoleccionGreaterThanOrderByFechaReentradaAsc(plazoSeguridad));
 		modelo.addAttribute("ordenReentrada", true);
+		modelo.addAttribute("fechaPlazo", plazoSeguridad);
 		return "tratamientos";
 	}
 
 	@RequestMapping("/tratamientos/filtrado/{plazoSeguridad}/fechaRecoleccion")
 	public String vistaFechaRecoleccion(@PathVariable LocalDate plazoSeguridad, Model modelo) {
-		modelo.addAttribute("tratamientos", tratamientoRepositorio.findByFechaRecoleccionGreaterThanOrderByFechasRecoleccionAsc(plazoSeguridad));
+		modelo.addAttribute("tratamientos",
+				tratamientoRepositorio.findByFechaRecoleccionGreaterThanOrderByFechaRecoleccionAsc(plazoSeguridad));
 		modelo.addAttribute("ordenRecoleccion", true);
+		modelo.addAttribute("fechaPlazo", plazoSeguridad);
 		return "tratamientos";
 	}
 
@@ -144,17 +149,18 @@ public class TratamientoControlador {
 	}
 
 	@RequestMapping("/tratamiento/{id}/modificacion/guardado")
-	public String modificacionGuardadoTratamiento(@PathVariable Long id, Model modelo, @RequestParam Cultivo cultivo, @RequestParam Producto producto, 
-			@RequestParam String lote, @RequestParam LocalDate fechaAplicacion, @RequestParam LocalDate fechaRecoleccion, @RequestParam LocalDate fechaReentrada) {
+	public String modificacionGuardadoTratamiento(@PathVariable Long id, Model modelo, @RequestParam Cultivo cultivo,
+			@RequestParam Producto producto, @RequestParam String lote, @RequestParam LocalDate fechaAplicacion,
+			@RequestParam LocalDate fechaRecoleccion, @RequestParam LocalDate fechaReentrada) {
 		Optional<Tratamiento> tratamiento = tratamientoRepositorio.findById(id);
 		if (tratamiento.isPresent()) {
-			Tratamiento tratamientoModificado = new Tratamiento(cultivo, producto, lote, fechaAplicacion, fechaReentrada, fechaRecoleccion);
+			Tratamiento tratamientoModificado = new Tratamiento(cultivo, producto, lote, fechaAplicacion,
+					fechaReentrada, fechaRecoleccion);
 			tratamientoRepositorio.save(tratamiento.get().actualizar(tratamientoModificado));
 			return "redirect:/tratamientos";
 		}
 		return "error";
 	}
-	
 
 	@RequestMapping("/tratamiento/{id}/borrado")
 	public String borradoTratamiento(@PathVariable Long id, Model modelo) {
@@ -175,18 +181,23 @@ public class TratamientoControlador {
 	}
 
 	@RequestMapping("/tratamiento/nuevo/guardado")
-	public String nuevoTratamiento(Model modelo, @RequestParam Cultivo cultivo, @RequestParam Producto producto, @RequestParam String lote, @RequestParam LocalDate fechaAplicacion, @RequestParam String origenCultivoId) {
-		Tratamiento nuevoTratamiento = new Tratamiento(cultivo, producto, lote, fechaAplicacion, fechaAplicacion.plusDays(producto.getPlazoReentrada()), fechaAplicacion.plusDays(producto.getPlazoRecoleccion()));
+	public String nuevoTratamiento(Model modelo, @RequestParam Cultivo cultivo, @RequestParam Producto producto,
+			@RequestParam String lote, @RequestParam LocalDate fechaAplicacion, @RequestParam String origenCultivoId) {
+		Tratamiento nuevoTratamiento = new Tratamiento(cultivo, producto, lote, fechaAplicacion,
+				fechaAplicacion.plusDays(producto.getPlazoReentrada()),
+				fechaAplicacion.plusDays(producto.getPlazoRecoleccion()));
 		tratamientoRepositorio.save(nuevoTratamiento);
-		return (!origenCultivoId.equals("-1"))? "redirect:/cultivo/" + Long.parseLong(origenCultivoId) + "/modificacion" : "redirect:/tratamientos";
+		return (!origenCultivoId.equals("-1"))
+				? "redirect:/cultivo/" + Long.parseLong(origenCultivoId) + "/modificacion"
+				: "redirect:/tratamientos";
 	}
-	
+
 	@RequestMapping("/tratamiento/nuevo/cultivo")
-	public String nuevoCultivo(Model modelo) { 
+	public String nuevoCultivo(Model modelo) {
 		modelo.addAttribute("origenTratamiento", 1);
 		return "cultivo-nuevo";
 	}
-	
+
 	@RequestMapping("/tratamiento/nuevo/producto")
 	public String nuevoProducto(Model modelo) {
 		modelo.addAttribute("origenTratamiento", 1);
