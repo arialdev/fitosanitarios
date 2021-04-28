@@ -20,10 +20,10 @@ public class ProductoControlador {
 
 	@Autowired
 	private ProductoRepositorio productoRepositorio;
-	
+
 	@Autowired
 	private TratamientoRepositorio tratamientoRepositorio;
-	
+
 	@Autowired
 	private CultivoRepositorio cultivoRepositorio;
 
@@ -33,7 +33,7 @@ public class ProductoControlador {
 		modelo.addAttribute("productos", productos);
 		return "productos";
 	}
-	
+
 	@RequestMapping("/producto/{id}/detalle")
 	public String detalleProducto(@PathVariable Long id, Model model) {
 		Optional<Producto> producto = productoRepositorio.findById(id);
@@ -43,7 +43,7 @@ public class ProductoControlador {
 		}
 		return "error";
 	}
-	
+
 	@RequestMapping("/producto/{id}/modificacion")
 	public String modificacionProducto(@PathVariable Long id, Model modelo) {
 		Optional<Producto> producto = productoRepositorio.findById(id);
@@ -59,16 +59,18 @@ public class ProductoControlador {
 		Optional<Producto> producto = productoRepositorio.findById(id);
 		if (producto.isPresent()) {
 			productoRepositorio.save(producto.get().actualizar(productoModificado));
-			return  "redirect:/productos";
+			return "redirect:/productos";
 		}
 		return "error";
 	}
-	
+
 	@RequestMapping("/producto/{id}/borrado")
 	public String borradoProducto(@PathVariable Long id, Model modelo) {
 		Optional<Producto> producto = productoRepositorio.findById(id);
 		if (producto.isPresent()) {
-			tratamientoRepositorio.findAll().stream().filter(tratamiento -> tratamiento.getProducto().equals(producto.get())).forEach(tratamientoRepositorio::delete);
+			tratamientoRepositorio.findAll().stream()
+					.filter(tratamiento -> tratamiento.getProducto().equals(producto.get()))
+					.forEach(tratamientoRepositorio::delete);
 			productoRepositorio.delete(producto.get());
 			return "redirect:/productos";
 		}
@@ -78,13 +80,13 @@ public class ProductoControlador {
 	@RequestMapping("/producto/nuevo")
 	public String nuevoProducto(Model modelo) {
 		modelo.addAttribute("origenTratamiento", 0);
-		return "redirect:/producto/nuevo";
+		return "producto-nuevo";
 	}
 
 	@RequestMapping("/producto/nuevo/guardado")
 	public String nuevoProducto(Model modelo, Producto productoNuevo, @RequestParam int origenTratamiento) {
 		productoRepositorio.save(productoNuevo);
-		if(origenTratamiento == 0) {
+		if (origenTratamiento == 0) {
 			modelo.addAttribute("productos", productoRepositorio.findAll());
 			return "redirect:/productos";
 		} else {

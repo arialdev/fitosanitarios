@@ -98,7 +98,7 @@ public class CultivoControlador {
 	@RequestMapping("/cultivo/nuevo")
 	public String nuevoCultivo(Model modelo) {
 		modelo.addAttribute("origenTratamiento", 0);
-		return "redirect:/cultivo/nuevo";
+		return "cultivo-nuevo";
 	}
 
 	@RequestMapping("/cultivo/nuevo/guardado")
