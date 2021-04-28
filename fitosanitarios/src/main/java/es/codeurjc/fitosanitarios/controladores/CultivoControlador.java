@@ -98,7 +98,7 @@ public class CultivoControlador {
 	@RequestMapping("/cultivo/nuevo")
 	public String nuevoCultivo(Model modelo) {
 		modelo.addAttribute("origenTratamiento", 0);
-		return "cultivo-nuevo";
+		return "redirect:/cultivo/nuevo";
 	}
 
 	@RequestMapping("/cultivo/nuevo/guardado")
@@ -106,11 +106,11 @@ public class CultivoControlador {
 		cultivoRepositorio.save(cultivoNuevo);
 		if(origenTratamiento == 0) {
 			modelo.addAttribute("cultivos", cultivoRepositorio.findAll());
-			return "cultivos";
+			return "redirect:/cultivos";
 		} else {
 			modelo.addAttribute("cultivos", cultivoRepositorio.findAll());
 			modelo.addAttribute("productos", productoRepositorio.findAll());
-			return "tratamiento-nuevo";
+			return "redirect:/tratamiento/nuevo";
 		}
 	}
 }

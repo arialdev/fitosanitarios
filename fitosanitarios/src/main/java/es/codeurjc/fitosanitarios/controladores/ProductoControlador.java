@@ -78,7 +78,7 @@ public class ProductoControlador {
 	@RequestMapping("/producto/nuevo")
 	public String nuevoProducto(Model modelo) {
 		modelo.addAttribute("origenTratamiento", 0);
-		return "producto-nuevo";
+		return "redirect:/producto/nuevo";
 	}
 
 	@RequestMapping("/producto/nuevo/guardado")
@@ -86,11 +86,11 @@ public class ProductoControlador {
 		productoRepositorio.save(productoNuevo);
 		if(origenTratamiento == 0) {
 			modelo.addAttribute("productos", productoRepositorio.findAll());
-			return "productos";
+			return "redirect:/productos";
 		} else {
 			modelo.addAttribute("cultivos", cultivoRepositorio.findAll());
 			modelo.addAttribute("productos", productoRepositorio.findAll());
-			return "tratamiento-nuevo";
+			return "redirect:/tratamiento/nuevo";
 		}
 	}
 }
