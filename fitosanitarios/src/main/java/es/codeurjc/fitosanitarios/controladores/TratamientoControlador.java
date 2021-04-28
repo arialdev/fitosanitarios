@@ -5,7 +5,6 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
 
@@ -94,34 +93,30 @@ public class TratamientoControlador {
 		return "tratamientos";
 	}
 
-	@RequestMapping("/tratamientos/especie")
-	public String vistaEspecie(Model modelo) {
-		List<Tratamiento> tratamientos = tratamientoRepositorio.findAll();
-		tratamientos = tratamientoRepositorio.findByOrderByCultivo_EspecieAsc();
-		modelo.addAttribute("tratamientos", tratamientos);
+	@RequestMapping("/tratamientos/filtrado/{plazoSeguridad}/especie")
+	public String vistaEspecie(@PathVariable LocalDate plazoSeguridad, Model modelo) {
+		modelo.addAttribute("tratamientos", tratamientoRepositorio.findByFechaRecoleccionGreaterThanOrderByCultiva_EspecieAsc(plazoSeguridad));
 		modelo.addAttribute("ordenEspecie", true);
 		return "tratamientos";
 	}
 
-	@RequestMapping("/tratamientos/fechaReentrada")
-	public String vistaFechaReentrada(Model modelo) {
-		modelo.addAttribute("tratamientos", tratamientoRepositorio.findByOrderByFechaReentradaAsc());
+	@RequestMapping("/tratamientos/filtrado/{plazoSeguridad}/fechaReentrada")
+	public String vistaFechaReentrada(@PathVariable LocalDate plazoSeguridad, Model modelo) {
+		modelo.addAttribute("tratamientos", tratamientoRepositorio.findByFechaRecoleccionGreaterThanOrderByFechasReentradaAsc(plazoSeguridad));
 		modelo.addAttribute("ordenReentrada", true);
 		return "tratamientos";
 	}
 
-	@RequestMapping("/tratamientos/fechaRecoleccion")
-	public String vistaFechaRecoleccion(Model modelo) {
-		modelo.addAttribute("tratamientos", tratamientoRepositorio.findByOrderByFechaRecoleccionAsc());
+	@RequestMapping("/tratamientos/filtrado/{plazoSeguridad}/fechaRecoleccion")
+	public String vistaFechaRecoleccion(@PathVariable LocalDate plazoSeguridad, Model modelo) {
+		modelo.addAttribute("tratamientos", tratamientoRepositorio.findByFechaRecoleccionGreaterThanOrderByFechasRecoleccionAsc(plazoSeguridad));
 		modelo.addAttribute("ordenRecoleccion", true);
 		return "tratamientos";
 	}
 
 	@RequestMapping("/tratamientos/filtrado/{plazoSeguridad}")
 	public String filtrarTratamiento(@PathVariable LocalDate plazoSeguridad, Model modelo) {
-		List<Tratamiento> tratamientos = tratamientoRepositorio.findAll();
-		tratamientos = tratamientoRepositorio.findByFechaRecoleccionGreaterThan(plazoSeguridad);
-		modelo.addAttribute("tratamientos", tratamientos);
+		modelo.addAttribute("tratamientos", tratamientoRepositorio.findByOrderByFechaReentradaAsc());
 		modelo.addAttribute("fechaPlazo", plazoSeguridad);
 		return "tratamientos";
 	}
