@@ -27,19 +27,18 @@
 
     <section class="container my-5 mx-auto">
         <div class="row home-menu">
-            <div class="col home-category d-flex flex-column" onclick="window.location.pathname='cultivos'">
+            <div class="col home-category d-flex flex-column no-select" onclick="window.location.pathname='cultivos'">
                 <img class="img img-fluid m-auto" th:src="@{/assets/images/cultivo.png}"
                     alt="Imagen de la categoría cultivos">
                 <h3 class="home-category-title mt-3 mb-2 ">Cultivos</h3>
             </div>
 
-            <div class="col home-category d-flex align-items-center flex-column"
-                onclick="window.location.pathname='productos'">
+            <div class="col home-category d-flex flex-column no-select" onclick="window.location.pathname='productos'">
                 <img class="img img-fluid m-auto" th:src="@{/assets/images/producto.png}"
                     alt="Imagen de la categoría productos">
                 <h3 class="home-category-title mt-3 mb-2">Productos</h3>
             </div>
-            <div class="col home-category d-flex align-items-center flex-column"
+            <div class="col home-category d-flex flex-column no-select"
                 onclick="window.location.pathname='tratamientos'">
                 <img class="img img-fluid m-auto" th:src="@{/assets/images/tratamiento.png}"
                     alt="Imagen de la categoría tratamientos">
