@@ -185,4 +185,16 @@ public class TratamientoControlador {
 		tratamientoRepositorio.save(nuevoTratamiento);
 		return (!origenCultivoId.equals("-1"))? "redirect:/cultivo/" + Long.parseLong(origenCultivoId) + "/modificacion" : "redirect:/tratamientos";
 	}
+	
+	@RequestMapping("/tratamiento/nuevo/cultivo")
+	public String nuevoCultivo(Model modelo) { 
+		modelo.addAttribute("origenTratamiento", 1);
+		return "cultivo-nuevo";
+	}
+	
+	@RequestMapping("/tratamiento/nuevo/producto")
+	public String nuevoProducto(Model modelo) {
+		modelo.addAttribute("origenTratamiento", 1);
+		return "producto-nuevo";
+	}
 }

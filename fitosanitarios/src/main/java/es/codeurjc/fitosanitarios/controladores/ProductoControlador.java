@@ -8,10 +8,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import es.codeurjc.fitosanitarios.modelos.Producto;
 import es.codeurjc.fitosanitarios.repositorios.ProductoRepositorio;
 import es.codeurjc.fitosanitarios.repositorios.TratamientoRepositorio;
+import es.codeurjc.fitosanitarios.repositorios.CultivoRepositorio;
 
 @Controller
 public class ProductoControlador {
@@ -21,6 +23,9 @@ public class ProductoControlador {
 	
 	@Autowired
 	private TratamientoRepositorio tratamientoRepositorio;
+	
+	@Autowired
+	private CultivoRepositorio cultivoRepositorio;
 
 	@RequestMapping("/productos")
 	public String vista(Model modelo) {
@@ -72,12 +77,20 @@ public class ProductoControlador {
 
 	@RequestMapping("/producto/nuevo")
 	public String nuevoProducto(Model modelo) {
+		modelo.addAttribute("origenTratamiento", 0);
 		return "producto-nuevo";
 	}
 
 	@RequestMapping("/producto/nuevo/guardado")
-	public String nuevoProducto(Model modelo, Producto productoNuevo) {
+	public String nuevoProducto(Model modelo, Producto productoNuevo, @RequestParam int origenTratamiento) {
 		productoRepositorio.save(productoNuevo);
-		return "redirect:/productos";
+		if(origenTratamiento == 0) {
+			modelo.addAttribute("productos", productoRepositorio.findAll());
+			return "productos";
+		} else {
+			modelo.addAttribute("cultivos", cultivoRepositorio.findAll());
+			modelo.addAttribute("productos", productoRepositorio.findAll());
+			return "tratamiento-nuevo";
+		}
 	}
 }

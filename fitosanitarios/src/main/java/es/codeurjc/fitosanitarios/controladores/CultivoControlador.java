@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import es.codeurjc.fitosanitarios.modelos.Cultivo;
 import es.codeurjc.fitosanitarios.modelos.Tratamiento;
@@ -96,12 +97,20 @@ public class CultivoControlador {
 
 	@RequestMapping("/cultivo/nuevo")
 	public String nuevoCultivo(Model modelo) {
+		modelo.addAttribute("origenTratamiento", 0);
 		return "cultivo-nuevo";
 	}
 
 	@RequestMapping("/cultivo/nuevo/guardado")
-	public String nuevoCultivo(Model modelo, Cultivo cultivoNuevo) {
+	public String nuevoCultivo(Model modelo, Cultivo cultivoNuevo, @RequestParam int origenTratamiento) {
 		cultivoRepositorio.save(cultivoNuevo);
-		return "redirect:/cultivos";
+		if(origenTratamiento == 0) {
+			modelo.addAttribute("cultivos", cultivoRepositorio.findAll());
+			return "cultivos";
+		} else {
+			modelo.addAttribute("cultivos", cultivoRepositorio.findAll());
+			modelo.addAttribute("productos", productoRepositorio.findAll());
+			return "tratamiento-nuevo";
+		}
 	}
 }
