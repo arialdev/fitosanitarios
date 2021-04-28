@@ -97,8 +97,7 @@ public class TratamientoControlador {
 	@RequestMapping("/tratamientos/especie")
 	public String vistaEspecie(Model modelo) {
 		List<Tratamiento> tratamientos = tratamientoRepositorio.findAll();
-		tratamientos.sort((tratamiento1, tratamiento2) -> tratamiento1.getCultivo().getEspecie()
-				.compareTo(tratamiento2.getCultivo().getEspecie()));
+		tratamientos = tratamientoRepositorio.findByOrderByCultivo_EspecieAsc();
 		modelo.addAttribute("tratamientos", tratamientos);
 		modelo.addAttribute("ordenEspecie", true);
 		return "tratamientos";
