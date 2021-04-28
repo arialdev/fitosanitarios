@@ -15,6 +15,6 @@ public interface TratamientoRepositorio extends JpaRepository<Tratamiento, Long>
 	
 	List<Tratamiento> findByOrderByCultivo_EspecieAsc();
 	
-	List<Tratamiento> findByFechaRecoleccionLessThan(LocalDate fechaRecoleccion);
+	List<Tratamiento> findByFechaRecoleccionGreaterThan(LocalDate fechaRecoleccion);
 
 }
