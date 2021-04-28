@@ -106,20 +106,14 @@ public class TratamientoControlador {
 
 	@RequestMapping("/tratamientos/fechaReentrada")
 	public String vistaFechaReentrada(Model modelo) {
-		List<Tratamiento> tratamientos = tratamientoRepositorio.findAll();
-		tratamientos.sort((tratamiento1, tratamiento2) -> tratamiento1.getFechaReentrada()
-				.compareTo(tratamiento2.getFechaReentrada()));
-		modelo.addAttribute("tratamientos", tratamientos);
+		modelo.addAttribute("tratamientos", tratamientoRepositorio.findByOrderByFechaReentradaAsc());
 		modelo.addAttribute("ordenReentrada", true);
 		return "tratamientos";
 	}
 
 	@RequestMapping("/tratamientos/fechaRecoleccion")
 	public String vistaFechaRecoleccion(Model modelo) {
-		List<Tratamiento> tratamientos = tratamientoRepositorio.findAll();
-		tratamientos.sort((tratamiento1, tratamiento2) -> tratamiento1.getFechaRecoleccion()
-				.compareTo(tratamiento2.getFechaRecoleccion()));
-		modelo.addAttribute("tratamientos", tratamientos);
+		modelo.addAttribute("tratamientos", tratamientoRepositorio.findByOrderByFechaRecoleccionAsc());
 		modelo.addAttribute("ordenRecoleccion", true);
 		return "tratamientos";
 	}
