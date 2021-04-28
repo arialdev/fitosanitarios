@@ -120,11 +120,8 @@ public class TratamientoControlador {
 	@RequestMapping("/tratamientos/filtrado/{plazoSeguridad}")
 	public String filtrarTratamiento(@PathVariable LocalDate plazoSeguridad, Model modelo) {
 		List<Tratamiento> tratamientos = tratamientoRepositorio.findAll();
-		modelo.addAttribute("tratamientos",
-				tratamientos.stream()
-						.filter(tramiento -> (tramiento.getFechaRecoleccion().compareTo(plazoSeguridad) > 0
-								|| tramiento.getFechaReentrada().compareTo(plazoSeguridad) > 0))
-						.collect(Collectors.toList()));
+		tratamientos = tratamientoRepositorio.findByFechaRecoleccionLessThan(plazoSeguridad);
+		modelo.addAttribute("tratamientos", tratamientos);
 		modelo.addAttribute("fechaPlazo", plazoSeguridad);
 		return "tratamientos";
 	}
